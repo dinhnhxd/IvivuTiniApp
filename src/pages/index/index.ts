@@ -1,7 +1,7 @@
 
 /// <reference lib="dom" /> 
 // => fix missing setTimeout
-
+// test
 import clone  from 'lodash-es/clone'
 
 interface HomeData {
