@@ -1,6 +1,6 @@
 
 <view>-------------</view>
-<view>This is blank component to test sjs file new test tét</view>
+<view>This is blank component to test</view>
 <import-sjs from="./index.sjs" name="test"></import-sjs>
 <view> {{test.bar(test.foo)}} </view>
 <view> {{test.bar('msg')}} </view>
