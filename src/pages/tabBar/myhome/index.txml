@@ -4,7 +4,7 @@
     <image 
       class="cart1" 
       onTap="onTapCart"
-      src="../../images/logo-fb.png" />
+      src="../../../images/logo-fb.png" />
         <!-- <image
           onLoad="onLoad"
           src="../../images/cart-white.svg"

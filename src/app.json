@@ -1,8 +1,28 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/tabBar/myhome/index",
+    "pages/tabBar/travel/index"
   ],
   "window": {
-    "defaultTitle": "My App"
-  }
+    "defaultTitle": ""
+  },
+  
+    "tabBar": {
+      "items": [
+        {
+          "name": "Trang chủ",
+          "pagePath": "pages/tabBar/myhome/index",
+          "icon": "images/home.png",
+          "activeIcon": "images/home.png"
+        },
+        {
+          "name": "Kì nghỉ của tôi",
+          "pagePath": "pages/tabBar/travel/index",
+          "icon": "images/trip.png",
+          "activeIcon": "images/trip.png"
+        }
+      ]
+    }
+  
 }
