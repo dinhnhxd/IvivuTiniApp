@@ -1,18 +1,5 @@
 <view class="wrap {{fixedHeader ? 'fix-search' : ''}}">
-  
-  <view class="top-header">
-    <image 
-      class="cart1" 
-      onTap="onTapCart"
-      src="../../images/logo-fb.png" />
-        <!-- <image
-          onLoad="onLoad"
-          src="../../images/cart-white.svg"
-          class="image-item" /> -->
-  </view>
-  
 
-  
   <view class="top">
     <view class="top-content">
       <!-- <text class="greeting" number-of-lines="{{1}}">
@@ -21,36 +8,22 @@
     </view>
   </view>
   <view class="content">
-    <view class="text"> Ưu đãi tốt nhất hôm nay</view>
-    <view class="icon">
-      <icon type="adjustment" />
+    <view class="top-header">
+
     </view>
-    
+    <view>
+      
+    </view>
+    <image class="cart"
+    src="/images/mytrip/trip_empty.svg" />
   </view>
-  <!-- <view class="content">
- 
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-  </view> -->
-  
+ <view class="text-warning">
+  Chưa có chuyến đi nào!
+ </view>
+ <view class="text-warning-1">
+  Đặt và trải nghiệm combo du lịch iVIVU ngay
+ </view>
+ <view class="text-btn">
+  <button class="btn">Khám phá ưu đãi tốt nhất hôm nay</button>
+ </view>
 </view>
