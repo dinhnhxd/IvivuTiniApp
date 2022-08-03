@@ -1,35 +1,33 @@
-
 Page({
   data: {
+    fixedHeader: false,
+    items: Array.from(Array(100).keys()),
+    iconSize: [20, 30, 40, 50, 60],
+    iconColor: ['red', 'yellow', 'blue', 'green'],
+    iconType: ['adjustment']
   },
-  onLoad(){
-      this.setData({ loading: true });
-      my.request({
-        url: 'https://beta-olivia.ivivu.com/mobile/OliviaApis/TopDeals?pageIndex=1&pageSize=200',
-        method: 'POST',
-        headers:
-        {
-          apisecret: '2Vg_RTAccmT1mb1NaiirtyY2Y3OHaqUfQ6zU_8gD8SU',
-          apikey: '0HY9qKyvwty1hSzcTydn0AHAXPb0e2QzYQlMuQowS8U'
-        },
-        success: (response) => {
-          this.setData({response, loading: false });
-          
-        }
-      });
-      
+  onPageScroll(event: { scrollTop: number; }) {
+    this.setData({ fixedHeader: event.scrollTop > 20 });
   },
-  numberToCurrency(number: number, thousands: string) {
+  numberToCurrency(number: any, thousands: any): any{
     var includefee = false
-    if (number == undefined)
-        return 'undefined';
-    let fee = 0;
-    if (includefee) {
-        fee = 20000;
+    if (number == undefined){
+      return 'undefined';
     }
-    var parts = this.round(number + fee, 0).toString().split(".");
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands);
-    return parts.join(thousands);
-},
+    else{
+      let fee = 0;
+      if (includefee) {
+          fee = 20000;
+      }
+      var parts = Math.round(number + fee).toString().split(".");
+      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands);
+      return parts.join(thousands);
+    }
+   
+  },
+  newFunction(a:any, b:any){
+    console.log(a);
+    console.log(b);
+    return a +b
+  }
 });
-
