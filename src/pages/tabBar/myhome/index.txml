@@ -1,18 +1,11 @@
 <view class="wrap {{fixedHeader ? 'fix-search' : ''}}">
-  
-  <view class="top-header">
-    <image 
-      class="cart1" 
-      onTap="onTapCart"
-      src="../../../images/logo-fb.png" />
-        <!-- <image
-          onLoad="onLoad"
-          src="../../images/cart-white.svg"
-          class="image-item" /> -->
-  </view>
-  
 
-  
+  <view class="top-header">
+    <image class="cart1" src="../../../images/logo.svg" />
+  </view>
+
+
+
   <view class="top">
     <view class="top-content">
       <!-- <text class="greeting" number-of-lines="{{1}}">
@@ -22,35 +15,49 @@
   </view>
   <view class="content">
     <view class="text"> Ưu đãi tốt nhất hôm nay</view>
-    <view class="icon">
-      <icon type="adjustment" />
+    <image class="img-filter" src="../../../images/imgs/ic_filter_b.svg" />
+    <view class="item-card" tiki:for="{{response}}">
+      <image class="img-hotel" src={{item.avatar}} />
+      <view class="text-hotelname">
+        {{item.name.split('|')[0]}}
+      </view>
+      <view tiki:if="{{item.rating == 50}}">
+        <image  class="img-star" src="../../../images/star/ic_star_5.svg" />
+      </view>
+      <view tiki:if="{{item.rating == 45}}">
+        <image  class="img-star" src="../../../images/star/ic_star_4.5.svg" />
+      </view>
+      <view tiki:if="{{item.rating == 40}}">
+        <image  class="img-star" src="../../../images/star/ic_star_4.svg" />
+      </view>
+      <view tiki:if="{{item.rating == 35}}" >
+        <image class="img-star" src="../../../images/star/ic_star_3.5.svg" />
+      </view>
+      <view tiki:if="{{item.rating == 30}}">
+        <image  class="img-star" src="../../../images/star/ic_star_30.svg" />
+      </view>
+      <view tiki:if="{{item.rating == 25}}">
+        <image  class="img-star" src="../../../images/star/ic_star_2.5.svg" />
+      </view>
+      <view tiki:if="{{item.rating == 20}}">
+        <image  class="img-star" src="../../../images/star/ic_star_20.svg" />
+      </view>
+      <view tiki:if="{{item.rating == 15}}">
+        <image  class="img-star" src="../../../images/star/ic_star_1.5.svg" />
+      </view>
+      <view tiki:if="{{item.rating == 1}}"> 
+        <image  class="img-star" src="../../../images/star/ic_star_1.svg" />
+      </view>
+      <view tiki:if="{{item.rating == 5}}">
+        <image  class="img-star" src="../../../images/star/ic_star_0.5.svg" />
+      </view>
+      <view  class="float-promo">
+
+        <view  class="float-promo-description">     {{item.name.split('|')[1]}}  {{item.name.split('|')[2]}} {{item.priceshow}} triệu/ </view>
+</view>
     </view>
-    
+
   </view>
-  <!-- <view class="content">
- 
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-    <view></view>
-  </view> -->
-  
+
+
 </view>

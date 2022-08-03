@@ -1,19 +1,9 @@
 <view class="wrap {{fixedHeader ? 'fix-search' : ''}}">
-
   <view class="top">
-    <view class="top-content">
-      <!-- <text class="greeting" number-of-lines="{{1}}">
-        Hi, I'm Tini App!
-      </text> -->
-    </view>
+    
   </view>
-  <view class="content">
-    <view class="top-header">
-
-    </view>
-    <view>
-      
-    </view>
+  <view >
+ 
     <image class="cart"
     src="/images/mytrip/trip_empty.svg" />
   </view>

@@ -5,7 +5,10 @@
     "pages/tabBar/travel/index"
   ],
   "window": {
-    "defaultTitle": ""
+    "defaultTitle": "My App",
+    "titleBarColor": "#fff",
+    "backgroundColor": "#F5F7FC",
+    "allowsBounceVertical": "NO"
   },
   
     "tabBar": {

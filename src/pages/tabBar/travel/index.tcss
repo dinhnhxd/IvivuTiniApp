@@ -64,8 +64,7 @@ a:root {
 }
 
 .top {
-  padding-top: calc(var(--tf-status-bar-height));
-  background: #fff;
+  padding-top: 12px;
 }
 
 .top-content {

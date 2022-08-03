@@ -1,4 +1,4 @@
 {
-
-    "transparentTitle": "always"
+    "defaultTitle": "",
+    "transparentTitle": "auto",
 }
