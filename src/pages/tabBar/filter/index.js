@@ -1,19 +1,34 @@
-
+import { topDealService} from '../../../providers/topDealService';
 
 Page({
   data: {
-    items: []
+    listRegion: [],
   },
-  onLoad() {
-    this.onEndReached();
+  onLoad(query) {
+    console.log(query);
+    this.listRegion=topDealService.listRegion;
+    // this.listRegion.forEach(element => {
+    //     element.ischeck=false;
+    // });
+    this.setData({listRegion:this.listRegion, loading: false });
   },
-  onEndReached() {
-    setTimeout(() => {
-      const { items } = this.data;
-      const newItems = [...Array(20).keys()].map(
-        (_, index) => items.length + index
-      );
-      this.$spliceData({ items: [items.length, 0, ...newItems] });
-    }, 300);
+  tapRegion: function tapRegion(e) {
+    this.listRegion.forEach(element => {
+      if (element.id==e.target.id) {
+        element.ischeck=!element.ischeck;
+        return;
+      }
+  });
+    this.setData({listRegion:this.listRegion, loading: false });
+  },
+  reset(){
+    this.listRegion.forEach(element => {
+      element.ischeck=false;
+  });
+  this.setData({listRegion:this.listRegion, loading: false });
+  },
+  apply(){
+    topDealService.listRegion=this.listRegion;
+    my.navigateTo({ url: "pages/tabBar/myhome/index"});
   }
 });

@@ -15,7 +15,8 @@
   </view>
   <view class="content">
     <view  class="text"> Ưu đãi tốt nhất hôm nay</view>
-    <image onTap="filter" class="img-filter" src="../../../images/imgs/ic_filter_b.svg" />
+    <image onTap="filter" tiki:if="{{isfilter}}" class="img-filter" src="../../../images/imgs/ic_filter_active.svg" />
+    <image onTap="filter" tiki:if="{{!isfilter}}" class="img-filter" src="../../../images/imgs/ic_filter.svg" />
     <view class="item-card" tiki:for="{{response}}">
       <image class="img-hotel" src={{item.avatar}} />
       <view class="text-hotelname">

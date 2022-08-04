@@ -38,7 +38,6 @@
 {
   text-align: center;
   margin: 5px 5px 5px 5px;
-  width:80px;
   padding: 4px 8px;
   border-radius: 16px;
   border: solid 1px #dddde3;
@@ -47,7 +46,6 @@
 .subWidgetActive{
   text-align: center;
   margin: 5px 5px 5px 5px;
-  width:80px;
   border: solid 1px #26bed6;
   background-color: #fff;
   padding: 4px 8px;
@@ -65,25 +63,23 @@
   text-align: center;
 }
 .inline_rest { 
-  width: 40%;
+  width: 35%;
   display: inline-block;
   font-size: 18px; 
   border-radius: 4px;
   border: solid 1px #f79321;
   padding: 8px 12px;
-  height: 35px;
   background-color: #fff;
   color:#f79321;
   margin-right: 8px;
   margin-bottom: 8px;
   }
 .inline_apply{
-  width: 40%;
+  width: 35%;
   font-size: 18px;
   display: inline-block; 
   border: 1px solid red; 
   padding: 8px 12px;
-  height: 35px;
   border-radius: 4px;
   background-color: #f79321;
   color: #fff;margin-bottom: 8px;

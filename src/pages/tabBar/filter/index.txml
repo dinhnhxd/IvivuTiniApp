@@ -2,21 +2,20 @@
   <view class="text-title">
     Bạn thích đi đâu?
   </view>
-  <view class="widget">
-    <view class="flexWrap">
-      <view class="subWidgetActive">Nha trang</view>
-      <view class="subWidget">Vũng tàu</view>
-      <view class="subWidget">Nha trang</view>
-      <view class="subWidgetActive">Vũng tàu</view>
-      <view class="subWidget">Nha trang</view>
-      <view class="subWidgetActive">Vũng tàu</view>
-      <view class="subWidget">Nha trang</view>
-      <view class="subWidgetActive">Vũng tàu</view>
+  <view  class="widget">
+    <view  class="flexWrap">
+      <view tiki:for="{{listRegion}}">
+        <view id="{{item.id}}"  tiki:if="{{!item.ischeck}}" ng-class="item.ischeck ? 'subWidgetActive' : 'subWidget'" onTap="tapRegion" class="subWidget">{{item.regionName}}
+        </view>
+        <view id="{{item.id}}" onTap="tapRegion" tiki:if="{{item.ischeck}}" class="subWidgetActive">{{item.regionName}}
+        </view>
+      </view>
+
     </view>
   </view>
   <view class="footer">
-    <text class='inline_rest'>Thiết lập lại</text>
-    <text class='inline_apply'>Áp dụng</text>
+    <text  onTap="reset" class='inline_rest'>Thiết lập lại</text>
+    <text  onTap="apply" class='inline_apply'>Áp dụng</text>
   </view>
 
 </view>

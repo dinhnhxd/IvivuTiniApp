@@ -1,7 +1,12 @@
-
+import { topDealService} from '../../../providers/topDealService';
 
 Page({
-  onLoad(){
+  data: {
+    listitems: [],
+    isfilter:false
+  },
+  onLoad(query){
+    console.log(query);
     this.setData({ loading: true });
     my.request({
       url: 'https://beta-olivia.ivivu.com/mobile/OliviaApis/TopDeals?pageIndex=1&pageSize=200',
@@ -16,12 +21,36 @@ Page({
         response.forEach(element => {
           element.minPrice=(element.minPrice/1000).toLocaleString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.").replace(',','.')
         });
+        this.listitems=response;
         this.setData({response, loading: false });
       }
     });
     
 },
   filter(){
-    my.navigateTo({ url: "pages/tabBar/filter/index" });
-  }
+    let unique;
+    const key = 'regionName';
+    let items = this.listitems.map(item => [item[key], item]);
+    unique = [...new Map(items).values()];
+    if (!topDealService.listRegion) {
+      topDealService.listRegion=unique;
+    }
+   
+    my.navigateTo({ url: "pages/tabBar/filter/index"});
+  },
+  onShow(){
+    let isfilter ;
+    topDealService.listRegion.forEach(element => {
+      if (element.ischeck) {
+        isfilter=true;
+        return;
+      }
+
+  });
+    
+      this.setData({
+        isfilter: isfilter
+      });
+  
+  },
 });
