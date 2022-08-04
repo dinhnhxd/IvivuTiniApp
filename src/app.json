@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/tabBar/myhome/index",
-    "pages/tabBar/travel/index"
+    "pages/tabBar/travel/index",
+    "pages/tabBar/filter/index"
   ],
   "window": {
     "defaultTitle": "My App",

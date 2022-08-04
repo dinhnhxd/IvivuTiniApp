@@ -14,50 +14,48 @@
     </view>
   </view>
   <view class="content">
-    <view class="text"> Ưu đãi tốt nhất hôm nay</view>
-    <image class="img-filter" src="../../../images/imgs/ic_filter_b.svg" />
+    <view  class="text"> Ưu đãi tốt nhất hôm nay</view>
+    <image onTap="filter" class="img-filter" src="../../../images/imgs/ic_filter_b.svg" />
     <view class="item-card" tiki:for="{{response}}">
       <image class="img-hotel" src={{item.avatar}} />
       <view class="text-hotelname">
         {{item.name.split('|')[0]}}
       </view>
       <view tiki:if="{{item.rating == 50}}">
-        <image  class="img-star" src="../../../images/star/ic_star_5.svg" />
+        <image class="img-star" src="../../../images/star/ic_star_5.svg" />
       </view>
       <view tiki:if="{{item.rating == 45}}">
-        <image  class="img-star" src="../../../images/star/ic_star_4.5.svg" />
+        <image class="img-star" src="../../../images/star/ic_star_4.5.svg" />
       </view>
       <view tiki:if="{{item.rating == 40}}">
-        <image  class="img-star" src="../../../images/star/ic_star_4.svg" />
+        <image class="img-star" src="../../../images/star/ic_star_4.svg" />
       </view>
-      <view tiki:if="{{item.rating == 35}}" >
+      <view tiki:if="{{item.rating == 35}}">
         <image class="img-star" src="../../../images/star/ic_star_3.5.svg" />
       </view>
       <view tiki:if="{{item.rating == 30}}">
-        <image  class="img-star" src="../../../images/star/ic_star_30.svg" />
+        <image class="img-star" src="../../../images/star/ic_star_30.svg" />
       </view>
       <view tiki:if="{{item.rating == 25}}">
-        <image  class="img-star" src="../../../images/star/ic_star_2.5.svg" />
+        <image class="img-star" src="../../../images/star/ic_star_2.5.svg" />
       </view>
       <view tiki:if="{{item.rating == 20}}">
-        <image  class="img-star" src="../../../images/star/ic_star_20.svg" />
+        <image class="img-star" src="../../../images/star/ic_star_20.svg" />
       </view>
       <view tiki:if="{{item.rating == 15}}">
-        <image  class="img-star" src="../../../images/star/ic_star_1.5.svg" />
+        <image class="img-star" src="../../../images/star/ic_star_1.5.svg" />
       </view>
-      <view tiki:if="{{item.rating == 1}}"> 
-        <image  class="img-star" src="../../../images/star/ic_star_1.svg" />
+      <view tiki:if="{{item.rating == 1}}">
+        <image class="img-star" src="../../../images/star/ic_star_1.svg" />
       </view>
       <view tiki:if="{{item.rating == 5}}">
-        <image  class="img-star" src="../../../images/star/ic_star_0.5.svg" />
+        <image class="img-star" src="../../../images/star/ic_star_0.5.svg" />
       </view>
-      <view  class="float-promo">
+      <view class="float-promo">
 
-        <view  class="float-promo-description">     {{item.name.split('|')[1]}}  {{item.name.split('|')[2]}} {{item.priceshow}} triệu/ </view>
-</view>
+        <view class="float-promo-description">{{item.name.split('|')[1]}} {{item.name.split('|')[2]}}
+          {{item.minPrice}} triệu/ <view tiki:if="{{item.priceFor!=0}}">khách</view><view tiki:if="{{item.priceFor==0}}">phòng</view></view>
+      </view>
     </view>
-
   </view>
-
-
 </view>

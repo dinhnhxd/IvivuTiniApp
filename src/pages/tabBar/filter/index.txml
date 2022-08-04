@@ -1,0 +1,24 @@
+<view class="wrap" style="padding: 16px;">
+  <view class="text-title">
+    Bạn thích đi đâu?</view>
+    <view style="display: flex;">
+      <view class="options">
+        Vũng tàu
+      </view>
+      <view class="options">
+        Nha trang
+      </view>
+      <view class="options">
+        Vũng tàu
+      </view>
+      <view class="options">
+        Nha trang
+      </view>
+       <view class="options">
+        Vũng tàu
+      </view>
+      <view class="options">
+        Nha trang
+      </view>
+     </view>
+</view>

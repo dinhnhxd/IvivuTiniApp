@@ -91,6 +91,7 @@ a:root {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+  background-color: #fff;
 }
 
 .content view .text{
@@ -160,8 +161,9 @@ a:root {
   margin: 0;
   width: 100%;
   color: #fff;
-  overflow: hidden;
+  /* overflow: hidden; */
   text-overflow: ellipsis;
   white-space: nowrap;
+  display: flex;
 }
  
