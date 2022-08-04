@@ -1,24 +1,22 @@
 <view class="wrap" style="padding: 16px;">
   <view class="text-title">
-    Bạn thích đi đâu?</view>
-    <view style="display: flex;">
-      <view class="options">
-        Vũng tàu
-      </view>
-      <view class="options">
-        Nha trang
-      </view>
-      <view class="options">
-        Vũng tàu
-      </view>
-      <view class="options">
-        Nha trang
-      </view>
-       <view class="options">
-        Vũng tàu
-      </view>
-      <view class="options">
-        Nha trang
-      </view>
-     </view>
+    Bạn thích đi đâu?
+  </view>
+  <view class="widget">
+    <view class="flexWrap">
+      <view class="subWidgetActive">Nha trang</view>
+      <view class="subWidget">Vũng tàu</view>
+      <view class="subWidget">Nha trang</view>
+      <view class="subWidgetActive">Vũng tàu</view>
+      <view class="subWidget">Nha trang</view>
+      <view class="subWidgetActive">Vũng tàu</view>
+      <view class="subWidget">Nha trang</view>
+      <view class="subWidgetActive">Vũng tàu</view>
+    </view>
+  </view>
+  <view class="footer">
+    <text class='inline_rest'>Thiết lập lại</text>
+    <text class='inline_apply'>Áp dụng</text>
+  </view>
+
 </view>
