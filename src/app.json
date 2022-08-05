@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/tabBar/myhome/index",
     "pages/tabBar/travel/index",
-    "pages/tabBar/filter/index"
+    "pages/tabBar/filter/index",
+    "pages/tabBar/hoteldetail/index"
   ],
   "window": {
     "defaultTitle": "My App",

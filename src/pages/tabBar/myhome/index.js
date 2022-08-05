@@ -60,18 +60,4 @@ Page({
     }
     my.navigateTo({ url: "pages/tabBar/filter/index"});
   },
-  onShow(){
-    console.log( this.listitems);
-    if (topDealService.listRegion) {
-      let itemfilter = topDealService.listRegion.filter(this.checkRegion);
-      if (itemfilter.length>0) {
-        this.setData({
-          isfilter:itemfilter.length>0?true:false
-        });
-      }
-    }
-  },
-   checkRegion(l) {
-    return l.ischeck
-  },
 });
