@@ -22,6 +22,29 @@ Page({
           element.minPrice=(element.minPrice/1000).toLocaleString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.").replace(',','.')
         });
         this.listitems=response;
+
+        if (topDealService.listRegion) {
+          let itemfilter = topDealService.listRegion.filter(this.checkRegion);
+       
+          if (itemfilter.length>0) {
+            let listitemfilter=[];
+            itemfilter.forEach(element => {
+              let itemfilterRegion = response.filter((l) => { return l.regionId == element.regionId});
+              itemfilterRegion.forEach(elementregion => {
+                listitemfilter.push(elementregion);
+              });
+            
+            });
+            response=[];
+            response=listitemfilter;
+          }
+        
+          // if (listitemfilter.length>0) {
+          //   this.setData({response,
+          //     isfilter:itemfilter.length>0?true:false
+          //   });
+          // }
+        } 
         this.setData({response, loading: false });
       }
     });
@@ -35,22 +58,20 @@ Page({
     if (!topDealService.listRegion) {
       topDealService.listRegion=unique;
     }
-   
     my.navigateTo({ url: "pages/tabBar/filter/index"});
   },
   onShow(){
-    let isfilter ;
-    topDealService.listRegion.forEach(element => {
-      if (element.ischeck) {
-        isfilter=true;
-        return;
+    console.log( this.listitems);
+    if (topDealService.listRegion) {
+      let itemfilter = topDealService.listRegion.filter(this.checkRegion);
+      if (itemfilter.length>0) {
+        this.setData({
+          isfilter:itemfilter.length>0?true:false
+        });
       }
-
-  });
-    
-      this.setData({
-        isfilter: isfilter
-      });
-  
+    }
+  },
+   checkRegion(l) {
+    return l.ischeck
   },
 });
