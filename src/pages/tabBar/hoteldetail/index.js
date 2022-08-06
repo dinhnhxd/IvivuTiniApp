@@ -1,11 +1,13 @@
 Page({
   data: {
     items: [],
-    iconType:[
-      'location',
-    ]
+    iconType: ['location'],
   },
   onLoad(query) {
+    try {
+    
+  
+
     // https://svc1-beta.ivivu.com/mhoteldetail/377518/
     this.setData({ loading: true });
     my.request({
@@ -16,14 +18,68 @@ Page({
         apikey: '0HY9qKyvwty1hSzcTydn0AHAXPb0e2QzYQlMuQowS8U',
       },
       success: (response) => {
-        this.items = response;
-        let ricecombo = response.Combos.Price;
-        console.log('ricecombo '+ricecombo);
-        ricecombo = this.arprice(ricecombo);
-        console.log(this.items);
-        this.setData({ response,ricecombo, loading: false });
+        try {
+          this.items = response;
+          let ricecombo = response.Combos.Price;
+          let timef1 = response.Combos.ComboDetail[0].StayFrom;
+          let timef2 = response.Combos.ComboDetail[1].StayFrom;
+          let timef3 = response.Combos.ComboDetail[2].StayFrom;
+          let timef4 = response.Combos.ComboDetail[3].StayFrom;
+          let timet1 = response.Combos.ComboDetail[0].StayTo;
+          let timet2 = response.Combos.ComboDetail[1].StayTo;
+          let timet3 = response.Combos.ComboDetail[2].StayTo;
+          let timet4 = response.Combos.ComboDetail[3].StayTo;
+          let timecover1 = this.artime(timef1);
+          timecover1 = this.timeConverter(timecover1);
+          let timecover2 = this.artime(timef2);
+          timecover2 = this.timeConverter(timecover2);
+          let timecover3 = this.artime(timef3);
+          timecover3 = this.timeConverter(timecover3);
+          let timecover4 = this.artime(timef4);
+          timecover4 = this.timeConverter(timecover4);
+          let timecoverto1 = this.artime(timet1);
+          timecoverto1 = this.timeConverter(timecoverto1);
+          let timecoverto2 = this.artime(timet2);
+          timecoverto2 = this.timeConverter(timecoverto2);
+          let timecoverto3 = this.artime(timet3);
+          timecoverto3 = this.timeConverter(timecoverto3);
+          let timecoverto4 = this.artime(timet4);
+          timecoverto4 = this.timeConverter(timecoverto4);
+  
+          ricecombo = this.arprice(ricecombo);
+          let ricefrom1 = this.arprice(response.Combos.ComboDetail[0].PriceFrom);
+          let ricefrom2  = this.arprice(response.Combos.ComboDetail[1].PriceFrom);
+          let ricefrom3  = this.arprice(response.Combos.ComboDetail[2].PriceFrom);
+          let ricefrom4  = this.arprice(response.Combos.ComboDetail[3].PriceFrom);
+  
+  
+          this.setData({
+            response,
+            ricecombo,
+            timecover1,
+            timecover2,
+            timecover3,
+            timecover4,
+            timecoverto1,
+            timecoverto2,
+            timecoverto3,
+            timecoverto4,
+            ricefrom1,
+            ricefrom2,
+            ricefrom3,
+            ricefrom4,
+            loading: false,
+          });
+        } catch (error) {
+          console.log(error)
+        }
+       
       },
+      
     });
+  } catch (error) {
+    console.log(error)
+  }
   },
   handleShowModal() {
     this.setData({ show: true });
@@ -40,11 +96,25 @@ Page({
   },
 
   arprice(minPrice) {
-    let rice = (minPrice )
+    let rice = minPrice
       .toLocaleString()
       .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.')
       .replace(',', '.');
-    console.log('rice ' + rice);
     return rice;
+  },
+
+  timeConverter(UNIX_timestamp) {
+    var a = new Date(UNIX_timestamp * 1000);
+    var year = a.getFullYear();
+    var month = a.getMonth();
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    var time = month + '/' + date;
+    return time;
+  },
+  artime(str) {
+    return str.replace(/[&\/\\#,+()$~%.'":*?<>{}|Date]/g, '');
   },
 });

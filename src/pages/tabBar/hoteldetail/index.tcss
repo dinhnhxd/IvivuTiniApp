@@ -172,14 +172,17 @@
 }
 
 .combobg{
-  margin: 8px 61px 8px 16px;
+  /* margin: 8px 61px 8px 16px; */
+  margin-top: 12px;
+  margin-bottom: 12px;
+  margin-left: 8px;
   font-family: Inter;
   font-size: 14px;
   font-weight: 600;
   font-stretch: normal;
   font-style: normal;
   line-height: normal;
-  letter-spacing: -0.4px;
+  
   text-align: left;
   color: #3f3b3b;
 }
@@ -195,4 +198,111 @@
   letter-spacing: normal;
   text-align: left;
   color: #3f3b3b;
+}
+
+/* .Line {
+  width: 1px;
+  height: 48px;
+  margin: 12px 11px 10px 22px;
+  transform: rotate(-270deg);
+  background-color: #f79321;
+} */
+
+.containComborice{
+  padding-top: 12x;
+  margin-bottom: 12px;
+}
+
+.timefromHiglight{
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+  letter-spacing: -0.42px;
+  text-align: left;
+  color: #3f3b3b;
+}
+
+.comborice{
+  float: right;
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.13;
+  letter-spacing: -0.48px;
+  text-align: right;
+  color: #f79321;
+}
+.comborice_gray{
+  float: right;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.13;
+  letter-spacing: -0.48px;
+  text-align: right;
+
+}
+.timedeart{
+  /* float: right; */
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.29;
+
+  text-align: right;
+  color: #003c71;
+}
+.view{
+  margin-top: 30px;
+  margin-left: 8px;
+}
+.review{
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.4;
+  letter-spacing: -0.46px;
+  text-align: left;
+  color: #3f3b3b;
+}
+.seeall{
+  float: right;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.4px;
+ 
+  color: #26bed6;
+}
+.view1{
+  display: inline-block;
+}
+
+.ortreivew{
+  height: 35px;
+  display: inline-block;
+  /* padding-bottom: 10px; */
+  background: green;
+}
+.ortreivewText{
+  font-size: 18px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.51px;
+  /* text-align: left; */
+  color: #fff;
+}
+.numberReivew{
+  display: inline-block;
+  /* height: 35px; */
 }
