@@ -1,0 +1,198 @@
+.hotelname {
+  font-size: 18px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #3f3b3b;
+  margin-left: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.img-star {
+  margin-left: 8px;
+  width: 20%;
+  height: 16px;
+  object-fit: contain;
+}
+
+.inline_left {
+  display: inline-block;
+  margin-left: 8x;
+  margin: 10px;
+}
+.inline_right {
+  margin: 10px;
+  display: inline-block;
+  float: right;
+}
+
+.AvgPoint {
+  display: inline-block;
+  width: 38px;
+  height: 17px;
+  flex-grow: 0;
+  text-align: center;
+  border-radius: 6px;
+  background-color: #9fc43a;
+  color: white;
+}
+
+.anhgia {
+  display: inline-block;
+  width: 54px;
+  height: 17px;
+  flex-grow: 0;
+  margin: 0 141px 0 4px;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+
+  text-align: left;
+  color: #3f3b3b;
+}
+
+.nh-gi {
+  width: 91px;
+  height: 17px;
+  flex-grow: 0;
+
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+
+  text-align: right;
+  color: #26bed6;
+}
+
+.map {
+  height: 200px;
+}
+
+.block {
+  background-color: white;
+  margin: 8px 0;
+  padding: 16px;
+  border-radius: var(--border-radius-rounded-4px);
+}
+.Address {
+  width: 312px;
+  height: 34px;
+  margin-left: 8px;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #3f3b3b;
+}
+.container {
+  text-align: justify;
+  -ms-text-justify: distribute-all-lines;
+  text-justify: distribute-all-lines;
+  width: 100%;
+  margin-left: 10px;
+}
+.inlineday1 {
+  width: 30%;
+  /* height: 100px; */
+  vertical-align: top;
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+}
+.inlineday2 {
+  width: 20%;
+  /* height: 100px; */
+  vertical-align: top;
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+}
+.aytime{
+  width: 85px;
+  height: 17px;
+
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #26bed6;
+}
+
+.hr{
+
+  height: 8px;
+
+  background-color: gray;
+}
+.combo{
+  height: 76px; 
+  margin-left: 8px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.titleCombo{
+  /* width: 328px;
+  height: 76px; */
+  margin-top: 16px;
+  font-family: Inter;
+  font-size: 18px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.4;
+  letter-spacing: -0.51px;
+  text-align: left;
+  color: #27272a;
+}
+.priceCombo{
+  font-family: Inter;
+  font-size: 18px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  color:orange;
+}
+
+.combobg{
+  margin: 8px 61px 8px 16px;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.4px;
+  text-align: left;
+  color: #3f3b3b;
+}
+
+.chitietcombo{
+  margin: 8px 16px;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #3f3b3b;
+}

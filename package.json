@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@tiki.vn/tini-types": "^0.3.0",
+    "@tiki.vn/tini-ui": "^0.14.0",
     "@types/lodash-es": "^4.17.6",
     "lodash-es": "^4.17.21"
   },

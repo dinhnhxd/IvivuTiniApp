@@ -1,3 +1,137 @@
 <view class="wrap">
-  
+  <view class="image">
+    <carousel
+    arrows
+    indicator-dots
+    onChange="onChange"
+  >
+
+    <carousel-item>
+      <image class="w-full" mode="aspectFill" src={{response.HotelImages[0].LinkImage}} />
+    </carousel-item>
+    <carousel-item>
+      <image class="w-full" mode="aspectFill" src={{response.HotelImages[1].LinkImage}} />
+    </carousel-item>
+    <carousel-item>
+      <image class="w-full" mode="aspectFill" src={{response.HotelImages[2].LinkImage}} />
+    </carousel-item>
+ 
+  </carousel>
+
+  </view>
+<view>
+  <text class="hotelname">{{response.Name}}</text>
+</view>
+
+<view tiki:if="{{response.Rating == 50}}">
+  <image class="img-star" src="../../../images/star/ic_star_5.svg" />
+</view>
+<view tiki:if="{{response.Rating == 45}}">
+  <image class="img-star" src="../../../images/star/ic_star_4.5.svg" />
+</view>
+<view tiki:if="{{response.Rating == 40}}">
+  <image class="img-star" src="../../../images/star/ic_star_4.svg" />
+</view>
+<view tiki:if="{{response.Rating == 35}}">
+  <image class="img-star" src="../../../images/star/ic_star_3.5.svg" />
+</view>
+<view tiki:if="{{response.Rating == 30}}">
+  <image class="img-star" src="../../../images/star/ic_star_30.svg" />
+</view>
+<view tiki:if="{{response.Rating == 25}}">
+  <image class="img-star" src="../../../images/star/ic_star_2.5.svg" />
+</view>
+<view tiki:if="{{response.Rating == 20}}">
+  <image class="img-star" src="../../../images/star/ic_star_20.svg" />
+</view>
+<view tiki:if="{{response.Rating == 15}}">
+  <image class="img-star" src="../../../images/star/ic_star_1.5.svg" />
+</view>
+<view tiki:if="{{response.Rating == 1}}">
+  <image class="img-star" src="../../../images/star/ic_star_1.svg" />
+</view>
+<view tiki:if="{{response.Rating == 5}}">
+  <image class="img-star" src="../../../images/star/ic_star_0.5.svg" />
+</view>
+
+<view>
+  <view class="inline_left ">
+    <view class="AvgPoint">{{response.AvgPoint}}</view>
+   <text class="anhgia">Xuất sắc</text>  
+  </view>
+  <view class="inline_right">
+    <view class="nh-gi">
+      {{response.NumOfReview}} đánh giá →
+    </view>
+    
+  </view>
+</view>
+
+<view class="block">
+  <map
+    class="map"
+    onTap="onTap"
+    onMarkerTap="onMarkerTap"
+    latitude="{{response.Latitude}}"
+    longitude="{{response.Longitude}}"
+    
+    apiKey="{{apiKey}}" />
+</view>
+
+<view>
+  <icon type="location" ></icon>
+  <text class="Address">{{response.Address}}</text>
+</view>
+<view class="hr">
+
+</view>
+<view class="container">
+  <view class="inlineday1">Nhận phòng</view>
+  <view class="inlineday1">Trả phòng</view>
+  <view class="inlineday2">Khách</view>
+  <view class="inlineday2">Phòng</view>
+</view>
+<view class="container">
+  <view class="inlineday1"  onTap="handleShowModal">
+    <text class="aytime" >29-04-2022</text>
+  </view>
+  <view class="inlineday1"  onTap="handleShowModal">
+    <text class="aytime">01-05-2022</text>
+  </view>
+  <view class="inlineday2">
+    <text class="aytime">5</text>
+  </view>
+  <view class="inlineday2">
+    <text class="aytime">1</text>
+  </view>
+</view>
+
+
+<modal
+  show="{{show}}"
+  buttons="{{[{'text': 'Close', type: 'ghost'}, {'text': 'Cancel', type: 'outline'}, {'text': 'OK'}]}}"
+  buttonsLayout="vertical"
+  onMaskClick="handleHideModal"
+  onButtonClick="handleTapButton"
+>
+<calendar tagData="{{tagData}}" mode="single" header="year" onSelect="onSelect" onChange="onChange" />
+</modal>
+<view class="hr">
+</view>
+<view class="combo">
+  <view class="titleCombo">{{response.Combos.Title}} </view>
+  <view class="priceCombo">{{ricecombo}} VND/Khách</view>
+</view>
+<view class="combobg">
+  Combo bao gồm
+</view>
+<view class="chitietcombo">
+  {{response.Combos.Description}}
+</view>
+<view class="combobg">
+  Điều kiện áp dụng</view>
+  <view class="chitietcombo">
+    {{response.Combos.Note}}
+  </view>
+
 </view>

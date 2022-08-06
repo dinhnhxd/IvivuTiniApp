@@ -22,6 +22,7 @@ Page({
           element.minPrice=(element.minPrice/1000).toLocaleString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.").replace(',','.')
         });
         this.listitems=response;
+        
 
         if (topDealService.listRegion) {
           let itemfilter = topDealService.listRegion.filter(this.checkRegion);
@@ -60,4 +61,10 @@ Page({
     }
     my.navigateTo({ url: "pages/tabBar/filter/index"});
   },
+  onHoteletail(index){
+    console.log('index ',index.currentTarget.dataset.id)
+    let hotelid = index.currentTarget.dataset.id
+    my.navigateTo({ url: "pages/tabBar/hoteldetail/index?"+hotelid});
+  }
+
 });
