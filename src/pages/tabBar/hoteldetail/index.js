@@ -1,7 +1,8 @@
 Page({
   data: {
     items: [],
-    iconType: ['location'],
+    iconType: ['location',
+  'direction_right'],
   },
   onLoad(query) {
     try {
@@ -22,13 +23,13 @@ Page({
           this.items = response;
           let ricecombo = response.Combos.Price;
           let timef1 = response.Combos.ComboDetail[0].StayFrom;
-          let timef2 = response.Combos.ComboDetail[1].StayFrom;
-          let timef3 = response.Combos.ComboDetail[2].StayFrom;
-          let timef4 = response.Combos.ComboDetail[3].StayFrom;
+          let timef2 = response.Combos.ComboDetail[1]?.StayFrom;
+          let timef3 = response.Combos.ComboDetail[2]?.StayFrom;
+          let timef4 = response.Combos.ComboDetail[3]?.StayFrom;
           let timet1 = response.Combos.ComboDetail[0].StayTo;
-          let timet2 = response.Combos.ComboDetail[1].StayTo;
-          let timet3 = response.Combos.ComboDetail[2].StayTo;
-          let timet4 = response.Combos.ComboDetail[3].StayTo;
+          let timet2 = response.Combos.ComboDetail[1]?.StayTo;
+          let timet3 = response.Combos.ComboDetail[2]?.StayTo;
+          let timet4 = response.Combos.ComboDetail[3]?.StayTo;
           let timecover1 = this.artime(timef1);
           timecover1 = this.timeConverter(timecover1);
           let timecover2 = this.artime(timef2);
@@ -47,10 +48,10 @@ Page({
           timecoverto4 = this.timeConverter(timecoverto4);
   
           ricecombo = this.arprice(ricecombo);
-          let ricefrom1 = this.arprice(response.Combos.ComboDetail[0].PriceFrom);
-          let ricefrom2  = this.arprice(response.Combos.ComboDetail[1].PriceFrom);
-          let ricefrom3  = this.arprice(response.Combos.ComboDetail[2].PriceFrom);
-          let ricefrom4  = this.arprice(response.Combos.ComboDetail[3].PriceFrom);
+          let ricefrom1 = this.arprice(response.Combos.ComboDetail[0]?.PriceFrom);
+          let ricefrom2  = this.arprice(response.Combos.ComboDetail[1]?.PriceFrom);
+          let ricefrom3  = this.arprice(response.Combos.ComboDetail[2]?.PriceFrom);
+          let ricefrom4  = this.arprice(response.Combos.ComboDetail[3]?.PriceFrom);
   
   
           this.setData({
@@ -96,25 +97,39 @@ Page({
   },
 
   arprice(minPrice) {
-    let rice = minPrice
+    if(minPrice){
+      let rice = minPrice
       .toLocaleString()
       .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.')
       .replace(',', '.');
     return rice;
+    }
+    
+    return null;
   },
 
   timeConverter(UNIX_timestamp) {
-    var a = new Date(UNIX_timestamp * 1000);
-    var year = a.getFullYear();
-    var month = a.getMonth();
-    var date = a.getDate();
-    var hour = a.getHours();
-    var min = a.getMinutes();
-    var sec = a.getSeconds();
-    var time = month + '/' + date;
-    return time;
+    if(UNIX_timestamp){
+      var a = new Date(UNIX_timestamp * 1000);
+      var year = a.getFullYear();
+      var month = a.getMonth();
+      var date = a.getDate();
+      var hour = a.getHours();
+      var min = a.getMinutes();
+      var sec = a.getSeconds();
+      var time = month + '/' + date;
+      return time;
+    }
+    return null
+    
   },
   artime(str) {
-    return str.replace(/[&\/\\#,+()$~%.'":*?<>{}|Date]/g, '');
+    console.log('sr' +str)
+    if(str){
+      return str.replace(/[&\/\\#,+()$~%.'":*?<>{}|Date]/g, '');
+    }
+    else{
+      return null
+    }
   },
 });

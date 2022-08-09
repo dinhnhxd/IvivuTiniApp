@@ -122,11 +122,13 @@
   <view class="combobg">
     Khởi hành từ Hồ Chí Minh
     <view class="containComborice">
-      <text class="timefromHiglight"> {{timecover1}} -> {{timecoverto1}}</text>
+      <text class="timefromHiglight"> {{timecover1}} <icon type="direction_right" size="10"></icon>
+        {{timecoverto1}}</text>
       <text class="comborice">{{ricefrom1}} đ</text>
     </view>
     <view class="containComborice">
-      <text class="timefromHiglight"> {{timecover3}} -> {{timecoverto3}}</text>
+      <text class="timefromHiglight"> {{timecover3}} <icon type="direction_right" size="10"></icon>
+        {{timecoverto3}}</text>
       <text class="comborice_gray">{{ricefrom2}} đ</text>
     </view>
   </view>
@@ -136,12 +138,16 @@
   <view class="combobg">
     Khởi hành từ Hà Nội
     <view class="containComborice">
-      <text class="timefromHiglight"> {{timecover2}} -> {{timecoverto2}}</text>
+      <text class="timefromHiglight"> {{timecover2}}
+        <icon type="direction_right" size="10"></icon> {{timecoverto2}}
+      </text>
       <text class="comborice">{{ricefrom3}} đ</text>
     </view>
 
     <view class="containComborice">
-      <text class="timefromHiglight">{{timecover4}} -> {{timecoverto4}}</text>
+      <text class="timefromHiglight">{{timecover4}}
+        <icon type="direction_right" size="10"></icon> {{timecoverto4}}
+      </text>
       <text class="comborice_gray">{{ricefrom4}} đ</text>
     </view>
 
@@ -155,12 +161,11 @@
 
   <view class="view">
     <text class="review">Khách Hàng Đánh Giá</text>
-    <text class="seeall">Xem tất cả →</text>
+    <text class="seeall">Xem tất cả <icon type="direction_right" size=10></icon></text>
   </view>
   <view class="view1">
     <view class="ortreivew">
-    <text class="ortreivewText">{{response.AvgPoint}}</text>
-      
+      <text class="ortreivewText">{{response.AvgPoint}}</text>
     </view>
     <view class="numberReivew">
       <view class="numberReivew_1">
@@ -168,6 +173,63 @@
       </view>
       <view class="numberReivew_2">
         {{response.NumOfReview}} đánh giá
+      </view>
+    </view>
+  </view>
+  <view class="hr">
+  </view>
+
+  <view class="custom_review">
+    <view tiki:for="{{response.HotelReviews}}" tiki:for-index="idx">
+      <view tiki:if="{{idx<3}}">
+        <view class="rv">
+          <view class="ortreivew">
+            <text class="ortreivewText">{{item.ReviewPoint}}</text>
+          </view>
+          <view class="textpoint">
+            <view class="centertext"> 
+              Tuyệt vời
+            </view>
+             </view>
+
+        </view>
+        <view tiki:if="{{item.BestFeature != ''}}" class="detailReview">
+          {{item.BestFeature}}
+        </view>
+        <view class="nameReview">
+          {{item.CustomerName}} . {{item.DateStayed}}
+        </view>
+        <view class="containerImg">
+          <view tiki:if="{{item.ReviewImages.length != 0}}">
+            <view class="imageReview" >
+              <view class="imageDetail" tiki:for="{{item.ReviewImages}}"> 
+                <image class="img" src={{item.ImageUrl}} />
+              </view>
+            </view>
+         
+        </view>
+
+        </view>
+      </view>
+     
+    </view>
+    <view class="viewall">
+      Xem {{response.HotelReviews.length}} đánh giá >
+    </view>
+  </view>
+
+  <view class="totalPrice">
+    <view class="footer">
+      <view class='footernumberReivew'>
+        <view class="footernumberReivew_1">
+          5 người lớn, 1 trẻ em
+        </view>
+        <view class="footernumberReivew_2"> 
+          15.300.000đ
+        </view>
+      </view>
+      <view class="footerview">
+        <text class="footerviewText">Đặt Combo</text>
       </view>
     </view>
   </view>
