@@ -1,5 +1,6 @@
 Page({
   data: {
+    apikey:'AIzaSyA759T_2b8Vd9KPputmQ8AslLcuGwARXMU',
     items: [],
     iconType: ['location',
   'direction_right'],

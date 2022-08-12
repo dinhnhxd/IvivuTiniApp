@@ -65,7 +65,7 @@
 
   <view class="block">
     <map class="map" onTap="onTap" onMarkerTap="onMarkerTap" latitude="{{response.Latitude}}"
-      longitude="{{response.Longitude}}" apiKey="{{apiKey}}" />
+      longitude="{{response.Longitude}}" apiKey="AIzaSyA759T_2b8Vd9KPputmQ8AslLcuGwARXMU" />
   </view>
 
   <view>

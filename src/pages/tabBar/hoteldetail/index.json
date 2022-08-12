@@ -1,5 +1,5 @@
 {
-    "defaultTitle": "3N2Đ+VMB+Voucher",
+  "transparentTitle": "always",
     "usingComponents": {
       "list-item": "@tiki.vn/tini-ui/es/list/list-item/index",
       "calendar": "@tiki.vn/tini-ui/es/calendar/index",
