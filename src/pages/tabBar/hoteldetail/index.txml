@@ -1,54 +1,72 @@
 <view class="wrap">
-  <view class="image">
-    <carousel arrows indicator-dots onChange="onChange">
-
-      <carousel-item tiki:for="{{response.HotelImages}}">
-        <image class="w-full" mode="aspectFill" src={{item.LinkImage}} />
-      </carousel-item>
-      <!-- <carousel-item>
-      <image class="w-full" mode="aspectFill" src={{response.HotelImages[1].LinkImage}} />
-    </carousel-item>
-    <carousel-item>
-      <image class="w-full" mode="aspectFill" src={{response.HotelImages[2].LinkImage}} />
-    </carousel-item> -->
-
-    </carousel>
-
-  </view>
   <view>
-    <text class="hotelname">{{response.Name}}</text>
+    <view class="viewImage">
+      <carousel arrows indicator-dots onChange="onChange">
+  
+        <carousel-item tiki:for="{{response.HotelImages}}">
+          <image class="image" src={{item.LinkImage}} />
+        </carousel-item>
+      </carousel>
+    </view>
+  
+    <view class="newHotelDetail"> 
+      <text class="hotelname">{{response.Name}}</text>
+      <view>
+        <view tiki:if="{{response.Rating == 50}}">
+          Khách sạn
+          <image class="img-star" src="../../../images/star/ic_star_5.svg" />
+        </view>
+        <view tiki:if="{{response.Rating == 45}}">
+          Khách sạn
+          <image class="img-star" src="../../../images/star/ic_star_4.5.svg" />
+        </view>
+        <view tiki:if="{{response.Rating == 40}}">
+          Khách sạn
+          <image class="img-star" src="../../../images/star/ic_star_4.svg" />
+        </view>
+        <view tiki:if="{{response.Rating == 35}}">
+          Khách sạn
+          <image class="img-star" src="../../../images/star/ic_star_3.5.svg" />
+        </view>
+        <view tiki:if="{{response.Rating == 30}}">
+          Khách sạn
+          <image class="img-star" src="../../../images/star/ic_star_30.svg" />
+        </view>
+        <view tiki:if="{{response.Rating == 25}}">
+          Khách sạn
+          <image class="img-star" src="../../../images/star/ic_star_2.5.svg" />
+        </view>
+        <view tiki:if="{{response.Rating == 20}}">
+          Khách sạn
+          <image class="img-star" src="../../../images/star/ic_star_20.svg" />
+        </view>
+        <view tiki:if="{{response.Rating == 15}}">
+          Khách sạn
+          <image class="img-star" src="../../../images/star/ic_star_1.5.svg" />
+        </view>
+        <view tiki:if="{{response.Rating == 1}}">
+          Khách sạn
+          <image class="img-star" src="../../../images/star/ic_star_1.svg" />
+        </view>
+        <view tiki:if="{{response.Rating == 5}}">
+          <image class="img-star" src="../../../images/star/ic_star_0.5.svg" />
+        </view>
+      </view>
+  
+      <view class="block">
+        <map class="map" onTap="onTap" onMarkerTap="onMarkerTap" latitude="{{response.Latitude}}"
+          longitude="{{response.Longitude}}" apiKey="AIzaSyA759T_2b8Vd9KPputmQ8AslLcuGwARXMU" />
+      </view>
+  
+      <view>
+        <icon type="location"></icon>
+        <text class="Address">{{response.Address}}</text>
+      </view>
+    </view>
   </view>
 
-  <view tiki:if="{{response.Rating == 50}}">
-    <image class="img-star" src="../../../images/star/ic_star_5.svg" />
-  </view>
-  <view tiki:if="{{response.Rating == 45}}">
-    <image class="img-star" src="../../../images/star/ic_star_4.5.svg" />
-  </view>
-  <view tiki:if="{{response.Rating == 40}}">
-    <image class="img-star" src="../../../images/star/ic_star_4.svg" />
-  </view>
-  <view tiki:if="{{response.Rating == 35}}">
-    <image class="img-star" src="../../../images/star/ic_star_3.5.svg" />
-  </view>
-  <view tiki:if="{{response.Rating == 30}}">
-    <image class="img-star" src="../../../images/star/ic_star_30.svg" />
-  </view>
-  <view tiki:if="{{response.Rating == 25}}">
-    <image class="img-star" src="../../../images/star/ic_star_2.5.svg" />
-  </view>
-  <view tiki:if="{{response.Rating == 20}}">
-    <image class="img-star" src="../../../images/star/ic_star_20.svg" />
-  </view>
-  <view tiki:if="{{response.Rating == 15}}">
-    <image class="img-star" src="../../../images/star/ic_star_1.5.svg" />
-  </view>
-  <view tiki:if="{{response.Rating == 1}}">
-    <image class="img-star" src="../../../images/star/ic_star_1.svg" />
-  </view>
-  <view tiki:if="{{response.Rating == 5}}">
-    <image class="img-star" src="../../../images/star/ic_star_0.5.svg" />
-  </view>
+
+
 
   <view>
     <view class="inline_left ">
@@ -63,15 +81,7 @@
     </view>
   </view>
 
-  <view class="block">
-    <map class="map" onTap="onTap" onMarkerTap="onMarkerTap" latitude="{{response.Latitude}}"
-      longitude="{{response.Longitude}}" apiKey="AIzaSyA759T_2b8Vd9KPputmQ8AslLcuGwARXMU" />
-  </view>
 
-  <view>
-    <icon type="location"></icon>
-    <text class="Address">{{response.Address}}</text>
-  </view>
   <view class="hr">
 
   </view>
@@ -187,10 +197,10 @@
             <text class="ortreivewText">{{item.ReviewPoint}}</text>
           </view>
           <view class="textpoint">
-            <view class="centertext"> 
+            <view class="centertext">
               Tuyệt vời
             </view>
-             </view>
+          </view>
 
         </view>
         <view tiki:if="{{item.BestFeature != ''}}" class="detailReview">
@@ -201,17 +211,17 @@
         </view>
         <view class="containerImg">
           <view tiki:if="{{item.ReviewImages.length != 0}}">
-            <view class="imageReview" >
-              <view class="imageDetail" tiki:for="{{item.ReviewImages}}"> 
+            <view class="imageReview">
+              <view class="imageDetail" tiki:for="{{item.ReviewImages}}">
                 <image class="img" src={{item.ImageUrl}} />
               </view>
             </view>
-         
-        </view>
+
+          </view>
 
         </view>
       </view>
-     
+
     </view>
     <view class="viewall">
       Xem {{response.HotelReviews.length}} đánh giá >
@@ -224,7 +234,7 @@
         <view class="footernumberReivew_1">
           5 người lớn, 1 trẻ em
         </view>
-        <view class="footernumberReivew_2"> 
+        <view class="footernumberReivew_2">
           15.300.000đ
         </view>
       </view>
