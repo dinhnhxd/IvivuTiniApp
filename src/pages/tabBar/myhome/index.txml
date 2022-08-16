@@ -15,42 +15,51 @@
   </view>
   <view class="content">
     <view  class="text"> Ưu đãi tốt nhất hôm nay</view>
-    <image onTap="filter" tiki:if="{{isfilter}}" class="img-filter" src="../../../images/imgs/ic_filter_active.svg" />
-    <image onTap="filter" tiki:if="{{!isfilter}}" class="img-filter" src="../../../images/imgs/ic_filter.svg" />
+    
+    <image onTap="onShowBottomSheet" tiki:if="{{isfilter}}" class="img-filter" src="../../../images/imgs/ic_filter_new.svg" />
+    <image onTap="onShowBottomSheet" data-template="list" tiki:if="{{!isfilter}}" class="img-filter" src="../../../images/imgs/ic_filter_new.svg" />
+    
+  
+    <view  class="widget">
+      <view  class="flexWrap">
+        <view tiki:for="{{listfilter}}">
+          <chip  data-id="{{item.regionId}}" class="cls-chip" tiki:if="{{item.ischeck}}" content="{{item.regionName}}" onRightClick="remove" suffixIcon="close" iconRightColor="#808089" />
+        </view>
+  
+      </view>
+    </view>
+   
     <view class="item-card" tiki:for="{{response}}">
       <image data-id={{item.id}}  onTap="onHoteletail" class="img-hotel" src={{item.avatar}} />
       <view class="text-hotelname">
         {{item.name.split('|')[0]}}
       </view>
-      <view tiki:if="{{item.rating == 50}}">
-        <image class="img-star" src="../../../images/star/ic_star_5.svg" />
+      <view class="div-star" tiki:if="{{item.rating == 50}}">
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
       </view>
-      <view tiki:if="{{item.rating == 45}}">
-        <image class="img-star" src="../../../images/star/ic_star_4.5.svg" />
+
+      <view class="div-star" tiki:if="{{item.rating == 40}}">
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
       </view>
-      <view tiki:if="{{item.rating == 40}}">
-        <image class="img-star" src="../../../images/star/ic_star_4.svg" />
+  
+      <view class="div-star" tiki:if="{{item.rating == 30}}">
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
       </view>
-      <view tiki:if="{{item.rating == 35}}">
-        <image class="img-star" src="../../../images/star/ic_star_3.5.svg" />
+      <view class="div-star" tiki:if="{{item.rating == 20}}">
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
       </view>
-      <view tiki:if="{{item.rating == 30}}">
-        <image class="img-star" src="../../../images/star/ic_star_30.svg" />
-      </view>
-      <view tiki:if="{{item.rating == 25}}">
-        <image class="img-star" src="../../../images/star/ic_star_2.5.svg" />
-      </view>
-      <view tiki:if="{{item.rating == 20}}">
-        <image class="img-star" src="../../../images/star/ic_star_20.svg" />
-      </view>
-      <view tiki:if="{{item.rating == 15}}">
-        <image class="img-star" src="../../../images/star/ic_star_1.5.svg" />
-      </view>
-      <view tiki:if="{{item.rating == 1}}">
-        <image class="img-star" src="../../../images/star/ic_star_1.svg" />
-      </view>
-      <view tiki:if="{{item.rating == 5}}">
-        <image class="img-star" src="../../../images/star/ic_star_0.5.svg" />
+      <view class="div-star" tiki:if="{{item.rating == 10}}">
+        <image class="img-star" src="../../../images/star/Star.svg" />
       </view>
       <view class="float-promo">
 
@@ -59,4 +68,27 @@
       </view>
     </view>
   </view>
+  <bottom-sheet show="{{show}}" data-template="{{template}}" title="Bộ lọc" 
+      distanceFromTop="{{100}}" onClose="onClose" onClick="onClick">
+  <view class="margin-left-16">
+    <view class="text-title-filter">Bạn thích đi đâu?</view>
+    <checkbox-group  onChange="onGroupChange">
+      <list-item tiki:for="{{listfilter}}" :key="index">
+        <label class="div-flex">
+          <view class="view-text-filter">{{item.regionName}}</view>
+          <checkbox color="#26bed6" id="{{item.regionId}}" onChange="onChange"  tiki:if="item.ischeck? checked:''"   class="cls-checkbox"  />
+        </label>
+      </list-item>
+    </checkbox-group>
+  </view>
+  <view slot="footer" class="div-flex cls-footer">
+    <button class="btn-reset" onTap="onReset">Thiết lập lại</button>
+    <button class="btn-ok"  onTap="onOk">Áp dụng</button>
+  </view>
+</bottom-sheet>
+ 
+
 </view>
+
+
+

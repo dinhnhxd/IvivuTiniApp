@@ -1,9 +1,9 @@
-import { topDealService} from '../../../providers/topDealService';
 
 Page({
   data: {
     listitems: [],
-    isfilter:false
+    show: false,
+    listfilter:[]
   },
   onLoad(query){
     console.log(query);
@@ -24,47 +24,102 @@ Page({
         this.listitems=response;
         
 
-        if (topDealService.listRegion) {
-          let itemfilter = topDealService.listRegion.filter(this.checkRegion);
        
-          if (itemfilter.length>0) {
-            let listitemfilter=[];
-            itemfilter.forEach(element => {
-              let itemfilterRegion = response.filter((l) => { return l.regionId == element.regionId});
-              itemfilterRegion.forEach(elementregion => {
-                listitemfilter.push(elementregion);
-              });
-            
-            });
-            response=[];
-            response=listitemfilter;
-          }
-        
-          // if (listitemfilter.length>0) {
-          //   this.setData({response,
-          //     isfilter:itemfilter.length>0?true:false
-          //   });
-          // }
-        } 
         this.setData({response, loading: false });
       }
     });
     
 },
-  filter(){
-    let unique;
-    const key = 'regionName';
-    let items = this.listitems.map(item => [item[key], item]);
-    unique = [...new Map(items).values()];
-    if (!topDealService.listRegion) {
-      topDealService.listRegion=unique;
+  // filter(){
+  //   let unique;
+  //   const key = 'regionName';
+  //   let items = this.listitems.map(item => [item[key], item]);
+  //   unique = [...new Map(items).values()];
+  //   if (!topDealService.listRegion) {
+  //     topDealService.listRegion=unique;
+  //   }
+  //   // my.navigateTo({ url: "pages/tabBar/filter/index"});
+  //   if (my.canIUse("showActionSheet")) {
+  //     my.showActionSheet({
+  //       title: "Bộ lọc",
+  //       items: ["Button 1", "Button 2", "Button 3"],
+  //       destructiveBtnIndex: 2,
+  //       success: (res) => {
+  //         const btn = res.index === -1 ? "Cancel" : "at index " + res.index;
+       
+  //       },
+  //     });
+  //   }
+  // },
+  onShowBottomSheet(e) {
+  
+    if (!this.listfilter ) {
+      const key = 'regionName';
+      let items = this.listitems.map(item => [item[key], item]);
+      this.listfilter = [...new Map(items).values()];
     }
-    my.navigateTo({ url: "pages/tabBar/filter/index"});
+  
+    this.setData({
+      show: true,
+      template: e.target.dataset.template,
+      listfilter:this.listfilter
+    });
   },
   onHoteletail(index){
     console.log('index ',index.currentTarget.dataset.id)
     let hotelid = index.currentTarget.dataset.id
     my.navigateTo({ url: "pages/tabBar/hoteldetail/index?"+hotelid});
-  }
+  },
+  checkRegion(l) {
+    return l.ischeck
+  },
+  onClose() {
+    this.setData({
+      show: false,
+    });
+  },
+  onOk(){
+    let listitemfilter=[];
+    if (this.listfilter) {
+      let itemfilter = this.listfilter.filter(this.checkRegion);
+      if (itemfilter.length>0) {
+        itemfilter.forEach(element => {
+          let itemfilterRegion = this.listitems.filter((l) => { return l.regionId == element.regionId});
+          itemfilterRegion.forEach(elementregion => {
+            listitemfilter.push(elementregion);
+          });
+        
+        });
+      }
+    } 
+    this.setData({
+      show: false,
+      listfilter:this.listfilter,
+      response:listitemfilter.length>0?listitemfilter:this.listitems
+    });
 
+  },
+  onReset(){
+    this.listfilter.forEach(element => {
+      element.ischeck=false;
+    });
+    this.setData({
+      listfilter:this.listfilter,
+      response:this.listitems
+    });
+  },
+  onChange(e){
+    this.listfilter.forEach(element => {
+      if (element.regionId==e.target.id) {
+        element.ischeck=!element.ischeck;
+        return;
+      }
+  });
+
+  },
+  remove(event){
+    console.log(event);
+    console.log('index ',event.currentTarget.dataset.id)
+  },
 });
+
