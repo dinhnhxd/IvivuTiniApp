@@ -106,7 +106,8 @@ Page({
     });
     this.setData({
       listfilter:this.listfilter,
-      response:this.listitems
+      response:this.listitems,
+      countFilter:0
     });
   },
   onChange(e){
@@ -116,7 +117,7 @@ Page({
         return;
       }
   });
-
+  this.setDataFilter();
   },
   remove(event){
     this.listfilter.forEach(element => {
@@ -126,6 +127,28 @@ Page({
       }
   });
   this.onOk()
+  },
+  setDataFilter(){
+    let listitemfilter=[];
+    let itemfilter;
+    if (this.listfilter) {
+       itemfilter = this.listfilter.filter(this.checkRegion);
+      if (itemfilter.length>0) {
+        itemfilter.forEach(element => {
+          let itemfilterRegion = this.listitems.filter((l) => { return l.regionId == element.regionId});
+          itemfilterRegion.forEach(elementregion => {
+            listitemfilter.push(elementregion);
+          });
+        
+        });
+      }
+    } 
+    this.setData({
+      listfilter:this.listfilter,
+      response:listitemfilter.length>0?listitemfilter:this.listitems,
+      countFilter:itemfilter.length>0?itemfilter.length:0
+    });
+
   },
 });
 

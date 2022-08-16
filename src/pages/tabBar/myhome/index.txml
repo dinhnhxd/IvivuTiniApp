@@ -82,7 +82,8 @@
       <list-item tiki:for="{{listfilter}}" :key="index">
         <label class="div-flex">
           <view class="view-text-filter">{{item.regionName}}</view>
-          <checkbox color="#26bed6" id="{{item.regionId}}" onChange="onChange"  tiki:if="item.ischeck? checked:''"   class="cls-checkbox"  />
+          <checkbox color="#26bed6" id="{{item.regionId}}" onChange="onChange"  tiki:if="{{item.ischeck}}" checked={{true}} class="cls-checkbox"  />
+          <checkbox color="#26bed6" id="{{item.regionId}}" onChange="onChange"  tiki:if="{{!item.ischeck}}" checked={{false}}  class="cls-checkbox"  />
         </label>
       </list-item>
     </checkbox-group>
