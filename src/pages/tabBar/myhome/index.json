@@ -8,6 +8,7 @@
     "bottom-sheet": "@tiki.vn/tini-ui/es/bottom-sheet/index",
     "block-header": "components/block-header/index",
     "block-variant": "components/block-variant/index",
-    "chip": "@tiki.vn/tini-ui/es/chip/index"
+    "chip": "@tiki.vn/tini-ui/es/chip/index",
+    "badge": "@tiki.vn/tini-ui/es/badge/index"
   }
 }

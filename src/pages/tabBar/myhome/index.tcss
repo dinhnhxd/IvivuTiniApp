@@ -249,4 +249,19 @@ a:root {
   margin-left: 16px;
   margin-right: 16px;
 }
+.view-img-filter{
+  position: absolute;
+  right: 16px;
+}
+.cls-badge{
+  position: absolute;
+  right: -5px;
+  top: -4px;
+}
+.tu-badge-not-a-wrapper .tu-badge-text {
+  position: absolute;
+  right: -5px;
+  top: -4px;
+  transform: translateX(0);
+}
 

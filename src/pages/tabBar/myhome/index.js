@@ -3,7 +3,8 @@ Page({
   data: {
     listitems: [],
     show: false,
-    listfilter:[]
+    listfilter:[],
+    countFilter:0
   },
   onLoad(query){
     console.log(query);
@@ -52,13 +53,11 @@ Page({
   //   }
   // },
   onShowBottomSheet(e) {
-  
     if (!this.listfilter ) {
       const key = 'regionName';
       let items = this.listitems.map(item => [item[key], item]);
       this.listfilter = [...new Map(items).values()];
     }
-  
     this.setData({
       show: true,
       template: e.target.dataset.template,
@@ -80,8 +79,9 @@ Page({
   },
   onOk(){
     let listitemfilter=[];
+    let itemfilter;
     if (this.listfilter) {
-      let itemfilter = this.listfilter.filter(this.checkRegion);
+       itemfilter = this.listfilter.filter(this.checkRegion);
       if (itemfilter.length>0) {
         itemfilter.forEach(element => {
           let itemfilterRegion = this.listitems.filter((l) => { return l.regionId == element.regionId});
@@ -95,7 +95,8 @@ Page({
     this.setData({
       show: false,
       listfilter:this.listfilter,
-      response:listitemfilter.length>0?listitemfilter:this.listitems
+      response:listitemfilter.length>0?listitemfilter:this.listitems,
+      countFilter:itemfilter.length>0?itemfilter.length:0
     });
 
   },
@@ -118,8 +119,13 @@ Page({
 
   },
   remove(event){
-    console.log(event);
-    console.log('index ',event.currentTarget.dataset.id)
+    this.listfilter.forEach(element => {
+      if (element.regionId==event.currentTarget.dataset.id) {
+        element.ischeck=false;
+        return;
+      }
+  });
+  this.onOk()
   },
 });
 
