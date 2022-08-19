@@ -22,10 +22,6 @@
    <badge tiki:if="{{countFilter>0}}" text="{{countFilter}}"  isWrap="true">
       
     </badge>
-
-      
-
-  
     <view  class="widget">
       <view  class="flexWrap">
         <view tiki:for="{{listfilter}}">
@@ -35,8 +31,8 @@
       </view>
     </view>
    
-    <view class="item-card" tiki:for="{{response}}">
-      <image data-id={{item.id}}  onTap="onHoteletail" class="img-hotel" src={{item.avatar}} />
+    <view data-id={{item.id}} onTap="onHoteletail" class="item-card" tiki:for="{{response}}">
+      <image  class="img-hotel" src={{item.avatar}} />
       <view class="text-hotelname">
         {{item.name.split('|')[0]}}
       </view>

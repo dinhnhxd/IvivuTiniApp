@@ -90,15 +90,12 @@ a:root {
   padding: 16px;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
   background-color: #fff;
 }
 
 .content view .text{
 	width:80%;
 	height: 80px;
-
-
 }
 
 .text{
@@ -120,7 +117,7 @@ a:root {
   margin-top: 6px;
 }
 .img-hotel{
-  width: 290px;
+  width: 100%;
   height: 180px;
   border-radius: 6px 6px 0px 0px;
 }
@@ -138,6 +135,7 @@ a:root {
   background-color: #fff;
   height: 261px;
   position: relative;
+  width: 100%;
 }
 .img-star{
   width: 13.3px;

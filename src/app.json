@@ -4,11 +4,12 @@
     "pages/tabBar/myhome/index",
     "pages/tabBar/travel/index",
     "pages/tabBar/filter/index",
-    "pages/tabBar/hoteldetail/index"
+    "pages/tabBar/hoteldetail/index",
+    "pages/tabBar/combooverview/index"
   ],
   "window": {
     "defaultTitle": "My App",
-    "titleBarColor": "#fff",
+    "titleBarColor": "#003c71",
     "backgroundColor": "#F5F7FC",
     "allowsBounceVertical": "NO"
   },

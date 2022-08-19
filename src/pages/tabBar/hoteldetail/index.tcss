@@ -1,5 +1,6 @@
 .viewImage{
   z-index: 1;
+  height: 180px;
 }
 .image{
   width: 100%;
@@ -14,29 +15,18 @@
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
   margin-bottom: 10px;
-  top: -60px;
   position: relative;
 }
 .hotelname {
   font-size: 18px;
   font-weight: 600;
-  font-stretch: normal;
-  font-style: normal;
   line-height: 1.5;
-  letter-spacing: normal;
-  text-align: left;
   color: #3f3b3b;
-  margin-left: 8px;
   white-space: nowrap;
   overflow: hidden;
 }
 
-.img-star {
-  margin-left: 8px;
-  width: 20%;
-  height: 16px;
-  object-fit: contain;
-}
+
 
 .inline_left {
   display: inline-block;
@@ -46,7 +36,6 @@
 .inline_right {
   margin: 10px;
   display: inline-block;
-  float: right;
 }
 
 .AvgPoint {
@@ -98,24 +87,15 @@
 }
 
 .block {
-  background-color: white;
-  margin: 8px 0;
-  padding: 16px;
-  border-radius: var(--border-radius-rounded-4px);
+  padding: 12px 16px 0px 16px;
 }
 .Address {
-  width: 312px;
-  height: 34px;
   margin-left: 8px;
   font-family: Inter;
   font-size: 14px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
   color: #3f3b3b;
+  align-self: flex-end;
+  width: 100%;
 }
 .container {
   text-align: justify;
@@ -558,3 +538,42 @@
   background-color: #f79321;
   color: #fff;margin-bottom: 8px;
 }
+.mt16{
+  margin-top: 16px;
+}
+.ml16{
+  margin-left: 16px;
+}
+.pos-relative{
+  position: relative;
+}
+.top12{
+  top:12px
+}
+.img-star{
+  width: 16px;
+  height: 15px;
+  margin-left: 2.8px;
+}
+.viewHotel-Star{
+  border-radius: 16px;
+  background-color: #f0f8ff;
+  width: 150px;
+}
+.div-flex{
+  display: flex;
+}
+.text-hotel{
+  font-family: Inter;
+  font-size: 10px;
+  line-height: 1.5;
+  color: #3f3b3b;
+}
+.padding-4-8{
+  padding: 4px 0px 4px 8px;
+}
+.img-location{
+  width: 24px;
+  height: 24px;
+}
+

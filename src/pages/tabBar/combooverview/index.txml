@@ -1,0 +1,174 @@
+<view class="div-flex" style="background-color: #003c71;">
+  <view class="div-flex cls-review">
+    <view class="div-flex">
+      <image class="img" src="../../../images/imgs/ic_calendar.svg" />
+      <view class="text-info margin-left-6">30/05/2022</view>
+    </view>
+    <view class="div-flex margin-left-21">
+      <image class="img" src="../../../images/imgs/ic_night.svg" />
+      <view class="text-info margin-left-num">3</view>
+    </view>
+    <view class="div-flex margin-left-21">
+      <image class="img" src="../../../images/imgs/ic_room.svg" />
+      <view class="text-info margin-left-num">3</view>
+    </view>
+    <view class="div-flex margin-left-21">
+      <image class="img" src="../../../images/imgs/ic_pax.svg" />
+      <view class="text-info margin-left-num">3</view>
+    </view>
+    <view class="div-flex cls-more">
+      <image class="img-more" src="../../../images/imgs/ic_more.svg" />
+    </view>
+  </view>
+</view>
+  <!-- <tabs tabs="{{tabs1}}" tabsName="activeTab1" activeTab="{{activeTab1}}" onTabClick="onTabClick" swipeable="{{false}}">
+    <block tiki:for="{{tabs1}}">
+      <tab-content tabId="{{index}}">
+        <view class="tab-item" />
+      </tab-content>
+    </block>
+  </tabs> -->
+<view class="padding-16">
+  <view class="div-flex">
+    <view>
+      <image class="img-hotel" src="https://cdn1.ivivu.com/iVivu/2021/06/07/12/bar-shelves-lighting-added-2.jpg"/>
+    </view>
+   
+    <view class="margin-left-8">
+      <view class="text-hotel">
+        Khu nghỉ dưỡng Amiana Nha Trang
+      </view>
+      <view class="div-star mt-2" >
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
+      </view>
+      <view class="mt-2">
+        <image class="img-star img-room-breakfast" src="../../../images/imgs/ic_bed.svg" /> 
+        <view class="text-room-breakfast ml-15">Deluxe Ocean View | 1 phòng</view> 
+      </view>
+      <view class="mt-2 div-flex">
+        <image class="img-star img-room-breakfast" src="../../../images/imgs/ic_food.svg" />
+        <view class="text-room-breakfast ml-15">Gồm ăn sáng</view>  
+        <view class="text-change"> 
+          Đổi  <image class="img-vector" src="../../../images/imgs/ic_vector.svg" />
+        </view>
+       
+      </view>
+    </view>
+  </view>
+  <view class="view-line">
+
+  </view>
+  <!-- chiều đi -->
+  <view class="mt-16 mb-16">
+    <view  class="div-flex">
+      <view class="text-date">
+        Thứ 6, 29 thg 04
+      </view>
+      <view class="text-position text-charge-tilte">
+        Phụ thu vé
+      </view>
+    </view>
+    <view  class="div-flex mt-12">
+      <view class="text-time-fly">
+        11:15        →        12:45
+      </view>
+      <view class="text-position text-charge">
+        + 640.000 đ
+      </view>
+    </view>
+    <view  class="div-flex mt-2">
+      <view class="text-charge-tilte">
+        SGN    ·    01h20m    ·   DAD
+      </view>
+
+    </view>
+    <view  class="div-flex mt-2">
+      <image class="img-fly" src="../../../images/ic_airticket/ic_bamboo_b.png" />
+      <view class="text-flight-name">
+        BambooAirways
+      </view>
+      <view class="text-charge-tilte text-cham">
+       · 
+      </view>
+      <view class="text-charge-tilte">
+        Phổ thông
+      </view>
+      <view class="text-change"> 
+        Đổi  <image class="img-vector" src="../../../images/imgs/ic_vector.svg" />
+      </view>
+    </view>
+  </view>
+  <view class="view-line-1">
+
+  </view>
+<!-- chiều về -->
+  <view class="mt-16 mb-12">
+    <view  class="div-flex">
+      <view class="text-date">
+        Thứ 6, 29 thg 04
+      </view>
+      <view class="text-position text-charge-tilte">
+        Phụ thu vé
+      </view>
+    </view>
+    <view  class="div-flex mt-12">
+      <view class="text-time-fly">
+        11:15        →        12:45
+      </view>
+      <view class="text-position text-charge">
+        + 640.000 đ
+      </view>
+    </view>
+    <view  class="div-flex mt-2">
+      <view class="text-charge-tilte">
+        SGN    ·    01h20m    ·   DAD
+      </view>
+
+    </view>
+    <view  class="div-flex mt-2">
+      <image class="img-fly" src="../../../images/ic_airticket/ic_bamboo_b.png" />
+      <view class="text-flight-name">
+        BambooAirways
+      </view>
+      <view class="text-charge-tilte text-cham">
+       · 
+      </view>
+      <view class="text-charge-tilte">
+        Phổ thông
+      </view>
+      <view class="text-change"> 
+        Đổi  <image class="img-vector" src="../../../images/imgs/ic_vector.svg" />
+      </view>
+    </view>
+  </view>
+  <view class="view-line"></view>
+  <!-- Thông tin hành lý ký gửi -->
+  <view class="div-flex mt-16">
+    <view class="text-date">
+      Thông tin hành lý ký gửi
+    </view>
+    <view class="text-hanh-ly margin-left-8">
+      Đi: 0kg. Về: 23kg.
+    </view>
+    <view class="text-change"> 
+      <image class="img-for" src="../../../images/imgs/ic_for.svg" />
+    </view>
+  </view>
+  <view class="view-line-1 mt-15 mb-16"></view>
+  <!-- Chính sách combo -->
+  <view class="div-flex">
+    <view class="text-date">
+      Chính sách hủy combo
+    </view>
+
+    <view class="text-change"> 
+      <image class="img-for" src="../../../images/imgs/ic_for.svg" />
+    </view>
+  </view>
+  <view class="view-line"></view>
+
+</view>

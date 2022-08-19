@@ -1,9 +1,14 @@
+import parse from '@tiki.vn/mini-html-parser2';
+const html = `<div  >
+  "{{response.Combos.Note}}"
+</div>`;
 Page({
   data: {
     apikey:'AIzaSyA759T_2b8Vd9KPputmQ8AslLcuGwARXMU',
     items: [],
     iconType: ['location',
   'direction_right'],
+  el:''
   },
   onLoad(query) {
     try {
@@ -53,25 +58,31 @@ Page({
           let ricefrom2  = this.arprice(response.Combos.ComboDetail[1]?.PriceFrom);
           let ricefrom3  = this.arprice(response.Combos.ComboDetail[2]?.PriceFrom);
           let ricefrom4  = this.arprice(response.Combos.ComboDetail[3]?.PriceFrom);
-  
-  
-          this.setData({
-            response,
-            ricecombo,
-            timecover1,
-            timecover2,
-            timecover3,
-            timecover4,
-            timecoverto1,
-            timecoverto2,
-            timecoverto3,
-            timecoverto4,
-            ricefrom1,
-            ricefrom2,
-            ricefrom3,
-            ricefrom4,
-            loading: false,
+          parse(response.Combos.Note, (err, htmlNodes) => {
+            if (!err) {
+              this.setData({
+                response,
+                ricecombo,
+                timecover1,
+                timecover2,
+                timecover3,
+                timecover4,
+                timecoverto1,
+                timecoverto2,
+                timecoverto3,
+                timecoverto4,
+                ricefrom1,
+                ricefrom2,
+                ricefrom3,
+                ricefrom4,
+                loading: false,
+                el:htmlNodes
           });
+            }
+          });
+    
+         
+     
         } catch (error) {
           console.log(error)
         }
@@ -133,4 +144,9 @@ Page({
       return null
     }
   },
+  bookCombo(){
+    
+    my.navigateTo({ url: "pages/tabBar/combooverview/index"});
+  }
 });
+

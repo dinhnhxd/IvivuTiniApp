@@ -1,0 +1,189 @@
+.img{
+  width: 20px;
+  height: 20px;
+}
+.text-info{
+  font-family: Inter;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #fff;
+}
+.div-flex{
+  display: flex;
+}
+.margin-left-21{
+  margin-left: 21px;
+}
+.margin-left-num{
+  margin-left: 6px;
+}
+.margin-left-8{
+  margin-left: 8px;
+}
+.margin-left-6{
+  margin-left: 6px;
+}
+.cls-more{
+  position: absolute;
+    right: 16px;
+    padding: 2px;
+    border-radius: 12px;
+    border: solid 1px rgba(255,255,255,0.2);
+}
+.img-more{
+  width: 13.3px;
+  height: 13.3px;
+}
+.cls-review{
+  margin-left: 18px;
+  margin-bottom: 10px;
+}
+/* .tab-item {
+  height: 104px;
+  background-color: #fff;
+}
+
+.mb-8 {
+  margin-bottom: 8px;
+}
+
+.mt-16 {
+  margin-top: 16px;
+}
+
+.gray10 {
+  background-color: var(--gray10);
+}
+.tu-tabs-bar-tab-mainTitle-text-active {
+  color: #26bed6;
+  font-weight: var(--font-weight-bold);
+}
+.tu-tabs-bar-title-underline {
+  background-color: #26bed6;
+} */
+.padding-16{
+  padding: 17px 16px 0px 16px;
+  background-color: #fff;
+}
+.img-hotel{
+  width: 104px;
+  height: 104px;
+  border-radius: 4px;
+}
+.text-hotel{
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.48px;
+  color: #3f3b3b;
+}
+.div-star{
+  display: flex;
+}
+.img-star{
+  width: 13.3px;
+  height: 13.3px;
+}
+.text-room-breakfast{
+  font-family: Inter;
+  font-size: 14px;
+  line-height: 1.43;
+  color: #3f3b3b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 165px;
+}
+.img-room-breakfast{
+  position: absolute;
+    margin-top: 3px;
+}
+.ml-15{
+  margin-left: 15px;
+}
+.mt-2{
+  margin-top: 2px;
+}
+.text-change{
+  position: absolute;
+    right: 12px;
+    font-family: Inter;
+    font-size: 14px;
+    color: #26bed6;
+}
+.img-vector{
+  width: 12px;
+  height: 9px;
+}
+.view-line{
+  height: 8px;
+  background-color: #f5f5fa;
+  margin-left: -16px;
+  margin-right: -16px;
+}
+.text-date{
+  font-family: Inter;
+  font-size: 14px;
+  color: #3f3b3b;
+}
+.mt-16{
+  margin-top: 16px;
+}
+.mb-12{
+  margin-bottom: 12px;
+}
+.text-charge-tilte{
+  font-family: Inter;
+  font-size: 14px;
+  color: #868998;
+}
+.text-position{
+  position: absolute;
+  right: 16px;
+}
+.text-time-fly{
+  font-family: Inter;
+  font-size: 18px;
+  color: #3f3b3b;
+}
+.text-charge{
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 600;
+  color: #3f3b3b;
+}
+.text-flight-name{
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 500;
+  color: #3f3b3b;
+}
+.img-fly{
+  width: 15px;
+  height: 15px;
+}
+.text-cham{
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.view-line-1{
+  height: 1px;
+  background-color: #f5f5fa;
+}
+.text-hanh-ly{
+  font-family: Inter;
+  font-size: 14px;
+  color: #26bed6;
+}
+.img-for{
+  width: 18px;
+  height: 18.4px;
+}
+.mt-15{
+  margin-top: 15px;
+}
+.mb-16{
+  margin-bottom: 16px;
+}
+
+

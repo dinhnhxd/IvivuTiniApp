@@ -1,3 +1,4 @@
+
 <view class="wrap">
   <view>
     <view class="viewImage">
@@ -10,65 +11,71 @@
     </view>
   
     <view class="newHotelDetail"> 
-      <text class="hotelname">{{response.Name}}</text>
-      <view>
-        <view tiki:if="{{response.Rating == 50}}">
-          Khách sạn
-          <image class="img-star" src="../../../images/star/ic_star_5.svg" />
+      <view class="hotelname pos-relative top12 ml16">{{response.Name}}</view>
+      <view class="mt16 ml16 viewHotel-Star">
+        <view class="div-flex padding-4-8" tiki:if="{{response.Rating == 50}}">
+          <view class="text-hotel">
+            Khách sạn
+          </view>
+
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
         </view>
-        <view tiki:if="{{response.Rating == 45}}">
-          Khách sạn
-          <image class="img-star" src="../../../images/star/ic_star_4.5.svg" />
+        <view class="div-flex padding-4-8" tiki:if="{{response.Rating == 40}}">
+          <view class="text-hotel">
+            Khách sạn
+          </view>
+
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
         </view>
-        <view tiki:if="{{response.Rating == 40}}">
-          Khách sạn
-          <image class="img-star" src="../../../images/star/ic_star_4.svg" />
+        <view class="div-flex padding-4-8" tiki:if="{{response.Rating == 30}}">
+          <view class="text-hotel">
+            Khách sạn
+          </view>
+
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
         </view>
-        <view tiki:if="{{response.Rating == 35}}">
-          Khách sạn
-          <image class="img-star" src="../../../images/star/ic_star_3.5.svg" />
+        <view class="div-flex padding-4-8" tiki:if="{{response.Rating == 20}}">
+          <view class="text-hotel">
+            Khách sạn
+          </view>
+
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
         </view>
-        <view tiki:if="{{response.Rating == 30}}">
-          Khách sạn
-          <image class="img-star" src="../../../images/star/ic_star_30.svg" />
-        </view>
-        <view tiki:if="{{response.Rating == 25}}">
-          Khách sạn
-          <image class="img-star" src="../../../images/star/ic_star_2.5.svg" />
-        </view>
-        <view tiki:if="{{response.Rating == 20}}">
-          Khách sạn
-          <image class="img-star" src="../../../images/star/ic_star_20.svg" />
-        </view>
-        <view tiki:if="{{response.Rating == 15}}">
-          Khách sạn
-          <image class="img-star" src="../../../images/star/ic_star_1.5.svg" />
-        </view>
-        <view tiki:if="{{response.Rating == 1}}">
-          Khách sạn
-          <image class="img-star" src="../../../images/star/ic_star_1.svg" />
-        </view>
-        <view tiki:if="{{response.Rating == 5}}">
-          <image class="img-star" src="../../../images/star/ic_star_0.5.svg" />
+        <view class="div-flex padding-4-8" tiki:if="{{response.Rating == 10}}">
+          <view class="text-hotel">
+            Khách sạn
+          </view>
+
+        <image class="img-star" src="../../../images/star/Star.svg" />
         </view>
       </view>
-  
+      <view class="div-flex ml16 mt16">
+        <image class="img-location" src="../../../images/imgs/ic_location.svg" />
+        <view class="Address">{{response.Address}}</view>
+      </view>
       <view class="block">
         <map class="map" onTap="onTap" onMarkerTap="onMarkerTap" latitude="{{response.Latitude}}"
           longitude="{{response.Longitude}}" apiKey="AIzaSyA759T_2b8Vd9KPputmQ8AslLcuGwARXMU" />
       </view>
   
-      <view>
-        <icon type="location"></icon>
-        <text class="Address">{{response.Address}}</text>
-      </view>
+      
     </view>
   </view>
 
 
 
 
-  <view>
+  <!-- <view>
     <view class="inline_left ">
       <view class="AvgPoint">{{response.AvgPoint}}</view>
       <text class="anhgia">Xuất sắc</text>
@@ -84,8 +91,8 @@
 
   <view class="hr">
 
-  </view>
-  <view class="container">
+  </view> -->
+  <!-- <view class="container">
     <view class="inlineday1">Nhận phòng</view>
     <view class="inlineday1">Trả phòng</view>
     <view class="inlineday2">Khách</view>
@@ -104,7 +111,7 @@
     <view class="inlineday2">
       <text class="aytime">1</text>
     </view>
-  </view>
+  </view> -->
 
 
   <modal show="{{show}}"
@@ -126,8 +133,11 @@
   </view>
   <view class="combobg">
     Điều kiện áp dụng</view>
-  <view class="chitietcombo">
-    {{response.Combos.Note}}
+  <rich-text nodes="{{el}}" />
+  <view class="chitietcombo" innerHTML="{{el}}" id="myBtn">
+
+  </view>
+  <view class="chitietcombo" id="demo">
   </view>
   <view class="combobg">
     Khởi hành từ Hồ Chí Minh
@@ -238,10 +248,9 @@
           15.300.000đ
         </view>
       </view>
-      <view class="footerview">
+      <view onTap="bookCombo" class="footerview">
         <text class="footerviewText">Đặt Combo</text>
       </view>
     </view>
   </view>
-
 </view>
