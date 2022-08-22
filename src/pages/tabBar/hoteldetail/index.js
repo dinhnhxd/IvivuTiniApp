@@ -10,12 +10,15 @@ Page({
   // comboid:'',
   // cin,
   // cout
+  fixedHeader: false,
+  now:moment().format('DD-MM-YYYY'),
+  array: Array.from(Array(10).keys()),
+  arrayIndex: 0,
   },
   onLoad(query) {
     try {
     this.cin=new Date();
     this.cout=new Date();
-    console.log(this.cin);
     this.setData({ loading: true });
     my.request({
       url: 'https://svc1-beta.ivivu.com/mhoteldetail/' + query + '/',
@@ -28,6 +31,8 @@ Page({
         try {
           this.items = response;
           let ricecombo = response.Combos.Price;
+          let minPrice = response.MinPrice;   
+          minPrice = this.arprice(minPrice)
           let timef1 = response.Combos.ComboDetail[0].StayFrom;
           let timef2 = response.Combos.ComboDetail[1]?.StayFrom;
           let timef3 = response.Combos.ComboDetail[2]?.StayFrom;
@@ -78,6 +83,7 @@ Page({
                 ricefrom4,
                 loading: false,
                 el:htmlNodes,
+                minPrice
           });
             }
           });
@@ -102,7 +108,6 @@ Page({
   }
   },
   getDetailCombo(comboid){
-    console.log(moment(this.cin).format('DD-MM-YYYY'));
     my.request({
    
       url: 'https://beta-olivia.ivivu.com/mobile/OliviaApis/ComboDetailList?comboId=' + (comboid ? comboid : this.comboid) + '&checkin=' + moment(this.cin).format('DD-MM-YYYY') + '&checkout=' + moment(this.cout).format('DD-MM-YYYY'),
@@ -172,7 +177,17 @@ Page({
   handleShowModal() {
     this.setData({ show: true });
   },
-
+  onPageScroll(event) {
+    console.log('event.scrollTop '+event.scrollTop)
+    if(event.scrollTop > 200){
+      this.setData({ fixedHeader: true });
+    }
+    else{
+      this.setData({ fixedHeader: false });
+    
+    }
+    // this.setData({ fixedHeader: event.scrollTop > 20 });
+  },
   handleHideModal() {
     this.setData({ show: false });
   },
@@ -211,7 +226,6 @@ Page({
     
   },
   artime(str) {
-    console.log('sr' +str)
     if(str){
       return str.replace(/[&\/\\#,+()$~%.'":*?<>{}|Date]/g, '');
     }
@@ -222,6 +236,36 @@ Page({
   bookCombo(){
     
     my.navigateTo({ url: "pages/tabBar/combooverview/index"});
-  }
+  },
+
+  showDatePicker(format, ...options) {
+    my.datePicker({
+      format,
+      ...options,
+      success: (success) => {
+        this.setData({now:  success.date});
+        console.log('date ', success.date)
+        // my.alert({
+        //   content: JSON.stringify(success)
+         
+        // });
+      },
+      fail: (error) => {
+        my.alert({
+          content: JSON.stringify(error)
+        });
+      }
+    });
+  },
+
+  onShowDateTime() {
+    this.showDatePicker('dd-MM-yyyy');
+  },
+  onArrayChange(e) {
+    console.log('array', e.detail.value);
+    this.setData({
+      arrayIndex: e.detail.value
+    });
+  },
 });
 

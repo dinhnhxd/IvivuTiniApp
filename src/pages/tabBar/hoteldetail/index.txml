@@ -1,5 +1,54 @@
-
 <view class="wrap main">
+
+  <view tiki:if={{fixedHeader}}>
+    <view class="top-header">  
+      <view class="search">
+       {{response.Combos.MiniTitle}}
+      </view>
+      <view class="pickDetail">
+        <view class="imgpick">
+          <image class="img-header" src="../../../images/imgs/calendar.svg" />
+        </view>
+        <view class="dataick" onTap="onShowDateTime">
+          {{now}}
+        </view>
+        <view class="imgpick">
+          <image class="img-header" src="../../../images/imgs/date.svg" />
+        </view>
+        <view class="dataick">
+          <picker range="{{array}}" value="{{arrayIndex}}" onChange="onArrayChange">
+            <view class="picker">
+              {{arrayIndex}}
+            </view>
+          </picker>
+        </view>
+        <view class="imgpick">
+          <image class="img-header" src="../../../images/imgs/door.svg" />
+        </view>
+        <view class="dataick">
+          <picker range="{{array}}" value="{{arrayIndex}}" onChange="onArrayChange">
+            <view class="picker">
+              {{arrayIndex}}
+            </view>
+          </picker>
+        </view>
+        <view class="imgpick">
+          <image class="img-header" src="../../../images/imgs/pax.svg" />
+        </view>
+        <view class="dataick">
+          2
+        </view>
+
+        <view class="imgpickcircle">
+          <image class="img-header" src="../../../images/imgs/dropdown.svg" />
+        </view>
+      </view>
+
+    
+    </view>
+      
+   
+  </view>
   <view>
     <view class="viewImage">
       <carousel arrows indicator-dots onChange="onChange">
@@ -73,47 +122,6 @@
   </view>
 
 
-
-
-  <!-- <view>
-    <view class="inline_left ">
-      <view class="AvgPoint">{{response.AvgPoint}}</view>
-      <text class="anhgia">Xuất sắc</text>
-    </view>
-    <view class="inline_right">
-      <view class="nh-gi">
-        {{response.NumOfReview}} đánh giá →
-      </view>
-
-    </view>
-  </view>
-
-
-  <view class="hr">
-
-  </view> -->
-  <!-- <view class="container">
-    <view class="inlineday1">Nhận phòng</view>
-    <view class="inlineday1">Trả phòng</view>
-    <view class="inlineday2">Khách</view>
-    <view class="inlineday2">Phòng</view>
-  </view>
-  <view class="container">
-    <view class="inlineday1" onTap="handleShowModal">
-      <text class="aytime">29-04-2022</text>
-    </view>
-    <view class="inlineday1" onTap="handleShowModal">
-      <text class="aytime">01-05-2022</text>
-    </view>
-    <view class="inlineday2">
-      <text class="aytime">5</text>
-    </view>
-    <view class="inlineday2">
-      <text class="aytime">1</text>
-    </view>
-  </view> -->
-
-
   <modal show="{{show}}"
     buttons="{{[{'text': 'Close', type: 'ghost'}, {'text': 'Cancel', type: 'outline'}, {'text': 'OK'}]}}"
     buttonsLayout="vertical" onMaskClick="handleHideModal" onButtonClick="handleTapButton">
@@ -132,8 +140,22 @@
     <view class="chitietcombo">
       {{response.Combos.Description}}
     </view>
+    <view style="padding-bottom: 20px;"></view>
+    <view class="contain-insuran">
+      <view class="insuran_1"> 
+        <checkbox class="checkboxitem" onChange="onChange" />
+      </view>
+      <view class="insuran_2"> 
+        <image class="img-insurance" src="https://cdn.topcv.vn/140/company_logos/cathay-insurance-co-ltd-5ecc853881196.jpg"></image>
+      </view>
+      <view class="insuran_3"> 
+        Vi vu nghỉ dưỡng, thoải mái tận hưởng. Bảo hiểm du lịch và chuyến bay lên đến 100 triệu
+      </view>
+    </view>
+    <view style="padding-bottom: 20px;"></view>
     <view class="combobg mt8">
-      Điều kiện áp dụng</view>
+      Điều kiện áp dụng
+    </view>
     <rich-text class="mt8" nodes="{{el}}" />
     <!-- <view class="chitietcombo" innerHTML="{{el}}" id="myBtn">
   
@@ -258,7 +280,7 @@
   </view>
 
   <view class="totalPrice">
-    <view class="footer">
+    <!-- <view class="footer">
       <view class='footernumberReivew'>
         <view class="footernumberReivew_1">
           5 người lớn, 1 trẻ em
@@ -271,5 +293,20 @@
         <text class="footerviewText">Đặt Combo</text>
       </view>
     </view>
+    <view onTap="bookCombo">
+      <text >Đặt Combo</text>
+    </view> -->
+    <view class="conMinPrice">
+      <text class="priceMin">Giá phòng mỗi đêm từ</text>
+      <text class="parseminPrice">{{minPrice}} ₫</text>
+
+    </view>
+    <view>
+      <text class="includeTax">Đã bao gồm thuế</text>
+    </view>
+    <view style="margin-bottom: 20px;"></view>
+    <view class="bookCombo">
+      <text class="footerviewText">Đặt Combo</text>
+    </view> 
   </view>
 </view>

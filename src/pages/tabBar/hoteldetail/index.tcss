@@ -1,3 +1,8 @@
+
+:root {
+  --control-width: 90px;
+  --cart-size: 24px;
+}
 .viewImage{
   z-index: 1;
   height: 180px;
@@ -6,7 +11,65 @@
   width: 100%;
   /* height: 100%; */
 }
+.top-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: #003c71;
+  height: 120px;
+  
+}
 
+.search {
+  position: absolute;
+  color:#ffffff;
+  top: calc(var(--tf-status-bar-height) );
+  left: 10%;
+  right: 0;
+  padding: 8px 16px;
+  font-size: 18px;
+}
+
+.pickDetail{
+  position: absolute;
+  color:#ffffff;
+  top: calc(var(--tf-status-bar-height) +80px);
+  left: 0;
+  right: 0;
+  padding: 8px 16px;
+  font-size: 18px;
+  display: inline-block;
+}
+
+.img-header{
+  width: 16px;
+  height: 15px;
+  /* padding-right: 5px; */
+  margin-right: 5px;
+  /* margin-left: 2.8px; */
+}
+
+.imgpick{
+  display: inline-block;
+  
+}
+
+.imgpickcircle{
+  display: inline-block;
+  /* background-color:#fff; */
+  border:solid 1px rgba(255, 255, 255, 0.2); 
+  /* height:100px; */
+  border-radius:50%;
+  -moz-border-radius:50%;
+  -webkit-border-radius:50%;
+  /* width:100px; */
+}
+.dataick{
+  margin-right: 15px;
+  display: inline-block;
+}
 .newHotelDetail{
   z-index: 2;
   height: 300px;
@@ -307,7 +370,7 @@
   margin: 0;
   position: absolute;
   top: 50%;
-  left: 25%;
+  left: 38%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
@@ -641,4 +704,101 @@
   height: 105px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.contain-insuran{
+  opacity: 0.3;
+  border-radius: 4px;
+  background-color: #ecf0f5;
+  height: 68px;
+}
+.insuran_1 {
+  float: left;
+  width: 10%;
+  height: 70px;
+  position: relative;
+}
+.insuran_2 {
+  float: left;
+  width: 20%;
+  height: 70px;
+  position: relative;
+}
+
+.img-insurance{
+  width: 40px;
+  height: 48px;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.insuran_3{
+  float: left;
+  width: 60%;
+  height: 70px;
+  position: relative;
+
+  color: #000000;
+
+}
+
+/* Clear floats after the columns */
+.contain-insuran:after {
+  content: "";
+  display: table;
+  clear: both;
+ 
+}
+
+.checkboxitem{
+  /* color:red; */
+  border-color:#808089;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+
+}
+.totalPrice{
+  border-top: 5px solid #f5f6f7;
+}
+.conMinPrice{
+  margin-top: 15px ;
+}
+.priceMin{
+  background-color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.parseminPrice{
+  float: right;
+  /* text-align: right; */
+  color: #26bed6;
+  font-weight: bold;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.includeTax{
+  float: right;
+  margin-right: 10px;
+  color: #868998;
+}
+
+.bookCombo{
+  margin-top: 20px;
+  display: inline-block;
+  width:90%;
+  height:40px;
+  border-radius: 4px;
+  background-color: #f79321;
+  position: relative;
+  margin-right: 18px;
+  margin-left: 10px;
 }
