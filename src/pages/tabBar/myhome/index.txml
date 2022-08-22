@@ -26,7 +26,7 @@
     <view  class="widget">
       <view  class="flexWrap">
         <view tiki:for="{{listfilter}}">
-          <chip  data-id="{{item.regionId}}" class="cls-chip" tiki:if="{{item.ischeck}}" content="{{item.regionName}}" onRightClick="remove" suffixIcon="close" iconRightColor="#808089" />
+          <chip  data-id="{{item.regionIfd}}" class="cls-chip" tiki:if="{{item.ischeck}}" content="{{item.regionName}}" onRightClick="remove" suffixIcon="close" iconRightColor="#808089" />
         </view>
   
       </view>
