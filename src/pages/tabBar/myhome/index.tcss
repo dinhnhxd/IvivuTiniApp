@@ -259,7 +259,7 @@ a:root {
 .tu-badge-not-a-wrapper .tu-badge-text {
   position: absolute;
   right: -5px;
-  top: -4px;
+  top: -30px;
   transform: translateX(0);
 }
 

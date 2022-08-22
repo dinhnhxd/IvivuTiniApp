@@ -142,61 +142,35 @@
   background-color: #f5f5fa;
 }
 .combo{
-  height: 76px; 
-  margin-left: 8px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 }
 .titleCombo{
-  /* width: 328px;
-  height: 76px; */
-  margin-top: 16px;
   font-family: Inter;
   font-size: 18px;
   font-weight: 600;
-  font-stretch: normal;
-  font-style: normal;
   line-height: 1.4;
   letter-spacing: -0.51px;
-  text-align: left;
   color: #27272a;
 }
 .priceCombo{
   font-family: Inter;
   font-size: 18px;
   font-weight: 600;
-  font-stretch: normal;
-  font-style: normal;
   color:orange;
 }
 
 .combobg{
-  /* margin: 8px 61px 8px 16px; */
-  margin-top: 12px;
-  margin-bottom: 12px;
-  margin-left: 8px;
   font-family: Inter;
   font-size: 14px;
   font-weight: 600;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  
-  text-align: left;
   color: #3f3b3b;
 }
 
 .chitietcombo{
-  margin: 8px 16px;
   font-family: Inter;
   font-size: 14px;
-  font-weight: normal;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
   color: #3f3b3b;
+  margin-top: 8px;
 }
 
 /* .Line {
@@ -208,11 +182,8 @@
 } */
 
 .containComborice{
-  width: 90%;
   margin-top: 15px;
   margin-left: 8px;
-  padding-top: 12x;
-  margin-bottom: 12px;
 }
 
 .timefromHiglight{
@@ -262,8 +233,7 @@
   color: #003c71;
 }
 .view{
-  margin-top: 30px;
-  margin-left: 8px;
+  margin: 12px 0px 12px 16px;
 }
 .review{
   font-size: 16px;
@@ -276,6 +246,9 @@
   color: #3f3b3b;
 }
 .seeall{
+  display: flex;
+    position: absolute;
+    right: 22.7px;
   float: right;
   font-size: 14px;
   font-weight: normal;
@@ -544,6 +517,9 @@
 .ml16{
   margin-left: 16px;
 }
+.ml10{
+  margin-left: 10px;
+}
 .pos-relative{
   position: relative;
 }
@@ -576,4 +552,93 @@
   width: 24px;
   height: 24px;
 }
+.view-combo{
+  background-color: #feeec7;
+  padding: 12px 17px 0px 15px;
+}
+.mt8{
+  margin-top: 8px;
+}
+.mt11{
+  margin-top:11px;
+}
+.ml5{
+  margin-left: 5px;
+}
+.view-line{
+  height: 8px;
+  background-color: #f5f5fa;
+  margin-left: -16px;
+  margin-right: -16px;
+}
+.main{
+  background-color: #fff;
+}
+.img-all{
+  width: 20px;
+  height: 18px;
+}
+.widget
+{
+  width: 100%;
+  border-spacing: 20px;
+}
 
+.widget .flexWrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.widget .subWidget
+{
+  text-align: center;
+  margin: 5px 5px 5px 5px;
+  padding: 4px 8px;
+  border-radius: 16px;
+  border: solid 1px #dddde3;
+  background-color: #fff;
+}
+.subWidgetActive{
+  text-align: center;
+  margin: 5px 5px 5px 5px;
+  border: solid 1px #26bed6;
+  background-color: #fff;
+  padding: 4px 8px;
+  border-radius: 16px;
+  color: #26bed6;
+}
+.cls-chip{
+  margin-bottom: 8px;
+  margin-right: 8px;
+  height: 18px;
+}
+.text-time-title{
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #3f3b3b;
+}
+.text-time{
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #3f3b3b;
+}
+.pos-absolute{
+  position: absolute;
+  right: 16px
+}
+.text-description{
+  height: 105px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

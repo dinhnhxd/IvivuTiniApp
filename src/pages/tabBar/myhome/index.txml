@@ -18,10 +18,11 @@
     <view slot="inner" class="view-img-filter" >
       <image onTap="onShowBottomSheet" tiki:if="{{isfilter}}" class="img-filter" src="../../../images/imgs/ic_filter_new.svg" />
       <image onTap="onShowBottomSheet" data-template="list" tiki:if="{{!isfilter}}" class="img-filter" src="../../../images/imgs/ic_filter_new.svg" />
-    </view>
-   <badge tiki:if="{{countFilter>0}}" text="{{countFilter}}"  isWrap="true">
+      <badge tiki:if="{{countFilter>0}}" text="{{countFilter}}"  isWrap="true">
       
-    </badge>
+      </badge>
+    </view>
+ 
     <view  class="widget">
       <view  class="flexWrap">
         <view tiki:for="{{listfilter}}">

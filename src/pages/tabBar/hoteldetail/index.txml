@@ -1,5 +1,5 @@
 
-<view class="wrap">
+<view class="wrap main">
   <view>
     <view class="viewImage">
       <carousel arrows indicator-dots onChange="onChange">
@@ -121,68 +121,87 @@
   </modal>
   <view class="hr">
   </view>
-  <view class="combo">
-    <view class="titleCombo">{{response.Combos.Title}} </view>
-    <view class="priceCombo">{{ricecombo}} VND/Khách</view>
-  </view>
-  <view class="combobg">
-    Combo bao gồm
-  </view>
-  <view class="chitietcombo">
-    {{response.Combos.Description}}
-  </view>
-  <view class="combobg">
-    Điều kiện áp dụng</view>
-  <rich-text nodes="{{el}}" />
-  <view class="chitietcombo" innerHTML="{{el}}" id="myBtn">
-
-  </view>
-  <view class="chitietcombo" id="demo">
-  </view>
-  <view class="combobg">
-    Khởi hành từ Hồ Chí Minh
-    <view class="containComborice">
-      <text class="timefromHiglight"> {{timecover1}} <icon type="direction_right" size="10"></icon>
-        {{timecoverto1}}</text>
-      <text class="comborice">{{ricefrom1}} đ</text>
+  <view class="view-combo">
+    <view class="combo">
+      <view class="titleCombo">{{response.Combos.Title}} </view>
+      <view class="priceCombo">{{ricecombo}} VND/Khách</view>
     </view>
-    <view class="containComborice">
-      <text class="timefromHiglight"> {{timecover3}} <icon type="direction_right" size="10"></icon>
-        {{timecoverto3}}</text>
-      <text class="comborice_gray">{{ricefrom2}} đ</text>
+    <view class="combobg">
+      Combo bao gồm
     </view>
-  </view>
-  <view class="timedeart">
-    Xem lịch khởi hành
-  </view>
-  <view class="combobg">
-    Khởi hành từ Hà Nội
-    <view class="containComborice">
-      <text class="timefromHiglight"> {{timecover2}}
-        <icon type="direction_right" size="10"></icon> {{timecoverto2}}
-      </text>
-      <text class="comborice">{{ricefrom3}} đ</text>
+    <view class="chitietcombo">
+      {{response.Combos.Description}}
+    </view>
+    <view class="combobg mt8">
+      Điều kiện áp dụng</view>
+    <rich-text class="mt8" nodes="{{el}}" />
+    <!-- <view class="chitietcombo" innerHTML="{{el}}" id="myBtn">
+  
+    </view> -->
+    <view class="chitietcombo" id="demo">
     </view>
 
-    <view class="containComborice">
-      <text class="timefromHiglight">{{timecover4}}
-        <icon type="direction_right" size="10"></icon> {{timecoverto4}}
-      </text>
-      <text class="comborice_gray">{{ricefrom4}} đ</text>
+    <view class="combobg" tiki:for="{{comboDetailList}}" tiki:if="{{comboDetailList.length >0}}">
+      Khởi hành từ {{item.departureName}}
+      <view class="containComborice" tiki:for="{{item.details}}">
+        <text class="timefromHiglight"> {{ item.stayFromStr }} → {{ item.stayToStr }}</text>
+        <text class="comborice">{{item.priceDisplay}} đ</text>
+      </view>
+      <view class="mt11">
+        <view  tiki:for="{{item.salePriceUserFlight}}" >
+          <image class="img-star" src="../../../images/imgs/flash.svg" />
+          <text class="timefromHiglight ml5">{{item}}</text>
+        </view>
+      </view>
+
     </view>
 
   </view>
-  <view class="timedeart">
-    Xem lịch khởi hành
-  </view>
-
   <view class="hr">
   </view>
+    <view class="view div-flex">
+      <view class="review">Tiện nghi</view>
+      <view class="seeall" >Xem tất cả<image class="img-all" src="../../../images/imgs/ic_seeall.svg"></image></view>
+    </view>
+    <view  class="view widget">
+      <view  class="flexWrap">
+        <view tiki:for="{{response.HotelFacilities}}">
+          <chip class="cls-chip" content="{{item.Name}}" />
+        </view>
+        </view>
+        </view>
 
+    <view class="hr">
+    </view>
+      <view class="view div-flex">
+        <view class="review">Giờ nhận phòng / trả phòng</view>
+      </view>
+      <view class="view div-flex">
+        <image class="img-all" src="../../../images/imgs/ic_time.svg"></image>
+        <view class="text-time-title ml10">Nhận phòng</view>
+        <view class="pos-absolute text-time">{{response.CheckinTime}}</view>
+      </view>
+      <view class="view div-flex">
+        <image class="img-all" src="../../../images/imgs/ic_time.svg"></image>
+        <view class="text-time-title ml10">Trả phòng</view>
+        <view class="pos-absolute text-time">trước {{response.CheckoutTime}}</view>
+      </view>
+      <view class="hr">
+      </view>
+      <view class="view">
+        <text class="review">Mô tả khách sạn</text>
+    
+      </view>
+      <view class="view">
+        <view class="text-time-title description">{{response.FullDescription}}</view>
+      </view>
+      <view class="hr">
+      </view>
   <view class="view">
     <text class="review">Khách Hàng Đánh Giá</text>
-    <text class="seeall">Xem tất cả <icon type="direction_right" size=10></icon></text>
+
   </view>
+  
   <view class="view1">
     <view class="ortreivew">
       <text class="ortreivewText">{{response.AvgPoint}}</text>

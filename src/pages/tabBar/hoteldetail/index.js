@@ -1,21 +1,21 @@
 import parse from '@tiki.vn/mini-html-parser2';
-const html = `<div  >
-  "{{response.Combos.Note}}"
-</div>`;
+import moment from 'moment';
 Page({
   data: {
     apikey:'AIzaSyA759T_2b8Vd9KPputmQ8AslLcuGwARXMU',
     items: [],
     iconType: ['location',
   'direction_right'],
-  el:''
+  el:'',
+  // comboid:'',
+  // cin,
+  // cout
   },
   onLoad(query) {
     try {
-    
-  
-
-    // https://svc1-beta.ivivu.com/mhoteldetail/377518/
+    this.cin=new Date();
+    this.cout=new Date();
+    console.log(this.cin);
     this.setData({ loading: true });
     my.request({
       url: 'https://svc1-beta.ivivu.com/mhoteldetail/' + query + '/',
@@ -58,6 +58,7 @@ Page({
           let ricefrom2  = this.arprice(response.Combos.ComboDetail[1]?.PriceFrom);
           let ricefrom3  = this.arprice(response.Combos.ComboDetail[2]?.PriceFrom);
           let ricefrom4  = this.arprice(response.Combos.ComboDetail[3]?.PriceFrom);
+
           parse(response.Combos.Note, (err, htmlNodes) => {
             if (!err) {
               this.setData({
@@ -76,13 +77,19 @@ Page({
                 ricefrom3,
                 ricefrom4,
                 loading: false,
-                el:htmlNodes
+                el:htmlNodes,
           });
             }
           });
-    
-         
-     
+          
+          if (response.ComboPromtion && response.ComboPromtion.Id) {
+            this.comboid = response.ComboPromtion.Id;
+          }
+          if (response.Combos && response.Combos.ComboDetail) {
+            this.comboid = response.Combos.Id;
+            this.getDetailCombo(response.Combos.Id);
+          }
+
         } catch (error) {
           console.log(error)
         }
@@ -93,6 +100,74 @@ Page({
   } catch (error) {
     console.log(error)
   }
+  },
+  getDetailCombo(comboid){
+    console.log(moment(this.cin).format('DD-MM-YYYY'));
+    my.request({
+   
+      url: 'https://beta-olivia.ivivu.com/mobile/OliviaApis/ComboDetailList?comboId=' + (comboid ? comboid : this.comboid) + '&checkin=' + moment(this.cin).format('DD-MM-YYYY') + '&checkout=' + moment(this.cout).format('DD-MM-YYYY'),
+      method: 'GET',
+      headers: {
+        apisecret: '2Vg_RTAccmT1mb1NaiirtyY2Y3OHaqUfQ6zU_8gD8SU',
+        apikey: '0HY9qKyvwty1hSzcTydn0AHAXPb0e2QzYQlMuQowS8U',
+      },
+      success: (response) => {
+        try {
+          var item=response.comboDetail;
+          if (item) {
+            this.fc = (item.comboType == "1");
+            this.fs = (item.comboType == "2");
+            this.fcbcar = item.comboType == "3";
+            this.nm = (item.comboType == null);
+          
+            if (this.fs && item.availableTo) {
+              let dateEnd = new Date(item.availableTo.toLocaleString());
+              let y = moment(this.cin).format('YYYY'),
+                  m = moment(this.cin).format('MM'),
+                  d = moment(this.cin).format('DD');
+              let dateNow = new Date(y*1, m*1 -1, d*1);
+              if (moment(dateNow).diff(moment(dateEnd),'days') > 0 ) {
+                this.flashSaleEndDate = moment(dateEnd).format('DD.MM.YYYY');
+              }
+            }
+            if(this.fc && (item.availableTo || response.endDate)){
+              if( response.endDate){
+                var arr =response.endDate.split('-');
+                var newdate = new Date(arr[2],arr[1] -1,arr[0]);
+                var d = moment(newdate).format('YYYY-MM-DD');
+                this.comboDetailEndDate = d;
+                this.allowbookcombofc = moment(this.cin).diff(moment(d),'days') > 1 ? false : true;
+                this.allowbookcombofx = moment(this.cin).diff(moment(d),'days') > 1 ? false : true;
+              }
+            }
+            // if(this.fcbcar && this.comboDetail){
+            //   this.bookCombo.ComboRoomPrice = this.comboDetail.comboDetail.totalPriceSale;
+            // }
+            var itemList = response.list;
+            if (itemList) {
+              let comboDetailList=[];
+              itemList.forEach(item => {
+                if(item.details && item.details.length >0){
+                  item.details.forEach((itemdetail) => {
+                    itemdetail.priceDisplay = itemdetail.totalPriceSale.toLocaleString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.").replace(/\,/g, ".");
+                  })
+                }
+  
+                comboDetailList.push(item);
+                this.setData({
+                  comboDetailList
+            });
+              });
+            }
+          }
+     
+        } catch (error) {
+          console.log(error)
+        }
+       
+      },
+      
+    });
   },
   handleShowModal() {
     this.setData({ show: true });

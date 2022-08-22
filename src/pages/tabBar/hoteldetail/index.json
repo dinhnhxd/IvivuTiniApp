@@ -4,6 +4,7 @@
     "usingComponents": {
       "list-item": "@tiki.vn/tini-ui/es/list/list-item/index",
       "calendar": "@tiki.vn/tini-ui/es/calendar/index",
-      "modal": "@tiki.vn/tini-ui/es/modal/index"
+      "modal": "@tiki.vn/tini-ui/es/modal/index",
+      "chip": "@tiki.vn/tini-ui/es/chip/index"
     }
 }
