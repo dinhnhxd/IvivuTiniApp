@@ -5,43 +5,39 @@
       <view class="search">
        {{response.Combos.MiniTitle}}
       </view>
-      <view class="pickDetail">
+      <view  onTap="onShowcalendar" class="pickDetail">
         <view class="imgpick">
-          <image class="img-header" src="../../../images/imgs/calendar.svg" />
+          <image  style="margin-left: 0px;" class="img-header" src="../../../images/imgs/calendar.svg" />
         </view>
-        <view class="dataick" onTap="onShowDateTime">
-          {{now}}
+        <view class="dataick text-info" style="    margin-left: 25px;">
+          {{cin}}
         </view>
         <view class="imgpick">
           <image class="img-header" src="../../../images/imgs/date.svg" />
         </view>
-        <view class="dataick">
-          <picker range="{{array}}" value="{{arrayIndex}}" onChange="onArrayChange">
-            <view class="picker">
-              {{arrayIndex}}
-            </view>
-          </picker>
+        <view class="dataick text-info">
+          <view class="picker">
+            {{diffdate}}
+          </view>
         </view>
         <view class="imgpick">
           <image class="img-header" src="../../../images/imgs/door.svg" />
         </view>
-        <view class="dataick">
-          <picker range="{{array}}" value="{{arrayIndex}}" onChange="onArrayChange">
-            <view class="picker">
-              {{arrayIndex}}
-            </view>
-          </picker>
+        <view class="dataick text-info">
+          <view class="picker">
+            {{room}}
+          </view>
         </view>
         <view class="imgpick">
           <image class="img-header" src="../../../images/imgs/pax.svg" />
         </view>
-        <view class="dataick">
-          2
+        <view class="dataick text-info">
+          <view class="picker">
+            {{room}}
+          </view>
         </view>
-
-        <view class="imgpickcircle">
-          <image class="img-header" src="../../../images/imgs/dropdown.svg" />
-        </view>
+  
+        <image class="img-info" src="../../../images/imgs/ic_info.svg" />
       </view>
 
     
@@ -122,11 +118,11 @@
   </view>
 
 
-  <modal show="{{show}}"
+  <!-- <modal show="{{show}}"
     buttons="{{[{'text': 'Close', type: 'ghost'}, {'text': 'Cancel', type: 'outline'}, {'text': 'OK'}]}}"
     buttonsLayout="vertical" onMaskClick="handleHideModal" onButtonClick="handleTapButton">
     <calendar tagData="{{tagData}}" mode="single" header="year" onSelect="onSelect" onChange="onChange" />
-  </modal>
+  </modal> -->
   <view class="hr">
   </view>
   <view class="view-combo">
@@ -140,7 +136,7 @@
     <view class="chitietcombo">
       {{response.Combos.Description}}
     </view>
-    <view style="padding-bottom: 20px;"></view>
+    <!-- <view style="padding-bottom: 20px;"></view>
     <view class="contain-insuran">
       <view class="insuran_1"> 
         <checkbox class="checkboxitem" onChange="onChange" />
@@ -152,7 +148,7 @@
         Vi vu nghỉ dưỡng, thoải mái tận hưởng. Bảo hiểm du lịch và chuyến bay lên đến 100 triệu
       </view>
     </view>
-    <view style="padding-bottom: 20px;"></view>
+    <view style="padding-bottom: 20px;"></view> -->
     <view class="combobg mt8">
       Điều kiện áp dụng
     </view>
@@ -187,7 +183,7 @@
     </view>
     <view  class="view widget">
       <view  class="flexWrap">
-        <view tiki:for="{{response.HotelFacilities}}">
+        <view tiki:for="{{HotelFacilities}}">
           <chip class="cls-chip" content="{{item.Name}}" />
         </view>
         </view>
@@ -305,8 +301,22 @@
       <text class="includeTax">Đã bao gồm thuế</text>
     </view>
     <view style="margin-bottom: 20px;"></view>
-    <view class="bookCombo">
-      <text class="footerviewText">Đặt Combo</text>
+    <view  class="bookCombo">
+      <text onTap="bookCombo" class="footerviewText">Đặt Combo</text>
     </view> 
   </view>
 </view>
+<bottom-sheet show="{{show}}" data-template="{{template}}" title="Chọn ngày" 
+      distanceFromTop="{{100}}" onClose="onClose" onClick="onClick" buttonTitle="Hoàn tất">
+      <view class="mt-medium">
+        <view class="mt-2x-small">
+          <calendar onSelect="selectedDate" mode="range" header="year" />
+        </view>
+      </view>
+</bottom-sheet>
+<bottom-sheet show="{{showInfo}}" data-template="{{template}}" title="Thay đổi tìm kiếm" 
+      distanceFromTop="{{100}}" onClose="onCloseInfo" onClick="onClickInfo" buttonTitle="Tìm kiếm">
+ 
+</bottom-sheet>
+
+

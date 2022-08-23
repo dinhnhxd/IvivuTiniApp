@@ -16,8 +16,8 @@
   <view class="content">
     <view  class="text"> Ưu đãi tốt nhất hôm nay</view>
     <view slot="inner" class="view-img-filter" >
-      <image onTap="onShowBottomSheet" tiki:if="{{isfilter}}" class="img-filter" src="../../../images/imgs/ic_filter_new.svg" />
-      <image onTap="onShowBottomSheet" data-template="list" tiki:if="{{!isfilter}}" class="img-filter" src="../../../images/imgs/ic_filter_new.svg" />
+      <image onTap="onShowBottomSheet"  class="img-filter" src="../../../images/imgs/ic_filter_new.svg" />
+      <!-- <image onTap="onShowBottomSheet" data-template="list" tiki:if="{{!isfilter}}" class="img-filter" src="../../../images/imgs/ic_filter_new.svg" /> -->
       <badge tiki:if="{{countFilter>0}}" text="{{countFilter}}"  isWrap="true">
       
       </badge>
@@ -26,7 +26,7 @@
     <view  class="widget">
       <view  class="flexWrap">
         <view tiki:for="{{listfilter}}">
-          <chip  data-id="{{item.regionIfd}}" class="cls-chip" tiki:if="{{item.ischeck}}" content="{{item.regionName}}" onRightClick="remove" suffixIcon="close" iconRightColor="#808089" />
+          <chip  data-id="{{item.regionId}}" class="cls-chip" tiki:if="{{item.ischeck}}" content="{{item.regionName}}" onRightClick="remove" suffixIcon="close" iconRightColor="#808089" />
         </view>
   
       </view>

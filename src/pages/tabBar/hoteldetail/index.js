@@ -7,11 +7,12 @@ Page({
     iconType: ['location',
   'direction_right'],
   el:'',
-  // comboid:'',
-  // cin,
-  // cout
+  show:false,
+  showInfo:false,
   fixedHeader: false,
-  now:moment().format('DD-MM-YYYY'),
+  cin:moment().format('DD-MM-YYYY'),
+  diffdate:1,
+  room:1,
   array: Array.from(Array(10).keys()),
   arrayIndex: 0,
   },
@@ -63,7 +64,11 @@ Page({
           let ricefrom2  = this.arprice(response.Combos.ComboDetail[1]?.PriceFrom);
           let ricefrom3  = this.arprice(response.Combos.ComboDetail[2]?.PriceFrom);
           let ricefrom4  = this.arprice(response.Combos.ComboDetail[3]?.PriceFrom);
-
+          let HotelFacilities=[];
+          for (let index = 0; index < 4; index++) {
+            HotelFacilities.push(response.HotelFacilities[index]);
+            
+          }
           parse(response.Combos.Note, (err, htmlNodes) => {
             if (!err) {
               this.setData({
@@ -83,7 +88,8 @@ Page({
                 ricefrom4,
                 loading: false,
                 el:htmlNodes,
-                minPrice
+                minPrice,
+                HotelFacilities
           });
             }
           });
@@ -178,7 +184,6 @@ Page({
     this.setData({ show: true });
   },
   onPageScroll(event) {
-    console.log('event.scrollTop '+event.scrollTop)
     if(event.scrollTop > 200){
       this.setData({ fixedHeader: true });
     }
@@ -261,11 +266,32 @@ Page({
   onShowDateTime() {
     this.showDatePicker('dd-MM-yyyy');
   },
-  onArrayChange(e) {
-    console.log('array', e.detail.value);
+  // onArrayChange(e) {
+  //   console.log('array', e.detail.value);
+  //   this.setData({
+  //     arrayIndex: e.detail.value
+  //   });
+  // },
+  onShowcalendar(){
     this.setData({
-      arrayIndex: e.detail.value
+          show: true
     });
   },
+  onClick(){
+    this.setData({
+      show: false,
+      cin:this.cin,
+      diffdate:this.diffdate
+    });
+  },
+  onClose(){
+    this.setData({
+      show: false
+    });
+  },
+  selectedDate(e){
+    this.cin=moment(e.dates[0]).format('DD-MM-YYYY');
+    this.diffdate = moment(e.dates[1]).diff(moment(moment(e.dates[0]).format('YYYY-MM-DD')), 'days');
+  }
 });
 

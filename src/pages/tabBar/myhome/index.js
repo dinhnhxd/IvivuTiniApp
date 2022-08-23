@@ -125,6 +125,7 @@ Page({
         element.ischeck=false;
         return;
       }
+      
   });
   this.onOk()
   },
