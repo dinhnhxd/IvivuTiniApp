@@ -50,6 +50,28 @@
   margin-left: 10px;
   /* margin-left: 2.8px; */
 }
+
+.sumContent{  
+  position: absolute;
+  /* color:#ffffff; */
+  background-color: #ffffff;
+  top: calc(var(--tf-status-bar-height) +120px);
+  left: 0;
+  right: 0;
+  padding: 8px 16px;
+  font-size: 18px;
+  overflow: auto;
+  white-space: nowrap;
+  display: inline-block;
+  color: #808089;
+}
+
+.detailContent{
+  padding-right: 10px;
+  display: inline-block;
+
+
+}
 .img-more{
   width: 16px;
   height: 16px;
