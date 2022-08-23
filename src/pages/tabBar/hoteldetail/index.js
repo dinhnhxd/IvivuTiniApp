@@ -14,7 +14,7 @@ Page({
   diffdate:1,
   room:1,
   array: Array.from(Array(10).keys()),
-  arrayIndex: 0,
+  arrayIndex: 2,
   },
   onLoad(query) {
     try {
