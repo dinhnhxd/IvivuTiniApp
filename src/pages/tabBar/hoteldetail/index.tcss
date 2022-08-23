@@ -19,7 +19,7 @@
   z-index: 1;
   background-color: #003c71;
   height: 120px;
-  
+  z-index: 100;
 }
 
 .search {

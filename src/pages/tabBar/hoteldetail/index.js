@@ -13,7 +13,7 @@ Page({
   fixedHeader: false,
   now:moment().format('DD-MM-YYYY'),
   array: Array.from(Array(10).keys()),
-  arrayIndex: 0,
+  arrayIndex: 2,
   },
   onLoad(query) {
     try {
@@ -178,8 +178,7 @@ Page({
     this.setData({ show: true });
   },
   onPageScroll(event) {
-    console.log('event.scrollTop '+event.scrollTop)
-    if(event.scrollTop > 200){
+    if(event.scrollTop > 100){
       this.setData({ fixedHeader: true });
     }
     else{
