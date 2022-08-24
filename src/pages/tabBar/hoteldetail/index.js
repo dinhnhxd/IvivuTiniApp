@@ -15,6 +15,7 @@ Page({
   room:1,
   array: Array.from(Array(10).keys()),
   arrayIndex: 2,
+  scrollTop: 100
   },
   onLoad(query) {
     try {
@@ -193,8 +194,33 @@ Page({
     }
     // this.setData({ fixedHeader: event.scrollTop > 20 });
   },
+
+  tap() {
+    try {
+      this.setData({
+        scrollTop: this.data.scrollTop + 1000
+      });
+    } catch (error) {
+      console.log(error)
+    }
+
+    // console.log('scrollTop '+scrollTop)
+  },
+  
   handleHideModal() {
     this.setData({ show: false });
+  },
+  tapMove() {
+    for (let i = 0; i < order.length; ++i) {
+      if (order[i] === this.data.toView) {
+        const next = (i + 1) % order.length;
+        this.setData({
+          toView: order[next],
+          scrollTop: next * 200
+        });
+        break;
+      }
+    }
   },
 
   handleTapButton(event) {
