@@ -1,5 +1,8 @@
 {
     "transparentTitle": "none",
-    "defaultTitle": "Thông tin đặt chỗ"
- 
+    "defaultTitle": "Thông tin đặt chỗ",
+    "usingComponents": {
+      "tabs": "@tiki.vn/tini-ui/es/tabs/index",
+      "tab-content": "@tiki.vn/tini-ui/es/tabs/tab-content/index"
+    }
 }

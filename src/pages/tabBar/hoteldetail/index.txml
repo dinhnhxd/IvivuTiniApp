@@ -9,38 +9,38 @@
         <view onTap="onShowcalendar" class="imgpick">
           <image  style="margin-left: 0px;" class="img-header" src="../../../images/imgs/calendar.svg" />
         </view>
-        <view class="dataick text-info" style="margin-left: 25px;">
+        <view onTap="onShowcalendar" class="dataick text-info" style="margin-left: 25px;">
           {{cin}}
         </view>
-        <view class="imgpick">
+        <view onTap="onShowcalendar" class="imgpick">
           <image class="img-header" src="../../../images/imgs/date.svg" />
         </view>
-        <view class="dataick text-info">
+        <view onTap="onShowcalendar" class="dataick text-info">
           <view class="picker">
             {{diffdate}}
           </view>
         </view>
-        <view class="imgpick">
+        <view  onTap="onShowOption" class="imgpick">
           <image class="img-header" src="../../../images/imgs/door.svg" />
         </view>
-        <view class="dataick text-info">
+        <view  onTap="onShowOption" class="dataick text-info">
           <view class="picker">
             {{room}}
           </view>
         </view>
-        <view class="imgpick">
+        <view onTap="onShowOption" class="imgpick">
           <image class="img-header" src="../../../images/imgs/pax.svg" />
         </view>
-        <view class="dataick text-info">
+        <view onTap="onShowOption" class="dataick text-info">
           <view class="picker">
-            {{room}}
+            {{pax}}
           </view>
         </view>
         
         <image onTap="onShowInfo" class="img-info" src="../../../images/imgs/ic_info.svg" />
       </view>
       <view class="sumContent"> 
-        <view scroll-into-view="1" id="1" class="detailContent" onTap="tap">
+        <!-- <view scroll-into-view="1" id="1" class="detailContent" onTap="tap">
         
            Tổng quan
         </view>
@@ -52,8 +52,16 @@
         </view>
         <view class="detailContent">
           Mô tả khách sạn
-        </view>
+        </view> -->
+        <tabs tabs="{{tabs1}}" tabsName="activeTab1" activeTab="{{activeTab1}}" onTabClick="onTabClick" swipeable="{{false}}">
+          <block tiki:for="{{tabs1}}">
+            <!-- <tab-content tabId="{{index}}">
+              <view class="tab-item" />
+            </tab-content> -->
+          </block>
+        </tabs>
       </view>
+      
     </view>
   </view>
   <view>
@@ -66,7 +74,7 @@
       </carousel>
     </view>
   
-    <view class="newHotelDetail"> 
+    <view  class="newHotelDetail"> 
       <view class="hotelname pos-relative top12 ml16">{{response.Name}}</view>
       <view class="mt16 ml16 viewHotel-Star">
         <view class="div-flex padding-4-8" tiki:if="{{response.Rating == 50}}">
@@ -246,9 +254,6 @@
   </view>
   <view class="hr">
   </view>
-
-  <view scroll-into-view="1" id="1">goto </view>
-
   <view class="custom_review">
     <view tiki:for="{{response.HotelReviews}}" tiki:for-index="idx">
       <view tiki:if="{{idx<3}}">
@@ -329,9 +334,125 @@
 </bottom-sheet>
 <bottom-sheet show="{{showInfo}}" data-template="{{template}}" title="Thay đổi tìm kiếm" 
       distanceFromTop="{{100}}" onClose="onCloseInfo" onClick="onClickInfo" buttonTitle="Tìm kiếm">
- <view>
+ <view class="cls-popup-filter">
+  <view class="div-flex">
+    <image class="img-calendar" src="../../../images/imgs/ic_calendar_b.svg" />
+    <view class="text-time-title ml10">
+      Ngày nhận phòng
+    </view>
+  </view>
+  <view class="text-time" style="margin-left:32px">
+    Thứ Sáu, 09/09/2022
+  </view>
+  
+  <view class="div-flex mt16">
+    <image class="img-calendar" src="../../../images/imgs/ic_calendar_b.svg" />
+    <view class="text-time-title ml10">
+      Ngày trả phòng
+    </view>
+  </view>
+  <view class="text-time" style="margin-left:32px">
+    Thứ Sáu, 09/09/2022
+  </view>
+
+  <view class="div-flex mt16">
+    <image class="img-calendar" src="../../../images/imgs/ic_people.svg" />
+    <view class="text-time-title ml10">
+      Số phòng và khách
+    </view>
+  </view>
+  <view class="text-time" style="margin-left:32px">
+      2 phòng, 2 người lớn, 1 trẻ em
+  </view>
+ </view>
+</bottom-sheet>
+
+<bottom-sheet show="{{showOption}}" data-template="{{template}}" title="Chọn số phòng và khách" 
+      distanceFromTop="{{100}}" onClose="onCloseOption" onClick="onClickOption" buttonTitle="Hoàn tất">
+ <view class="cls-popup-filter">
+  <view class="div-flex">
+    <view class="div-flex" style="width:55%">
+      <image class="img-calendar align-center" src="../../../images/imgs/ic_edit_room.svg" />
+      <view class="text-time ml10 align-center">
+        Phòng
+      </view>
+    </view>
+
+   
+
+      <view class="div-flex" style="width:45%"> 
+        <button  type="outline" class="btn-minus" onTap="minusroom" form-type="submit">-</button>
+        <button  type="outline" class="btn-num" form-type="submit">{{roomtemp}}</button>
+        <button  type="outline" class="btn-minus"  onTap="plusroom" form-type="submit">+</button></view>
+   
+  </view>
+
+  <view class="hr-line"></view>
+  <view class="div-flex">
+    <view class="div-flex" style="width:55%">
+      <image class="img-calendar align-center" src="../../../images/imgs/ic_edit_adult.svg" />
+      <view class="text-time ml10 align-center">
+        Người lớn
+      </view>
+      <view class="text-time ml10 align-center cls-adult ">
+        Từ 18 tuổi
+      </view>
+    </view>
+
+   
+
+      <view class="div-flex" style="width:45%"> 
+        <button  type="outline" class="btn-minus" onTap="minusadults" form-type="submit">-</button>
+        <button  type="outline" class="btn-num" form-type="submit">{{adultstemp}}</button>
+        <button  type="outline" class="btn-minus" onTap="plusadults" form-type="submit">+</button></view>
+   
+  </view>
+
+  <view class="hr-line"></view>
+  <view class="div-flex">
+    <view class="div-flex" style="width:55%">
+      <image class="img-calendar align-center" src="../../../images/imgs/ic_edit_child.svg" />
+      <view class="text-time ml10 align-center">
+        Trẻ em
+      </view>
+      <view class="text-time ml10 align-center cls-adult ">
+        Từ 0 đến 17 tuổi
+      </view>
+    </view>
+
+   
+
+      <view class="div-flex" style="width:45%"> 
+        <button  type="outline" class="btn-minus" onTap="minuschild" form-type="submit">-</button>
+        <button  type="outline" class="btn-num" form-type="submit">{{childtemp}}</button>
+        <button  type="outline" class="btn-minus" onTap="pluschild" form-type="submit">+</button></view>
+   
+  </view>
+  <view class="text-title-child mt16">
+    Vui lòng chọn tuổi của trẻ vào thời điểm nhận phòng
+  </view>
+<view tiki:for="{{arrchildtemp}}" class="div-flex">
+  <view class="text-time-title">
+    {{item.text}}
+  </view>
+  <view data-id={{item.text}} onTap="showInfo1" style="border: solid 1px #dddde3;">
+    {{item.age}}
+  </view>
+</view >
+
 
  </view>
 </bottom-sheet>
+
+<bottom-sheet show="{{showInfo1}}" data-template="{{template}}" title="Thay đổi tìm" 
+      distanceFromTop="{{100}}" onClose="onCloseInfo" onClick="onClickInfo" buttonTitle="Tìm kiếm">
+  <view class="ml16 mt16" tiki:for="{{items2}}">
+    <view data-id={{item.name}} onTap="selectage">{{item.name}}
+      <view class="hr-line"></view>
+    </view>
+  </view>
+
+</bottom-sheet>
+
 
 

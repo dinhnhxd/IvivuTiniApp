@@ -1,6 +1,11 @@
 Page({
   data: {
-
+    tabs1: [
+      { title: 'Tab' },
+      { title: 'Tab' },
+      { title: 'Tab' },
+      { title: 'Tab' }
+    ],
   },
   onLoad(query) {
    

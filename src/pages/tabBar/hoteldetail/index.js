@@ -9,18 +9,61 @@ Page({
   el:'',
   show:false,
   showInfo:false,
+  showOption:false,
   fixedHeader: false,
   cin:moment().format('DD-MM-YYYY'),
   diffdate:1,
   room:1,
+  adults:2,
+  child:0,
+  roomtemp:1,
+  adultstemp:2,
+  childtemp:0,
+  arrchildtemp:[],
+  pax:2,
   array: Array.from(Array(10).keys()),
   arrayIndex: 2,
-  scrollTop: 100
+  tabs1: [
+    { title: 'Tổng quan' },
+    { title: 'Đánh giá' },
+    { title: 'Chi tiết combo' },
+    { title: 'Mô tả khách sạn' }
+  ],
+  showInfo1:false,
+  items2: [
+    { name: '1' },
+    { name: '2' },
+    { name: '1' },
+    { name: '2' },
+    { name: '1' },
+    { name: '2' },
+    { name: '1' },
+    { name: '2' },
+    { name: '1' },
+    { name: '2' },
+    { name: '1' },
+    { name: '2' },
+    { name: '1' },
+    { name: '2' },
+    { name: '1' },
+    { name: '2' },
+    { name: '1' },
+    { name: '2' },
+  ],
   },
   onLoad(query) {
     try {
     this.cin=new Date();
     this.cout=new Date();
+    this.room=1;
+    this.adults=2;
+    this.child=0;
+    this.roomtemp=1;
+    this.adultstemp=2;
+    this.childtemp=0;
+    this.pax= this.adults+this.child;
+    this.arrchild=[];
+    this.arrchildtemp=[];
     this.setData({ loading: true });
     my.request({
       url: 'https://svc1-beta.ivivu.com/mhoteldetail/' + query + '/',
@@ -301,7 +344,8 @@ Page({
   onShowcalendar(){
     this.setData({
       showInfo: false,
-      show: true
+      show: true,
+      showOption:false
     });
   },
   onClick(){
@@ -320,10 +364,168 @@ Page({
     this.cin=moment(e.dates[0]).format('DD-MM-YYYY');
     this.diffdate = moment(e.dates[1]).diff(moment(moment(e.dates[0]).format('YYYY-MM-DD')), 'days');
   },
+
+    onTabClick({ index, tabsName }) {
+    this.setData({
+      [tabsName]: index
+    });
+    if(index==0){
+      this.scrollTo(0);
+    }
+    else if (index==1) {
+      this.scrollTo(2600);
+    } else if (index==2) {
+      this.scrollTo(320);
+    }
+    else if (index==3) {
+      this.scrollTo(1650);
+    }
+  
+  },
+  onChange({ index, tabsName }) {
+    this.setData({
+      [tabsName]: index
+    });
+  },
+  scrollTo(value) {
+    my.pageScrollTo({
+      scrollTop: parseInt(value),
+      duration: 500,
+      success: (res) => {
+      },
+    });
+  },
   onShowInfo(){
     this.setData({
       showInfo: true,
-      show: false
+      show: false,
+      showOption:false
+    });
+  },
+  onClickInfo(){
+    this.setData({
+      showInfo: false
+    });
+  },
+  onCloseInfo(){
+    this.setData({
+      showInfo: false
+    });
+  },
+  onShowOption(){
+    this.roomtemp=this.room;
+    this.adultstemp=this.adults;
+    this.childtemp=this.child;
+    this.setData({
+      showInfo: false,
+      show: false,
+      showOption: true,
+      roomtemp: this.roomtemp,
+      adultstemp: this.adultstemp,
+      childtemp: this.childtemp
+    });
+  },
+  onClickOption(){
+    this.room=this.roomtemp;
+    this.adults=this.adultstemp;
+    this.child=this.childtemp;
+    this.arrchild=this.arrchildtemp;
+    this.setData({
+      showOption: false,
+      pax:this.adultstemp+this.childtemp,
+      room: this.roomtemp,
+      adults: this.adultstemp,
+      child: this.childtemp,
+      arrchildtemp:this.arrchildtemp
+    });
+   
+  },
+  onCloseOption(){
+    this.setData({
+      showOption: false
+    });
+  },
+  plusadults() {
+    if(this.adultstemp < 50){
+      this.adultstemp++;
+      this.setData({
+        adultstemp: this.adultstemp,
+      });
+    }
+  },
+  minusadults() {
+    if (this.adults > 1) {
+      this.adultstemp--;
+      this.setData({
+        adultstemp: this.adultstemp,
+      });
+    }
+  },
+  pluschild() {
+    if(this.childtemp < 12){
+      this.childtemp++;
+      var arr = { text: 'Trẻ em' + ' ' + this.childtemp, numage: "" }
+      this.arrchildtemp.push(arr);
+      this.setData({
+        childtemp: this.childtemp,
+        arrchildtemp:this.arrchildtemp
+      });
+
+      console.log(this.arrchild);
+    }
+  },
+  minuschild() {
+
+    if (this.childtemp > 0) {
+      this.childtemp--;
+      this.arrchildtemp.splice(this.arrchildtemp.length - 1, 1);
+      this.setData({
+        childtemp: this.childtemp,
+        arrchildtemp:this.arrchildtemp
+      });
+   
+      console.log(this.arrchild);
+    }
+  },
+  plusroom() {
+    if(this.roomtemp <9){
+      this.roomtemp++;
+      if(this.adultstemp < this.roomtemp){
+        this.adultstemp = this.roomtemp;
+     
+      }
+      this.setData({
+        roomtemp: this.roomtemp,
+        adultstemp:this.adultstemp
+      });
+    }
+  },
+  minusroom() {
+
+    if (this.roomtemp > 1) {
+      this.roomtemp--;
+      this.setData({
+        roomtemp: this.roomtemp
+      });
+    }
+  },
+  showInfo1(e){
+    console.log(e);
+    this.nameChild=e.currentTarget.dataset.id
+    this.setData({
+      showInfo1: true
+    });
+  
+  },
+  selectage(e){
+    this.arrchildtemp.forEach(item => {
+      if( this.nameChild==item.text){
+        item.age=e.currentTarget.dataset.id;
+      }
+    })
+    this.setData({
+      showInfo1: false,
+      arrchildtemp:this.arrchildtemp
     });
   }
 });
