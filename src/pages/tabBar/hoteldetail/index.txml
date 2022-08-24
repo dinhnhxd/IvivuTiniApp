@@ -5,8 +5,8 @@
       <view class="search">
        {{response.Combos.MiniTitle}}
       </view>
-      <view  onTap="onShowcalendar" class="pickDetail">
-        <view class="imgpick">
+      <view   class="pickDetail">
+        <view onTap="onShowcalendar" class="imgpick">
           <image  style="margin-left: 0px;" class="img-header" src="../../../images/imgs/calendar.svg" />
         </view>
         <view class="dataick text-info" style="    margin-left: 25px;">
@@ -36,8 +36,8 @@
             {{room}}
           </view>
         </view>
-  
-        <image class="img-info" src="../../../images/imgs/ic_info.svg" />
+        
+        <image onTap="onShowInfo" class="img-info" src="../../../images/imgs/ic_info.svg" />
       </view>
 
     
@@ -316,7 +316,9 @@
 </bottom-sheet>
 <bottom-sheet show="{{showInfo}}" data-template="{{template}}" title="Thay đổi tìm kiếm" 
       distanceFromTop="{{100}}" onClose="onCloseInfo" onClick="onClickInfo" buttonTitle="Tìm kiếm">
- 
+ <view>
+
+ </view>
 </bottom-sheet>
 
 

@@ -274,7 +274,8 @@ Page({
   // },
   onShowcalendar(){
     this.setData({
-          show: true
+      showInfo: false,
+      show: true
     });
   },
   onClick(){
@@ -292,6 +293,12 @@ Page({
   selectedDate(e){
     this.cin=moment(e.dates[0]).format('DD-MM-YYYY');
     this.diffdate = moment(e.dates[1]).diff(moment(moment(e.dates[0]).format('YYYY-MM-DD')), 'days');
+  },
+  onShowInfo(){
+    this.setData({
+      showInfo: true,
+      show: false
+    });
   }
 });
 

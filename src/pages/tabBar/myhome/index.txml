@@ -71,7 +71,8 @@
       </view>
     </view>
   </view>
-  <bottom-sheet show="{{show}}" data-template="{{template}}" title="Bộ lọc" 
+</view>
+ <bottom-sheet show="{{show}}" data-template="{{template}}" title="Bộ lọc" 
       distanceFromTop="{{100}}" onClose="onClose" onClick="onClick">
   <view class="margin-left-16">
     <view class="text-title-filter">Bạn thích đi đâu?</view>
@@ -90,9 +91,6 @@
     <button class="btn-ok"  onTap="onOk">Áp dụng</button>
   </view>
 </bottom-sheet>
- 
-
-</view>
 
 
 
