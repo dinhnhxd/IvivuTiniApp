@@ -791,6 +791,7 @@
 }
 .totalPrice{
   border-top: 5px solid #f5f6f7;
+  margin-left: 16px;
 }
 .conMinPrice{
   margin-top: 15px ;
@@ -941,6 +942,16 @@
   line-height: 1.5;
   letter-spacing: normal;
   color: #3f3b3b;
+}
+.ml80{
+  margin-left: 70px;
+}
+.view-age{
+  width: 100px;
+  padding: 8px 8px 8px 16px;
+  border-radius: 4px;
+  border: solid 1px #dddde3;
+  background-color: #fff;
 }
 
 

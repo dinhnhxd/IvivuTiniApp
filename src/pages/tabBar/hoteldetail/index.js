@@ -29,27 +29,8 @@ Page({
     { title: 'Chi tiết combo' },
     { title: 'Mô tả khách sạn' }
   ],
-  showInfo1:false,
-  items2: [
-    { name: '1' },
-    { name: '2' },
-    { name: '1' },
-    { name: '2' },
-    { name: '1' },
-    { name: '2' },
-    { name: '1' },
-    { name: '2' },
-    { name: '1' },
-    { name: '2' },
-    { name: '1' },
-    { name: '2' },
-    { name: '1' },
-    { name: '2' },
-    { name: '1' },
-    { name: '2' },
-    { name: '1' },
-    { name: '2' },
-  ],
+  showInfoAge:false,
+
   },
   onLoad(query) {
     try {
@@ -111,9 +92,11 @@ Page({
           let HotelFacilities=[];
           for (let index = 0; index < 4; index++) {
             HotelFacilities.push(response.HotelFacilities[index]);
-            
           }
+          this.ChildAgeTo=response.ChildAgeTo;
+          // let test =unescape(response.Combos.Note); 
           parse(response.Combos.Note, (err, htmlNodes) => {
+         
             if (!err) {
               this.setData({
                 response,
@@ -454,7 +437,7 @@ Page({
     }
   },
   minusadults() {
-    if (this.adults > 1) {
+    if (this.adultstemp > 1) {
       this.adultstemp--;
       this.setData({
         adultstemp: this.adultstemp,
@@ -509,11 +492,20 @@ Page({
       });
     }
   },
-  showInfo1(e){
+  onshowInfoAge(e){
     console.log(e);
-    this.nameChild=e.currentTarget.dataset.id
+    this.nameChild=e.currentTarget.dataset.id;
+    if (!this.ChildAgeTo) {
+      this.ChildAgeTo=16
+    }
+    this.itemAge=[];
+    for (let i = 1; i <= this.ChildAgeTo; i++) {
+      var item = {name:i}
+      this.itemAge.push(item);
+    }
     this.setData({
-      showInfo1: true
+      showInfoAge: true,
+      itemAge: this.itemAge
     });
   
   },
@@ -524,8 +516,13 @@ Page({
       }
     })
     this.setData({
-      showInfo1: false,
+      showInfoAge: false,
       arrchildtemp:this.arrchildtemp
+    });
+  },
+  onCloseInfoAge(){
+    this.setData({
+      showInfoAge: false
     });
   }
 });

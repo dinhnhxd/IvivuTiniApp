@@ -262,4 +262,7 @@ a:root {
   top: -30px;
   transform: translateX(0);
 }
+.tu-bottom-sheet-footer-button {
+  display: none;
+}
 

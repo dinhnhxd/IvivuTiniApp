@@ -234,10 +234,12 @@
       </view>
       <view class="hr">
       </view>
-  <view class="view">
-    <text class="review">Khách Hàng Đánh Giá</text>
 
-  </view>
+    <view class="view div-flex">
+      <view class="review">Xếp hạng và đánh giá</view>
+      <view class="seeall" >Xem tất cả<image class="img-all" src="../../../images/imgs/ic_seeall.svg"></image></view>
+    </view>
+
   
   <view class="view1">
     <view class="ortreivew">
@@ -310,15 +312,15 @@
     <view onTap="bookCombo">
       <text >Đặt Combo</text>
     </view> -->
-    <view class="conMinPrice">
+    <!-- <view class="conMinPrice">
       <text class="priceMin">Giá phòng mỗi đêm từ</text>
       <text class="parseminPrice">{{minPrice}} ₫</text>
 
     </view>
     <view>
       <text class="includeTax">Đã bao gồm thuế</text>
-    </view>
-    <view style="margin-bottom: 20px;"></view>
+    </view> -->
+    
     <view  class="bookCombo">
       <text onTap="bookCombo" class="footerviewText">Đặt Combo</text>
     </view> 
@@ -394,12 +396,12 @@
       <view class="text-time ml10 align-center">
         Người lớn
       </view>
+
       <view class="text-time ml10 align-center cls-adult ">
         Từ 18 tuổi
       </view>
     </view>
 
-   
 
       <view class="div-flex" style="width:45%"> 
         <button  type="outline" class="btn-minus" onTap="minusadults" form-type="submit">-</button>
@@ -419,34 +421,35 @@
         Từ 0 đến 17 tuổi
       </view>
     </view>
-
-   
-
       <view class="div-flex" style="width:45%"> 
         <button  type="outline" class="btn-minus" onTap="minuschild" form-type="submit">-</button>
         <button  type="outline" class="btn-num" form-type="submit">{{childtemp}}</button>
         <button  type="outline" class="btn-minus" onTap="pluschild" form-type="submit">+</button></view>
-   
   </view>
-  <view class="text-title-child mt16">
+  <view tiki:if="{{arrchildtemp.length>0}}" class="text-title-child mt16">
     Vui lòng chọn tuổi của trẻ vào thời điểm nhận phòng
   </view>
-<view tiki:for="{{arrchildtemp}}" class="div-flex">
+<view tiki:for="{{arrchildtemp}}" >
   <view class="text-time-title">
     {{item.text}}
   </view>
-  <view data-id={{item.text}} onTap="showInfo1" style="border: solid 1px #dddde3;">
-    {{item.age}}
+  <view data-id={{item.text}} onTap="onshowInfoAge" class="view-age div-flex">
+    <view >
+      {{item.age}}
+    </view>
+    <image class="img-calendar ml80" src="../../../images/imgs/ic_down.svg" />
+
   </view>
+ 
 </view >
 
 
  </view>
 </bottom-sheet>
 
-<bottom-sheet show="{{showInfo1}}" data-template="{{template}}" title="Thay đổi tìm" 
-      distanceFromTop="{{100}}" onClose="onCloseInfo" onClick="onClickInfo" buttonTitle="Tìm kiếm">
-  <view class="ml16 mt16" tiki:for="{{items2}}">
+<bottom-sheet show="{{showInfoAge}}" data-template="{{template}}" title="Chọn tuổi trẻ em" 
+      distanceFromTop="{{100}}" onClose="onCloseInfoAge"  >
+  <view class="ml16 mt16" tiki:for="{{itemAge}}">
     <view data-id={{item.name}} onTap="selectage">{{item.name}}
       <view class="hr-line"></view>
     </view>
