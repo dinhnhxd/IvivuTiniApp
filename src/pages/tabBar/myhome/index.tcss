@@ -157,11 +157,11 @@ a:root {
   margin: 0;
   width: 100%;
   color: #fff;
-  /* overflow: hidden; */
   text-overflow: ellipsis;
   white-space: nowrap;
   display: flex;
 }
+<<<<<<< Updated upstream
 .div-star{
   display: flex;
   margin-left: 7px;
@@ -266,3 +266,13 @@ a:root {
   display: none;
 }
 
+=======
+.display-flex{
+  display: flex;
+}
+.div-star{
+  display: flex;
+  margin-left: 7px;
+}
+ 
+>>>>>>> Stashed changes

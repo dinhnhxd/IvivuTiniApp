@@ -15,6 +15,7 @@
   </view>
   <view class="content">
     <view  class="text"> Ưu đãi tốt nhất hôm nay</view>
+<<<<<<< Updated upstream
     <view slot="inner" class="view-img-filter" >
       <image onTap="onShowBottomSheet"  class="img-filter" src="../../../images/imgs/ic_filter_new.svg" />
       <!-- <image onTap="onShowBottomSheet" data-template="list" tiki:if="{{!isfilter}}" class="img-filter" src="../../../images/imgs/ic_filter_new.svg" /> -->
@@ -34,6 +35,13 @@
    
     <view data-id={{item.id}} onTap="onHoteletail" class="item-card" tiki:for="{{response}}">
       <image  class="img-hotel" src={{item.avatar}} />
+=======
+    <image onTap="onShowBottomSheet" tiki:if="{{isfilter}}" class="img-filter" src="../../../images/imgs/ic_filter_new.svg" />
+    <image onTap="onShowBottomSheet" data-template="text" tiki:if="{{!isfilter}}" class="img-filter" src="../../../images/imgs/ic_filter_new.svg" />
+   
+    <view class="item-card" tiki:for="{{response}}">
+      <image data-id={{item.id}}  onTap="onHoteletail" class="img-hotel" src={{item.avatar}} />
+>>>>>>> Stashed changes
       <view class="text-hotelname">
         {{item.name.split('|')[0]}}
       </view>
@@ -71,7 +79,14 @@
       </view>
     </view>
   </view>
+  <bottom-sheet show="{{show}}" data-template="{{template}}" title="Bottom Sheet with {{template}}" buttonTitle="OK"
+      distanceFromTop="{{100}}" onClose="onClose" onClick="onClick">
+      <template is="bottom-sheet-{{template}}" />
+    </bottom-sheet>
+
+
 </view>
+<<<<<<< Updated upstream
  <bottom-sheet show="{{show}}" data-template="{{template}}" title="Bộ lọc" 
       distanceFromTop="{{100}}" onClose="onClose" onClick="onClick">
   <view class="margin-left-16">
@@ -93,4 +108,11 @@
 </bottom-sheet>
 
 
+=======
+<template name="bottom-sheet-text">
+  <list-item padding upperSubtitle="Description">
+    <view>Title</view>
+  </list-item>
+</template>
+>>>>>>> Stashed changes
 

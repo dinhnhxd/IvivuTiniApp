@@ -2,9 +2,13 @@
 Page({
   data: {
     listitems: [],
+<<<<<<< Updated upstream
     show: false,
     listfilter:[],
     countFilter:0
+=======
+    show: false
+>>>>>>> Stashed changes
   },
   onLoad(query){
     console.log(query);
@@ -53,6 +57,7 @@ Page({
   //   }
   // },
   onShowBottomSheet(e) {
+<<<<<<< Updated upstream
     if (!this.listfilter ) {
       const key = 'regionName';
       let items = this.listitems.map(item => [item[key], item]);
@@ -62,6 +67,11 @@ Page({
       show: true,
       template: e.target.dataset.template,
       listfilter:this.listfilter
+=======
+    this.setData({
+      show: true,
+      template: e.target.dataset.template,
+>>>>>>> Stashed changes
     });
   },
   onHoteletail(index){
@@ -72,6 +82,7 @@ Page({
   checkRegion(l) {
     return l.ischeck
   },
+<<<<<<< Updated upstream
   onClose() {
     this.setData({
       show: false,
@@ -152,5 +163,7 @@ Page({
 
   },
 
+=======
+>>>>>>> Stashed changes
 });
 
