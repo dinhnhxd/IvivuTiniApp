@@ -161,7 +161,6 @@ a:root {
   white-space: nowrap;
   display: flex;
 }
-<<<<<<< Updated upstream
 .div-star{
   display: flex;
   margin-left: 7px;
@@ -266,7 +265,6 @@ a:root {
   display: none;
 }
 
-=======
 .display-flex{
   display: flex;
 }
@@ -275,4 +273,3 @@ a:root {
   margin-left: 7px;
 }
  
->>>>>>> Stashed changes
