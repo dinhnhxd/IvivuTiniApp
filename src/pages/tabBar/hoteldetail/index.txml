@@ -242,8 +242,8 @@
 
   
   <view class="view1">
-    <view class="ortreivew">
-      <text class="ortreivewText">{{response.AvgPoint}}</text>
+    <view  class="ortreivew">
+    {{response.AvgPoint}}
     </view>
     <view class="numberReivew">
       <view class="numberReivew_1">
