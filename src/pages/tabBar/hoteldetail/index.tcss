@@ -350,7 +350,7 @@
 .view1{
   display: inline-block;
   margin-top: 15px;
-  margin-left: 16px;
+  margin-left: 8px;
   margin-bottom: 20px;
 }
 .footer{
@@ -362,13 +362,11 @@
 
 .ortreivew{
   display: inline-block;
-  font-size: 32px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.5;
-  letter-spacing: normal;
-  color: #9fc43a;
+  width: 49px;
+  height: 32px;
+  border-radius: 6px;
+  background-color: #9fc43a;
+  position: relative;
 }
 .footerview{
   display: inline-block;

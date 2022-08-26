@@ -94,7 +94,6 @@ Page({
             HotelFacilities.push(response.HotelFacilities[index]);
           }
           this.ChildAgeTo=response.ChildAgeTo;
-     
           // let test =unescape(response.Combos.Note); 
           parse(response.Combos.Note, (err, htmlNodes) => {
          
