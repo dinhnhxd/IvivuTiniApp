@@ -185,5 +185,71 @@
 .mb-16{
   margin-bottom: 16px;
 }
+.mb-10{
+  margin-bottom: 10px;
+}
+.mt-8{
+  margin-top: 8px;
+}
+.text-total{
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: right;
+  color: #26bed6;
+}
+.text-title-total{
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #3f3b3b;
+}
+.text-title-tax{
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: right;
+  color: #868998;
+}
+.totalPrice{
+  border-top: 5px solid #f5f6f7;
+  margin-left: 16px;
+}
+.bookCombo{
+  margin-top: 20px;
+  display: inline-block;
+  width:100%;
+  height:40px;
+  border-radius: 4px;
+  background-color: #f79321;
+  position: relative;
+
+}
+.footerviewText{
+  color: #fff;
+  font-size: 18px;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 38%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.mt-30{
+  margin-top: 30px;
+}
 
 

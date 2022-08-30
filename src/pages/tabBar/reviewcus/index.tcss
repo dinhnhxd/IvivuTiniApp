@@ -1,0 +1,134 @@
+.div-flex{
+  display: flex;
+}
+.view{
+  padding: 16px;
+}
+.review{
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.4;
+  letter-spacing: -0.46px;
+  text-align: left;
+  color: #3f3b3b;
+}
+.view1{
+  display: inline-block;
+  margin-top: 15px;
+  margin-bottom: 16px;
+}
+.ortreivew{
+  display: inline-block;
+  font-size: 32px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #9fc43a;
+}
+.pos-absolute-7{
+  position: absolute;
+  margin-top: -7px;
+}
+.numberReivew{
+  margin-left: 55px;
+  display: inline-block;
+  /* height: 35px; */
+}
+.numberReivew_1{
+  flex-grow: 0;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #9fc43a;
+}
+.numberReivew_2{
+  flex-grow: 1;
+  font-family: Inter;
+  font-size: 12px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #868998;
+}
+.hr{
+  height: 8px;
+  background-color: #f5f5fa;
+}
+.mt20{
+  margin-top: 20px;
+}
+.pos-absolute-16{
+  position: absolute;
+  right: 16px;
+}
+.text-cusname-review{
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #3f3b3b;
+}
+.text-date{
+  font-family: Inter;
+  font-size: 10px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: right;
+  color: #868998;
+}
+.text-content{
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #3f3b3b;
+}
+.img-avatar{
+  width: 20px;
+  height: 20px;
+}
+.ml10{
+  margin-left: 10px;
+}
+.text-bold{
+  font-weight: bold;
+}
+.hr{
+  height: 1px;
+  background-color: #dde0e4;
+  margin-top: 16px;
+  margin-bottom: 20px;
+}
+.mt16{
+  margin-top: 16px;
+}
+.hr-big{
+  height: 8px;
+  background-color: #f5f5fa;
+}
+.ml30{
+  margin-left: 30px;
+}

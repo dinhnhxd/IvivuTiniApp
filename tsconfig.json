@@ -6,7 +6,7 @@
     "noEmit": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "target": "ES5",
+    "target": "ES6",
     "noImplicitAny": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,

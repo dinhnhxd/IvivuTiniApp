@@ -5,12 +5,13 @@
     "pages/tabBar/travel/index",
     "pages/tabBar/filter/index",
     "pages/tabBar/hoteldetail/index",
-    "pages/tabBar/combooverview/index"
+    "pages/tabBar/combooverview/index",
+    "pages/tabBar/reviewcus/index"
   ],
   "window": {
     "defaultTitle": "My App",
     "titleBarColor": "#003c71",
-    "backgroundColor": "#F5F7FC",
+    "backgroundColor": "#ffffff",
     "allowsBounceVertical": "NO"
   },
   

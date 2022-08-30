@@ -1,15 +1,17 @@
 {
   "name": "i-vivu",
-  "version": "0.2.1",
+  "version": "1.1.1",
   "tiki": {
     "appIdentifier": "com.ivivu.oliviaapp2022",
-    "buildNumber": 1
+    "buildNumber": 5
   },
   "dependencies": {
+    "@tiki.vn/mini-html-parser2": "^0.0.4",
     "@tiki.vn/tini-types": "^0.3.0",
     "@tiki.vn/tini-ui": "^0.14.0",
     "@types/lodash-es": "^4.17.6",
-    "lodash-es": "^4.17.21"
+    "lodash-es": "^4.17.21",
+    "moment": "^2.29.4"
   },
   "devDependencies": {
     "prettier": "^2.5.1"

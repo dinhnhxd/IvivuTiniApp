@@ -1,8 +1,9 @@
-
 Page({
   data: {
     listitems: [],
-    show: false
+    show: false,
+    listfilter:[],
+    countFilter:0
   },
   onLoad(query){
     console.log(query);
@@ -51,9 +52,15 @@ Page({
   //   }
   // },
   onShowBottomSheet(e) {
+    if (!this.listfilter ) {
+      const key = 'regionName';
+      let items = this.listitems.map(item => [item[key], item]);
+      this.listfilter = [...new Map(items).values()];
+    }
     this.setData({
       show: true,
       template: e.target.dataset.template,
+      listfilter:this.listfilter
     });
   },
   onHoteletail(index){
@@ -64,5 +71,84 @@ Page({
   checkRegion(l) {
     return l.ischeck
   },
-});
+  onClose() {
+    this.setData({
+      show: false,
+    });
+  },
+  onOk(){
+    let listitemfilter=[];
+    let itemfilter;
+    if (this.listfilter) {
+       itemfilter = this.listfilter.filter(this.checkRegion);
+      if (itemfilter.length>0) {
+        itemfilter.forEach(element => {
+          let itemfilterRegion = this.listitems.filter((l) => { return l.regionId == element.regionId});
+          itemfilterRegion.forEach(elementregion => {
+            listitemfilter.push(elementregion);
+          });
+        
+        });
+      }
+    } 
+    this.setData({
+      show: false,
+      listfilter:this.listfilter,
+      response:listitemfilter.length>0?listitemfilter:this.listitems,
+      countFilter:itemfilter.length>0?itemfilter.length:0
+    });
 
+  },
+  onReset(){
+    this.listfilter.forEach(element => {
+      element.ischeck=false;
+    });
+    this.setData({
+      listfilter:this.listfilter,
+      response:this.listitems,
+      countFilter:0
+    });
+  },
+  onChange(e){
+    this.listfilter.forEach(element => {
+      if (element.regionId==e.target.id) {
+        element.ischeck=!element.ischeck;
+        return;
+      }
+  });
+  this.setDataFilter();
+  },
+  remove(event){
+    this.listfilter.forEach(element => {
+      if (element.regionId==event.currentTarget.dataset.id) {
+        element.ischeck=false;
+        return;
+      }
+      
+  });
+  this.onOk()
+  },
+  setDataFilter(){
+    let listitemfilter=[];
+    let itemfilter;
+    if (this.listfilter) {
+       itemfilter = this.listfilter.filter(this.checkRegion);
+      if (itemfilter.length>0) {
+        itemfilter.forEach(element => {
+          let itemfilterRegion = this.listitems.filter((l) => { return l.regionId == element.regionId});
+          itemfilterRegion.forEach(elementregion => {
+            listitemfilter.push(elementregion);
+          });
+        
+        });
+      }
+    } 
+    this.setData({
+      listfilter:this.listfilter,
+      response:listitemfilter.length>0?listitemfilter:this.listitems,
+      countFilter:itemfilter.length>0?itemfilter.length:0
+    });
+
+  },
+
+});

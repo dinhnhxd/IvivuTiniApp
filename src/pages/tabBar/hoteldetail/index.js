@@ -1,13 +1,21 @@
 import parse from '@tiki.vn/mini-html-parser2';
 import moment from 'moment';
+import { topDealService} from '../../../providers/topDealService';
+const init = () => ({
+  latitude: 10.779693436530149,
+  longitude: 106.67971686137946,
+  markers: [],
+  polygon: [],
+  polyline: [],
+  zoom: 10,
+  circles: []
+});
 Page({
   data: {
-    apikey:'AIzaSyA759T_2b8Vd9KPputmQ8AslLcuGwARXMU',
-    items: [],
-    iconType: ['location',
-  'direction_right'],
+    apiKey: 'AIzaSyDY6f-OwKoI7g7VtWUcBhKKieXfyHKBHw8',
+    ...init(),
   el:'',
-  show:false,
+  show:false, 
   showInfo:false,
   showOption:false,
   fixedHeader: false,
@@ -34,8 +42,7 @@ Page({
   },
   onLoad(query) {
     try {
-    this.cin=new Date();
-    this.cout=new Date();
+
     this.room=1;
     this.adults=2;
     this.child=0;
@@ -56,6 +63,7 @@ Page({
       success: (response) => {
         try {
           this.items = response;
+          topDealService.reponseHotel=response;
           let ricecombo = response.Combos.Price;
           let minPrice = response.MinPrice;   
           minPrice = this.arprice(minPrice)
@@ -91,35 +99,89 @@ Page({
           let ricefrom4  = this.arprice(response.Combos.ComboDetail[3]?.PriceFrom);
           let HotelFacilities=[];
           for (let index = 0; index < 4; index++) {
-            HotelFacilities.push(response.HotelFacilities[index]);
+        
+              HotelFacilities.push(response.HotelFacilities[index]);
+  
+           
+          }
+          let HotelReviews=[];
+          let coReivew=0;
+          for (let index = 0; index < response.HotelReviews.length; index++) {
+            if (response.HotelReviews[index].BestFeature) {
+              HotelReviews.push(response.HotelReviews[index]);
+              coReivew++;
+            }
+            if (coReivew>2) {
+              break;
+            }
+         
           }
           this.ChildAgeTo=response.ChildAgeTo;
           // let test =unescape(response.Combos.Note); 
-          parse(response.Combos.Note, (err, htmlNodes) => {
-         
-            if (!err) {
-              this.setData({
-                response,
-                ricecombo,
-                timecover1,
-                timecover2,
-                timecover3,
-                timecover4,
-                timecoverto1,
-                timecoverto2,
-                timecoverto3,
-                timecoverto4,
-                ricefrom1,
-                ricefrom2,
-                ricefrom3,
-                ricefrom4,
-                loading: false,
-                el:htmlNodes,
-                minPrice,
-                HotelFacilities
-          });
-            }
-          });
+          let notecombo = response.ComboPromtion && response.ComboPromtion.Note ? (response.ComboPromtion.Note || '') : (response.Combos ? response.Combos.Note : '');
+          let el = this.parseHTML(notecombo);
+          let Description = response.ComboPromtion && response.ComboPromtion.Description ? response.ComboPromtion.Description.replace(/\r\n/g, "<br/>") : (response.Combos ? response.Combos.Description.replace(/\r\n/g, "<br/>") : '');
+          Description = Description.replace(/#r/g, "");
+          Description = Description.replace(/r#/g, "");
+          Description = Description.replace(/#m/g, "");
+          Description = Description.replace(/m#/g, "");
+          Description = Description.replace(/#n/g, "");
+          Description = Description.replace(/n#/g, "");
+          // let Description = this.parseHTML(response.Combos.Description);
+          let FullDescription = this.parseHTML(response.FullDescription);
+           Description = this.parseHTML(Description);
+           this.ComboDayNum = response.Combos ? response.Combos.ComboDayNum : 1;
+           this.cin=new Date();
+           var rescin = this.cin.setTime(
+            this.cin.getTime() + (1 * 24 * 60 * 60 * 1000)
+          );
+          var date = new Date(rescin);
+          let arrDate=[];
+            arrDate.push(date);
+          this.cin = moment(date).format("DD-MM-YYYY");
+           this.cout=new Date();
+           var res = this.cout.setTime(
+            this.cout.getTime() + (this.ComboDayNum  * 24 * 60 * 60 * 1000)
+          );
+          var date = new Date(res);
+          this.cout = moment(date).format("DD-MM-YYYY");
+          arrDate.push(date);
+            this.setData({
+              response,
+              ricecombo,
+              timecover1,
+              timecover2,
+              timecover3,
+              timecover4,
+              timecoverto1,
+              timecoverto2,
+              timecoverto3,
+              timecoverto4,
+              ricefrom1,
+              ricefrom2,
+              ricefrom3,
+              ricefrom4,
+              loading: false,
+              el,
+              minPrice,
+              HotelFacilities,
+              Description,
+              FullDescription,
+              cin:this.cin,
+              arrDate,
+              HotelReviews,
+              apiKey: 'AIzaSyDY6f-OwKoI7g7VtWUcBhKKieXfyHKBHw8',
+                zoom: 10,
+                latitude: response.Latitude,
+                longitude: response.Longitude,
+                markers: [
+                  {
+                    latitude: response.Latitude,
+                    longitude: response.Longitude,
+                  }
+                ]
+        });
+       
           
           if (response.ComboPromtion && response.ComboPromtion.Id) {
             this.comboid = response.ComboPromtion.Id;
@@ -291,7 +353,6 @@ Page({
     }
   },
   bookCombo(){
-    
     my.navigateTo({ url: "pages/tabBar/combooverview/index"});
   },
 
@@ -335,6 +396,7 @@ Page({
     this.setData({
       show: false,
       cin:this.cin,
+      cout:this.cout,
       diffdate:this.diffdate
     });
   },
@@ -345,6 +407,7 @@ Page({
   },
   selectedDate(e){
     this.cin=moment(e.dates[0]).format('DD-MM-YYYY');
+    this.cout=moment(e.dates[1]).format('DD-MM-YYYY');
     this.diffdate = moment(e.dates[1]).diff(moment(moment(e.dates[0]).format('YYYY-MM-DD')), 'days');
   },
 
@@ -379,10 +442,18 @@ Page({
     });
   },
   onShowInfo(){
+    let cinshow=this.getDayOfWeek(this.cin) + ', ' + this.cin;
+    let coutshow=this.getDayOfWeek(this.cout) + ', ' + this.cout;
+    var datecin = new Date(this.cin);
+    var datecout = new Date(this.cout);
     this.setData({
       showInfo: true,
       show: false,
-      showOption:false
+      showOption:false,
+      cinshow,
+      coutshow,
+      datecin,
+      datecout
     });
   },
   onClickInfo(){
@@ -524,6 +595,55 @@ Page({
     this.setData({
       showInfoAge: false
     });
+  },
+  parseHTML(input){
+    let htmlNode
+    parse(input, (err, htmlNodes) => {
+      htmlNode= htmlNodes;
+    });
+    return htmlNode;
+  },
+  seemore(){
+    this.setData({
+      seemore: true
+    });
+  },
+  getDayOfWeek(day) {
+    let cinthu ='';
+    if(day){
+      let arrdate = day.split('-');
+      let newdate = new Date(arrdate[2], arrdate[1]-1, arrdate[0]);
+      cinthu = moment(newdate).format("dddd");
+      switch (cinthu) {
+        case "Monday":
+          cinthu = "Thứ Hai";
+          break;
+        case "Tuesday":
+          cinthu = "Thứ Ba";
+          break;
+        case "Wednesday":
+          cinthu = "Thứ Tư";
+          break;
+        case "Thursday":
+          cinthu = "Thứ Năm";
+          break;
+        case "Friday":
+          cinthu = "Thứ Sáu";
+          break;
+        case "Saturday":
+          cinthu = "Thứ Bảy";
+          break;
+        default:
+          cinthu = "Chủ nhật";
+          break;
+      }
+    }
+    
+    return cinthu;
+  },
+  onReview(){
+    my.navigateTo({ url: "pages/tabBar/reviewcus/index"});
   }
 });
+
 

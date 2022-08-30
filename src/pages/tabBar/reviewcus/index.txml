@@ -1,0 +1,69 @@
+<view class="view">
+  <view >
+    <view class="review">Xếp hạng và đánh giá</view>
+  </view>
+  <view class="view1">
+    <view  class="ortreivew pos-absolute-7">
+    {{reponseHotel.AvgPoint}}
+    </view>
+    <view class="numberReivew">
+      <view tiki:if="{{reponseHotel.AvgPoint>9 && reponseHotel.AvgPoint<=10}}" class="numberReivew_1">
+        Tuyệt vời
+      </view>
+      <view tiki:if="{{reponseHotel.AvgPoint>8 && reponseHotel.AvgPoint<=9}}" class="numberReivew_1">
+        Rất tốt
+      </view>
+      <view tiki:if="{{reponseHotel.AvgPoint>7 && reponseHotel.AvgPoint<=8}}" class="numberReivew_1">
+        Khá tốt
+      </view>
+      <view tiki:if="{{reponseHotel.AvgPoint>5 && reponseHotel.AvgPoint<=7}}" class="numberReivew_1">
+        Tạm được
+      </view>
+      <view tiki:if="{{reponseHotel.AvgPoint<5}}" class="numberReivew_1">
+        Không tốt
+      </view>
+      <view class="numberReivew_2">
+       từ {{reponseHotel.NumOfReview}} lượt đánh giá
+      </view>
+    </view>
+  </view>
+  <view class="hr-big"></view>
+  <view class="mt20">
+    <view    tiki:for="{{reponseHotel.HotelReviews}}" >
+      <view class="div-flex mt16">
+        <image class="img-avatar" src="../../../images/imgs/ic_avatar.svg" />
+        <view class="text-cusname-review ml10">
+          {{item.CustomerName}}
+         </view>
+         <view class="pos-absolute-16 text-date">
+          {{item.DateStayed}}
+         </view>
+      </view>
+     
+       <view class="ml30">
+        <view tiki:if="{{item.ReviewPoint>9 && item.ReviewPoint<=10}}" class="text-cusname-review text-bold">
+          {{item.ReviewPoint}}/10 - Tuyệt vời
+        </view>
+        <view tiki:if="{{item.ReviewPoint>8 && item.ReviewPoint<=9}}" class="text-cusname-review text-bold">
+          {{item.ReviewPoint}}/10 - Rất tốt
+        </view>
+        <view tiki:if="{{item.ReviewPoint>7 && item.ReviewPoint<=8}}" class="text-cusname-review text-bold">
+          {{item.ReviewPoint}}/10 - Khá tốt
+        </view>
+        <view tiki:if="{{item.ReviewPoint>5 && item.ReviewPoint<=7}}" class="text-cusname-review text-bold">
+          {{item.ReviewPoint}}/10 - Tạm được
+        </view>
+        <view tiki:if="{{item.ReviewPoint<5}}" class="text-cusname-review text-bold">
+          {{item.ReviewPoint}}/10 - Không tốt
+        </view>
+        </view>
+        <view class="text-content ml30">
+          {{item.BestFeature}}
+         </view> 
+       <view class="hr">
+
+       </view>
+   
+    </view>
+  </view>
+</view>

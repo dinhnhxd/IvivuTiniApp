@@ -1,6 +1,6 @@
 {
     "transparentTitle": "alway",
-    "defaultTitle": "Thông tin đặt chỗ",
+    "defaultTitle": "Đánh giá của khách",
     "usingComponents": {
       "tabs": "@tiki.vn/tini-ui/es/tabs/index",
       "tab-content": "@tiki.vn/tini-ui/es/tabs/tab-content/index"

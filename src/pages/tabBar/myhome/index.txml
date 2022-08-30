@@ -1,4 +1,4 @@
-<view class="wrap {{fixedHeader ? 'fix-search' : ''}}">
+<view scroll-y="false"class="wrap {{fixedHeader ? 'fix-search' : ''}}">
 
   <view class="top-header">
     <image class="cart1" src="../../../images/logo.svg" />
@@ -15,11 +15,25 @@
   </view>
   <view class="content">
     <view  class="text"> Ưu đãi tốt nhất hôm nay</view>
-    <image onTap="onShowBottomSheet" tiki:if="{{isfilter}}" class="img-filter" src="../../../images/imgs/ic_filter_new.svg" />
-    <image onTap="onShowBottomSheet" data-template="text" tiki:if="{{!isfilter}}" class="img-filter" src="../../../images/imgs/ic_filter_new.svg" />
+    <view slot="inner" class="view-img-filter" >
+      <image onTap="onShowBottomSheet"  class="img-filter" src="../../../images/imgs/ic_filter_new.svg" />
+      <!-- <image onTap="onShowBottomSheet" data-template="list" tiki:if="{{!isfilter}}" class="img-filter" src="../../../images/imgs/ic_filter_new.svg" /> -->
+      <badge tiki:if="{{countFilter>0}}" text="{{countFilter}}"  isWrap="true">
+      
+      </badge>
+    </view>
+ 
+    <view  class="widget">
+      <view  class="flexWrap">
+        <view tiki:for="{{listfilter}}">
+          <chip  data-id="{{item.regionId}}" class="cls-chip" tiki:if="{{item.ischeck}}" content="{{item.regionName}}" onRightClick="remove" suffixIcon="close" iconRightColor="#808089" />
+        </view>
+  
+      </view>
+    </view>
    
-    <view class="item-card" tiki:for="{{response}}">
-      <image data-id={{item.id}}  onTap="onHoteletail" class="img-hotel" src={{item.avatar}} />
+    <view data-id={{item.id}} onTap="onHoteletail" class="item-card" tiki:for="{{response}}">
+      <image  class="img-hotel" src={{item.avatar}} />
       <view class="text-hotelname">
         {{item.name.split('|')[0]}}
       </view>
@@ -57,16 +71,23 @@
       </view>
     </view>
   </view>
-  <bottom-sheet show="{{show}}" data-template="{{template}}" title="Bottom Sheet with {{template}}" buttonTitle="OK"
-      distanceFromTop="{{100}}" onClose="onClose" onClick="onClick">
-      <template is="bottom-sheet-{{template}}" />
-    </bottom-sheet>
-
-
 </view>
-<template name="bottom-sheet-text">
-  <list-item padding upperSubtitle="Description">
-    <view>Title</view>
-  </list-item>
-</template>
-
+ <bottom-sheet show="{{show}}" data-template="{{template}}" title="Bộ lọc" 
+      distanceFromTop="{{100}}" onClose="onClose" onClick="onClick">
+  <view class="margin-left-16">
+    <view class="text-title-filter">Bạn thích đi đâu?</view>
+    <checkbox-group  onChange="onGroupChange">
+      <list-item tiki:for="{{listfilter}}" :key="index">
+        <label class="div-flex">
+          <view class="view-text-filter">{{item.regionName}}</view>
+          <checkbox color="#26bed6" id="{{item.regionId}}" onChange="onChange"  tiki:if="{{item.ischeck}}" checked={{true}} class="cls-checkbox"  />
+          <checkbox color="#26bed6" id="{{item.regionId}}" onChange="onChange"  tiki:if="{{!item.ischeck}}" checked={{false}}  class="cls-checkbox"  />
+        </label>
+      </list-item>
+    </checkbox-group>
+  </view>
+  <view slot="footer" class="div-flex cls-footer">
+    <button class="btn-reset" onTap="onReset">Thiết lập lại</button>
+    <button class="btn-ok"  onTap="onOk">Áp dụng</button>
+  </view>
+</bottom-sheet>

@@ -21,28 +21,40 @@
     </view>
   </view>
 </view>
-  <tabs tabs="{{tabs1}}" tabsName="activeTab1" activeTab="{{activeTab1}}" onTabClick="onTabClick" swipeable="{{false}}">
-    <block tiki:for="{{tabs1}}">
-      <tab-content tabId="{{index}}">
-        <view class="tab-item" />
-      </tab-content>
-    </block>
-  </tabs>
+
 <view class="padding-16">
   <view class="div-flex">
     <view>
-      <image class="img-hotel" src="https://cdn1.ivivu.com/iVivu/2021/06/07/12/bar-shelves-lighting-added-2.jpg"/>
+      <image class="img-hotel" src="{{reponseHotel.Avatar}}"/>
     </view>
    
     <view class="margin-left-8">
       <view class="text-hotel">
-        Khu nghỉ dưỡng Amiana Nha Trang
+        {{reponseHotel.Name}}
       </view>
-      <view class="div-star mt-2" >
+      <view class="div-star mt-2" tiki:if="{{reponseHotel.Rating == 50}}">
         <image class="img-star" src="../../../images/star/Star.svg" />
         <image class="img-star" src="../../../images/star/Star.svg" />
         <image class="img-star" src="../../../images/star/Star.svg" />
         <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
+      </view>
+      <view class="div-star mt-2" tiki:if="{{reponseHotel.Rating == 40}}">
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
+      </view>
+      <view class="div-star mt-2" tiki:if="{{reponseHotel.Rating == 30}}">
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
+      </view>
+      <view class="div-star mt-2" tiki:if="{{reponseHotel.Rating == 20}}">
+        <image class="img-star" src="../../../images/star/Star.svg" />
+        <image class="img-star" src="../../../images/star/Star.svg" />
+      </view>
+      <view class="div-star mt-2" tiki:if="{{reponseHotel.Rating == 10}}">
         <image class="img-star" src="../../../images/star/Star.svg" />
       </view>
       <view class="mt-2">
@@ -72,7 +84,7 @@
         Phụ thu vé
       </view>
     </view>
-    <view  class="div-flex mt-12">
+    <view  class="div-flex mt-8">
       <view class="text-time-fly">
         11:15        →        12:45
       </view>
@@ -115,7 +127,7 @@
         Phụ thu vé
       </view>
     </view>
-    <view  class="div-flex mt-12">
+    <view  class="div-flex mt-8">
       <view class="text-time-fly">
         11:15        →        12:45
       </view>
@@ -160,7 +172,7 @@
   </view>
   <view class="view-line-1 mt-15 mb-16"></view>
   <!-- Chính sách combo -->
-  <view class="div-flex">
+  <view class="div-flex mb-10">
     <view class="text-date">
       Chính sách hủy combo
     </view>
@@ -170,5 +182,28 @@
     </view>
   </view>
   <view class="view-line"></view>
+  <view class="text-date mt-8 mb-10">
+    *iVIVU không đảm bảo giá vé này cho đến khi bạn hoàn tất thanh toán và mã đặt chỗ vé máy bay được xác nhận!
+  </view>
+  <view class="view-line "></view>
+  <view class="div-flex mt-8">
+    <view class="text-title-total">
+      Tổng giá tiền
+    </view>
+    <view class="div-flex text-position">
+      <view class="text-total">
+        8.000.000 ₫
+      </view>
+      <image class="img" src="../../../images/imgs/ic_infototal.svg" />
+    </view>
+   
+  </view>
+  <view class="text-position text-title-tax">
+    Đã bao gồm thuế
+  </view>
+ 
+    <view  class="bookCombo mt-30">
+      <text onTap="bookCombo" class="footerviewText">Tiếp tục</text>
+    </view> 
 
 </view>
