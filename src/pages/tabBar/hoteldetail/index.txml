@@ -111,20 +111,20 @@
         <image class="img-location" src="../../../images/imgs/ic_location.svg" />
         <view class="Address">{{response.Address}}</view>
       </view>
-      <view class="block">
-        <map 
-          class="map"
-          onTap="onTap"
-          onMarkerTap="onMarkerTap"
-          latitude="{{latitude}}" 
-          longitude="{{longitude}}" 
-          zoom="{{zoom}}"
-          markers="{{markers}}"
-          polyline="{{polyline}}"
-          polygon="{{polygon}}"
-          circles="{{circles}}"
-          apiKey="{{apiKey}}" />
-      </view>
+    <view class="block">
+    <map 
+      class="map"
+      onTap="onTap"
+      onMarkerTap="onMarkerTap"
+      latitude="{{latitude}}" 
+      longitude="{{longitude}}" 
+      zoom="{{zoom}}"
+      markers="{{markers}}"
+      polyline="{{polyline}}"
+      polygon="{{polygon}}"
+      circles="{{circles}}"
+      apiKey="{{apiKey}}" />
+  </view>
   
       
     </view>
@@ -140,8 +140,8 @@
   </view>
   <view class="view-combo">
     <view class="combo">
-      <view class="titleCombo">{{response.Combos.Title}} </view>
-      <view class="priceCombo">{{ricecombo}} VND/Khách</view>
+      <view class="titleCombo">{{titlecombo}} </view>
+      <view class="priceCombo">{{combopriceontitle}} VND/Khách</view>
     </view>
     <view class="combobg">
       Combo bao gồm
@@ -155,7 +155,7 @@
       Điều kiện áp dụng
     </view>
     <view class="chitietcombo">
-      <rich-text class="mt8" nodes="{{el}}" />
+      <rich-text class="mt8" nodes="{{notecombo}}" />
     </view>
   
 
@@ -385,11 +385,11 @@
   <view class="div-flex">
     <view class="div-flex" style="width:55%">
       <image class="img-calendar align-center" src="../../../images/imgs/ic_edit_adult.svg" />
-      <view class="text-time ml10 align-center">
+      <view class="text-time ml10 align-center mb10">
         Người lớn
       </view>
 
-      <view class="text-time ml10 align-center cls-adult ">
+      <view class="text-time ml10 align-center cls-adult ml-60">
         Từ 18 tuổi
       </view>
     </view>
@@ -406,10 +406,10 @@
   <view class="div-flex">
     <view class="div-flex" style="width:55%">
       <image class="img-calendar align-center" src="../../../images/imgs/ic_edit_child.svg" />
-      <view class="text-time ml10 align-center">
+      <view class="text-time ml10 align-center mb10">
         Trẻ em
       </view>
-      <view class="text-time ml10 align-center cls-adult ">
+      <view class="text-time ml10 align-center cls-adult ml-40">
         Từ 0 đến 17 tuổi
       </view>
     </view>
@@ -443,6 +443,16 @@
       distanceFromTop="{{100}}" onClose="onCloseInfoAge"  >
   <view class="ml16 mt16" tiki:for="{{itemAge}}">
     <view data-id={{item.name}} onTap="selectage">{{item.name}}
+      <view class="hr-line"></view>
+    </view>
+  </view>
+
+</bottom-sheet>
+
+<bottom-sheet show="{{showInfoDep}}" data-template="{{template}}" title="Quý khách khởi hành từ đâu?" 
+      distanceFromTop="{{100}}"  onClose="onCloseDep" buttonCls="nobutton" >
+  <view class="ml16 mt16" tiki:for="{{Departure}}">
+    <view data-id={{item}} onTap="requestCombo">{{item.departureName}}
       <view class="hr-line"></view>
     </view>
   </view>

@@ -98,7 +98,7 @@
 }
 .newHotelDetail{
   z-index: 2;
-  height: 300px;
+  height: 220px;
   background-color: #fff;
   border-radius: 20px;
   border-top-left-radius: 25px;
@@ -928,9 +928,7 @@
   align-self: center;
 }
 .cls-adult{
-  position: absolute;
-  margin-top: 15px;
-  margin-left: 30px;
+  margin-top: 23px;
   font-family: Inter;
   font-size: 12px;
   font-weight: normal;
@@ -1026,27 +1024,23 @@
   margin-bottom: 12px;
 }
 .map {
-  height: calc(var(--tf-window-height) / 2);
+  height: calc(var(--tf-window-height) / 6);
+}
+.nobutton{
+  display: none;
+}
+.mb10{
+  margin-bottom: 10px;
+}
+.ml-60{
+  margin-left: -60px;
+}
+.ml-40{
+  margin-left: -40px;
 }
 
-.container {
-  min-height: 100%;
-  background-color: var(--gray20);
-  padding: 16px;
-}
 
-.block {
-  background-color: white;
-  margin: 8px 0;
-  padding: 16px;
-  border-radius: var(--border-radius-rounded-4px);
-}
 
-.actions {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 4px;
-}
 
 
 

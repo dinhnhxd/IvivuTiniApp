@@ -6,7 +6,8 @@
     "pages/tabBar/filter/index",
     "pages/tabBar/hoteldetail/index",
     "pages/tabBar/combooverview/index",
-    "pages/tabBar/reviewcus/index"
+    "pages/tabBar/reviewcus/index",
+    "pages/tabBar/upgraderoom/index"
   ],
   "window": {
     "defaultTitle": "My App",

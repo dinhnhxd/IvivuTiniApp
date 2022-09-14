@@ -1,22 +1,22 @@
 <view class="div-flex" style="background-color: #003c71;">
   <view class="div-flex cls-review">
-    <view class="div-flex">
+    <view onTap="onShowcalendar" class="div-flex">
       <image class="img" src="../../../images/imgs/ic_calendar.svg" />
-      <view class="text-info margin-left-6">30/05/2022</view>
+      <view class="text-info margin-left-6">{{cin}}</view>
     </view>
-    <view class="div-flex margin-left-21">
+    <view onTap="onShowcalendar" class="div-flex margin-left-21">
       <image class="img" src="../../../images/imgs/ic_night.svg" />
-      <view class="text-info margin-left-num">3</view>
+      <view class="text-info margin-left-num">{{diffdate}}</view>
     </view>
-    <view class="div-flex margin-left-21">
+    <view onTap="onShowOption" class="div-flex margin-left-21">
       <image class="img" src="../../../images/imgs/ic_room.svg" />
-      <view class="text-info margin-left-num">3</view>
+      <view class="text-info margin-left-num">{{roomnumber}}</view>
     </view>
-    <view class="div-flex margin-left-21">
+    <view onTap="onShowOption" class="div-flex margin-left-21">
       <image class="img" src="../../../images/imgs/ic_pax.svg" />
-      <view class="text-info margin-left-num">3</view>
+      <view class="text-info margin-left-num">{{pax}}</view>
     </view>
-    <view class="div-flex cls-more">
+    <view onTap="onShowInfo" class="div-flex cls-more">
       <image class="img-more" src="../../../images/imgs/ic_more.svg" />
     </view>
   </view>
@@ -59,12 +59,12 @@
       </view>
       <view class="mt-2">
         <image class="img-star img-room-breakfast" src="../../../images/imgs/ic_bed.svg" /> 
-        <view class="text-room-breakfast ml-15">Deluxe Ocean View | 1 phòng</view> 
+        <view class="text-room-breakfast ml-15">{{nameroom}} | {{roomnumber}} {{RoomType}}</view> 
       </view>
       <view class="mt-2 div-flex">
         <image class="img-star img-room-breakfast" src="../../../images/imgs/ic_food.svg" />
-        <view class="text-room-breakfast ml-15">Gồm ăn sáng</view>  
-        <view class="text-change"> 
+        <view class="text-room-breakfast ml-15">{{breakfast}}</view>  
+        <view class="text-change" onTap="upgraderoom"> 
           Đổi  <image class="img-vector" src="../../../images/imgs/ic_vector.svg" />
         </view>
        
@@ -78,38 +78,49 @@
   <view class="mt-16 mb-16">
     <view  class="div-flex">
       <view class="text-date">
-        Thứ 6, 29 thg 04
+        {{de_departdatestr}}
       </view>
-      <view class="text-position text-charge-tilte">
+      <view tiki:if="{{de_departpriceincrease}}" class="text-position text-charge-tilte">
         Phụ thu vé
+      </view>
+      <view tiki:if="{{!de_departpriceincrease}}" class="text-position text-charge-tilte">
+        Giảm giá vé
       </view>
     </view>
     <view  class="div-flex mt-8">
       <view class="text-time-fly">
-        11:15        →        12:45
+        {{de_departtime}}        →         {{re_departtime}}  
       </view>
-      <view class="text-position text-charge">
-        + 640.000 đ
+      <view tiki:if="{{!de_departpriceincrease}}" class="text-position text-charge">
+        - {{de_flightpricetitle}} đ
+      </view>
+      <view tiki:if="{{de_departpriceincrease}}" class="text-position text-charge">
+        + {{de_flightpricetitle}} đ
       </view>
     </view>
     <view  class="div-flex mt-2">
       <view class="text-charge-tilte">
-        SGN    ·    01h20m    ·   DAD
+        {{departlocationdisplay}}
       </view>
 
     </view>
-    <view  class="div-flex mt-2">
-      <image class="img-fly" src="../../../images/ic_airticket/ic_bamboo_b.png" />
-      <view class="text-flight-name">
-        BambooAirways
+    <view tiki:for="{{listDeparture}}" tiki:for-index="idx" class="div-flex mt-2">
+      <!-- <image class="img-fly" src="../../../images/ic_airticket/ic_bamboo_b.pnơg" /> -->
+      <image class="img-fly" tiki:if="{{idx==0 && item.airlineCode == 'VietJetAir'}}" src="../../../images/ic_airticket/ic_vietjet_b.png"/>
+      <image class="img-fly" tiki:if="{{idx==0 && item.airlineCode == 'JetStar'}}" src="../../../images/ic_airticket/ic_jetstar_b.png"/>
+      <image class="img-fly logo-vna" tiki:if="{{idx==0 && item.airlineCode == 'VietnamAirlines' && !item.operatedBy }}" src="../../../images/ic_airticket/logo_vna.png"/>
+      <image class="img-fly logo-vna" tiki:if="{{idx==0 && item.operatedBy && item.urlLogo}}" src="{{item.urlLogo}}"/>
+      <image class="img-fly" tiki:if="{{idx==0 && item.airlineCode == 'BambooAirways' }}" src="../../../images/ic_airticket/ic_bamboo_b.png"/>
+      <view tiki:if="{{idx==0}}" class="text-flight-name">
+        {{item.airlineCode}}
       </view>
-      <view class="text-charge-tilte text-cham">
+      <view  tiki:if="{{idx==0}}" class="text-charge-tilte text-cham">
        · 
       </view>
-      <view class="text-charge-tilte">
-        Phổ thông
+      <view  tiki:if="{{idx==0}}" class="text-charge-tilte">
+        {{item.ticketClass}}
       </view>
-      <view class="text-change"> 
+      <view   tiki:if="{{idx==0}}" class="text-change"> 
         Đổi  <image class="img-vector" src="../../../images/imgs/ic_vector.svg" />
       </view>
     </view>
@@ -118,45 +129,56 @@
 
   </view>
 <!-- chiều về -->
-  <view class="mt-16 mb-12">
-    <view  class="div-flex">
-      <view class="text-date">
-        Thứ 6, 29 thg 04
-      </view>
-      <view class="text-position text-charge-tilte">
-        Phụ thu vé
-      </view>
+<view class="mt-16 mb-16">
+  <view  class="div-flex">
+    <view class="text-date">
+      {{ar_departdatestr}}
     </view>
-    <view  class="div-flex mt-8">
-      <view class="text-time-fly">
-        11:15        →        12:45
-      </view>
-      <view class="text-position text-charge">
-        + 640.000 đ
-      </view>
+    <view tiki:if="{{ar_departpriceincrease}}" class="text-position text-charge-tilte">
+      Phụ thu vé
     </view>
-    <view  class="div-flex mt-2">
-      <view class="text-charge-tilte">
-        SGN    ·    01h20m    ·   DAD
-      </view>
-
-    </view>
-    <view  class="div-flex mt-2">
-      <image class="img-fly" src="../../../images/ic_airticket/ic_bamboo_b.png" />
-      <view class="text-flight-name">
-        BambooAirways
-      </view>
-      <view class="text-charge-tilte text-cham">
-       · 
-      </view>
-      <view class="text-charge-tilte">
-        Phổ thông
-      </view>
-      <view class="text-change"> 
-        Đổi  <image class="img-vector" src="../../../images/imgs/ic_vector.svg" />
-      </view>
+    <view tiki:if="{{!ar_departpriceincrease}}" class="text-position text-charge-tilte">
+      Giảm giá vé
     </view>
   </view>
+  <view  class="div-flex mt-8">
+    <view class="text-time-fly">
+      {{ar_departtime}}        →         {{ar_returntime}}  
+    </view>
+    <view tiki:if="{{!ar_departpriceincrease}}" class="text-position text-charge">
+      - {{ar_flightpricetitle}} đ
+    </view>
+    <view tiki:if="{{ar_departpriceincrease}}" class="text-position text-charge">
+      + {{ar_flightpricetitle}} đ
+    </view>
+  </view>
+  <view  class="div-flex mt-2">
+    <view class="text-charge-tilte">
+      {{returnlocationdisplay}}
+    </view>
+
+  </view>
+  <view tiki:for="{{listDeparture}}" tiki:for-index="idx" class="div-flex mt-2">
+    <!-- <image class="img-fly" src="../../../images/ic_airticket/ic_bamboo_b.pnơg" /> -->
+    <image class="img-fly" tiki:if="{{idx==1 && item.airlineCode == 'VietJetAir'}}" src="../../../images/ic_airticket/ic_vietjet_b.png"/>
+    <image class="img-fly" tiki:if="{{idx==1 && item.airlineCode == 'JetStar'}}" src="../../../images/ic_airticket/ic_jetstar_b.png"/>
+    <image class="img-fly logo-vna" tiki:if="{{idx==1 && item.airlineCode == 'VietnamAirlines' && !item.operatedBy }}" src="../../../images/ic_airticket/logo_vna.png"/>
+    <image class="img-fly logo-vna" tiki:if="{{idx==1 && item.operatedBy && item.urlLogo}}" src="{{item.urlLogo}}"/>
+    <image class="img-fly" tiki:if="{{idx==1 && item.airlineCode == 'BambooAirways' }}" src="../../../images/ic_airticket/ic_bamboo_b.png"/>
+    <view tiki:if="{{idx==1}}" class="text-flight-name">
+      {{item.airlineCode}}
+    </view>
+    <view  tiki:if="{{idx==1}}" class="text-charge-tilte text-cham">
+     · 
+    </view>
+    <view  tiki:if="{{idx==1}}" class="text-charge-tilte">
+      {{item.ticketClass}}
+    </view>
+    <view   tiki:if="{{idx==1}}" class="text-change"> 
+      Đổi  <image class="img-vector" src="../../../images/imgs/ic_vector.svg" />
+    </view>
+  </view>
+</view>
   <view class="view-line"></view>
   <!-- Thông tin hành lý ký gửi -->
   <view class="div-flex mt-16">
@@ -164,7 +186,7 @@
       Thông tin hành lý ký gửi
     </view>
     <view class="text-hanh-ly margin-left-8">
-      Đi: 0kg. Về: 23kg.
+      Đi: {{totaldepluggage}}kg. Về: {{totalretluggage}}kg.
     </view>
     <view class="text-change"> 
       <image class="img-for" src="../../../images/imgs/ic_for.svg" />
@@ -192,7 +214,7 @@
     </view>
     <view class="div-flex text-position">
       <view class="text-total">
-        8.000.000 ₫
+        {{PriceAvgPlusTAStr}} ₫
       </view>
       <image class="img" src="../../../images/imgs/ic_infototal.svg" />
     </view>
@@ -207,3 +229,138 @@
     </view> 
 
 </view>
+
+<bottom-sheet show="{{show}}" data-template="{{template}}" title="Chọn ngày" 
+      distanceFromTop="{{100}}" onClose="onClose" onClick="onClick" buttonTitle="Hoàn tất">
+      <view class="mt-medium">
+        <view class="mt-2x-small">
+          <calendar selectedDate={{arrDate}} onSelect="selectedDate" mode="range" header="year" />
+        </view>
+      </view>
+</bottom-sheet>
+<bottom-sheet show="{{showInfo}}" data-template="{{template}}" title="Thay đổi tìm kiếm" 
+      distanceFromTop="{{100}}" onClose="onCloseInfo" onClick="onClickInfo" buttonTitle="Tìm kiếm">
+ <view class="cls-popup-filter">
+  <view class="div-flex">
+    <image class="img-calendar" src="../../../images/imgs/ic_calendar_b.svg" />
+    <view class="text-time-title ml10">
+      Ngày nhận phòng
+    </view>
+  </view>
+  <view class="text-time" onTap="onShowcalendar" style="margin-left:32px">
+    {{cinshow}}
+  </view>
+  
+  <view class="div-flex mt16">
+    <image class="img-calendar" src="../../../images/imgs/ic_calendar_b.svg" />
+    <view class="text-time-title ml10">
+      Ngày trả phòng
+    </view>
+  </view>
+  <view class="text-time" onTap="onShowcalendar" style="margin-left:32px">
+    {{coutshow}}
+  </view>
+
+  <view class="div-flex mt16">
+    <image class="img-calendar" src="../../../images/imgs/ic_people.svg" />
+    <view class="text-time-title ml10">
+      Số phòng và khách
+    </view>
+  </view>
+  <view onTap="onShowOption" class="text-time" style="margin-left:32px">
+      {{roomnumber}} phòng, {{adults}} người lớn, {{child}} trẻ em
+  </view>
+ </view>
+</bottom-sheet>
+
+<bottom-sheet show="{{showOption}}" data-template="{{template}}" title="Chọn số phòng và khách" 
+      distanceFromTop="{{100}}" onClose="onCloseOption" onClick="onClickOption" buttonTitle="Hoàn tất">
+ <view class="cls-popup-filter">
+  <view class="div-flex">
+    <view class="div-flex" style="width:55%">
+      <image class="img-calendar align-center" src="../../../images/imgs/ic_edit_room.svg" />
+      <view class="text-time ml10 align-center">
+        Phòng
+      </view>
+    </view>
+
+   
+
+      <view class="div-flex" style="width:45%"> 
+        <button  type="outline" class="btn-minus" onTap="minusroom" form-type="submit">-</button>
+        <button  type="outline" class="btn-num" form-type="submit">{{roomtemp}}</button>
+        <button  type="outline" class="btn-minus"  onTap="plusroom" form-type="submit">+</button></view>
+   
+  </view>
+
+  <view class="hr-line"></view>
+  <view class="div-flex">
+    <view class="div-flex" style="width:55%">
+      <image class="img-calendar align-center" src="../../../images/imgs/ic_edit_adult.svg" />
+      <view class="text-time ml10 align-center mb10">
+        Người lớn
+      </view>
+
+      <view class="text-time ml10 align-center cls-adult ml-60">
+        Từ 18 tuổi
+      </view>
+    </view>
+
+
+      <view class="div-flex" style="width:45%"> 
+        <button  type="outline" class="btn-minus" onTap="minusadults" form-type="submit">-</button>
+        <button  type="outline" class="btn-num" form-type="submit">{{adultstemp}}</button>
+        <button  type="outline" class="btn-minus" onTap="plusadults" form-type="submit">+</button></view>
+   
+  </view>
+
+  <view class="hr-line"></view>
+  <view class="div-flex">
+    <view class="div-flex" style="width:55%">
+      <image class="img-calendar align-center" src="../../../images/imgs/ic_edit_child.svg" />
+      <view class="text-time ml10 align-center mb10">
+        Trẻ em
+      </view>
+      <view class="text-time ml10 align-center cls-adult ml-40">
+        Từ 0 đến 17 tuổi
+      </view>
+    </view>
+      <view class="div-flex" style="width:45%"> 
+        <button  type="outline" class="btn-minus" onTap="minuschild" form-type="submit">-</button>
+        <button  type="outline" class="btn-num" form-type="submit">{{childtemp}}</button>
+        <button  type="outline" class="btn-minus" onTap="pluschild" form-type="submit">+</button></view>
+  </view>
+  <view tiki:if="{{arrchildtemp.length>0}}" class="text-title-child mt16">
+    Vui lòng chọn tuổi của trẻ vào thời điểm nhận phòng
+  </view>
+<view tiki:for="{{arrchildtemp}}" >
+  <view class="text-time-title">
+    {{item.text}}
+  </view>
+  <view data-id={{item.text}} onTap="onshowInfoAge" class="view-age div-flex">
+    <view >
+      {{item.age}}
+    </view>
+    <image class="img-calendar ml80" src="../../../images/imgs/ic_down.svg" />
+
+  </view>
+ 
+</view >
+
+
+ </view>
+</bottom-sheet>
+
+<bottom-sheet show="{{showInfoAge}}" data-template="{{template}}" title="Chọn tuổi trẻ em" 
+      distanceFromTop="{{100}}" onClose="onCloseInfoAge" buttonCls="nobutton" >
+  <view class="ml16 mt16" tiki:for="{{itemAge}}">
+    <view data-id={{item.name}} onTap="selectage">{{item.name}}
+      <view class="hr-line"></view>
+    </view>
+  </view>
+
+</bottom-sheet>
+
+
+
+

@@ -1,3 +1,5 @@
+
+import {C} from '../../../providers/constants';
 Page({
   data: {
     listitems: [],
@@ -9,7 +11,7 @@ Page({
     console.log(query);
     this.setData({ loading: true });
     my.request({
-      url: 'https://beta-olivia.ivivu.com/mobile/OliviaApis/TopDeals?pageIndex=1&pageSize=200',
+      url: C.urls.baseUrl.urlMobile+'/mobile/OliviaApis/TopDeals?pageIndex=1&pageSize=200',
       method: 'POST',
       headers:
       {

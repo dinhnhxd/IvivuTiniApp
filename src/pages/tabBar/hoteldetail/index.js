@@ -1,6 +1,7 @@
 import parse from '@tiki.vn/mini-html-parser2';
 import moment from 'moment';
 import { topDealService} from '../../../providers/topDealService';
+import {C} from '../../../providers/constants';
 const init = () => ({
   latitude: 10.779693436530149,
   longitude: 106.67971686137946,
@@ -12,12 +13,13 @@ const init = () => ({
 });
 Page({
   data: {
-    apiKey: 'AIzaSyDY6f-OwKoI7g7VtWUcBhKKieXfyHKBHw8',
+    apiKey: 'AIzaSyD0Pl1SXWaFk1eHRZBNuWZGN01Ugewsap8',
     ...init(),
   el:'',
   show:false, 
   showInfo:false,
   showOption:false,
+  showInfoDep:false,
   fixedHeader: false,
   cin:moment().format('DD-MM-YYYY'),
   diffdate:1,
@@ -54,7 +56,7 @@ Page({
     this.arrchildtemp=[];
     this.setData({ loading: true });
     my.request({
-      url: 'https://svc1-beta.ivivu.com/mhoteldetail/' + query + '/',
+      url: C.urls.baseUrl.urlPost+'/mhoteldetail/' + query + '/',
       method: 'GET',
       headers: {
         apisecret: '2Vg_RTAccmT1mb1NaiirtyY2Y3OHaqUfQ6zU_8gD8SU',
@@ -64,45 +66,9 @@ Page({
         try {
           this.items = response;
           topDealService.reponseHotel=response;
-          let ricecombo = response.Combos.Price;
-          let minPrice = response.MinPrice;   
-          minPrice = this.arprice(minPrice)
-          let timef1 = response.Combos.ComboDetail[0].StayFrom;
-          let timef2 = response.Combos.ComboDetail[1]?.StayFrom;
-          let timef3 = response.Combos.ComboDetail[2]?.StayFrom;
-          let timef4 = response.Combos.ComboDetail[3]?.StayFrom;
-          let timet1 = response.Combos.ComboDetail[0].StayTo;
-          let timet2 = response.Combos.ComboDetail[1]?.StayTo;
-          let timet3 = response.Combos.ComboDetail[2]?.StayTo;
-          let timet4 = response.Combos.ComboDetail[3]?.StayTo;
-          let timecover1 = this.artime(timef1);
-          timecover1 = this.timeConverter(timecover1);
-          let timecover2 = this.artime(timef2);
-          timecover2 = this.timeConverter(timecover2);
-          let timecover3 = this.artime(timef3);
-          timecover3 = this.timeConverter(timecover3);
-          let timecover4 = this.artime(timef4);
-          timecover4 = this.timeConverter(timecover4);
-          let timecoverto1 = this.artime(timet1);
-          timecoverto1 = this.timeConverter(timecoverto1);
-          let timecoverto2 = this.artime(timet2);
-          timecoverto2 = this.timeConverter(timecoverto2);
-          let timecoverto3 = this.artime(timet3);
-          timecoverto3 = this.timeConverter(timecoverto3);
-          let timecoverto4 = this.artime(timet4);
-          timecoverto4 = this.timeConverter(timecoverto4);
-  
-          ricecombo = this.arprice(ricecombo);
-          let ricefrom1 = this.arprice(response.Combos.ComboDetail[0]?.PriceFrom);
-          let ricefrom2  = this.arprice(response.Combos.ComboDetail[1]?.PriceFrom);
-          let ricefrom3  = this.arprice(response.Combos.ComboDetail[2]?.PriceFrom);
-          let ricefrom4  = this.arprice(response.Combos.ComboDetail[3]?.PriceFrom);
           let HotelFacilities=[];
           for (let index = 0; index < 4; index++) {
-        
               HotelFacilities.push(response.HotelFacilities[index]);
-  
-           
           }
           let HotelReviews=[];
           let coReivew=0;
@@ -116,73 +82,49 @@ Page({
             }
          
           }
+         
+          let notecombo="";
+          let titlecombo="";
+          let combopriceontitle="";
+          let FullDescription ="";
+          let Description="";
+          let el=""
+          let arrDate=[];
+        if (response.ComboPromtion || response.Combos) {
+           notecombo = response.ComboPromtion && response.ComboPromtion.Note ? (response.ComboPromtion.Note || '') : (response.Combos ? response.Combos.Note : '');
+           titlecombo = response.ComboPromtion && response.ComboPromtion.Title ? response.ComboPromtion.Title : (response.Combos ? response.Combos.Title : '');
+          
+          combopriceontitle = response.ComboPromtion && response.ComboPromtion.Description ? response.ComboPromtion.Price.toLocaleString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") : (response.Combos ? response.Combos.Price.toLocaleString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1.") : '');
+          notecombo = this.parseHTML(notecombo);
           this.ChildAgeTo=response.ChildAgeTo;
           // let test =unescape(response.Combos.Note); 
-          let notecombo = response.ComboPromtion && response.ComboPromtion.Note ? (response.ComboPromtion.Note || '') : (response.Combos ? response.Combos.Note : '');
-          let el = this.parseHTML(notecombo);
-          let Description = response.ComboPromtion && response.ComboPromtion.Description ? response.ComboPromtion.Description.replace(/\r\n/g, "<br/>") : (response.Combos ? response.Combos.Description.replace(/\r\n/g, "<br/>") : '');
+          FullDescription = this.parseHTML(response.FullDescription);
+          //  Description = this.parseHTML(Description);
+           this.ComboDayNum = response.Combos ? response.Combos.ComboDayNum : 1;
+           this.cin=new Date();
+           var rescin = this.cin.setTime(
+            this.cin.getTime() + (1 * 24 * 60 * 60 * 1000)
+          );
+          var datecin = new Date(rescin);
+
+            arrDate.push(datecin);
+          this.cin = moment(datecin).format("DD-MM-YYYY");
+            this.cout=new Date();
+            var res = this.cout.setTime(
+            this.cout.getTime() + (this.ComboDayNum  * 24 * 60 * 60 * 1000)
+          );
+          var datecout = new Date(res);
+          this.cout = moment(datecout).format("DD-MM-YYYY");
+          this.diffdate = moment(datecout).diff(moment(moment(datecin).format('YYYY-MM-DD')), 'days');
+          arrDate.push(datecout);
+           Description = response.ComboPromtion && response.ComboPromtion.Description ? response.ComboPromtion.Description.replace(/\r\n/g, "<br/>") : (response.Combos ? response.Combos.Description.replace(/\r\n/g, "<br/>") : '');
           Description = Description.replace(/#r/g, "");
           Description = Description.replace(/r#/g, "");
           Description = Description.replace(/#m/g, "");
           Description = Description.replace(/m#/g, "");
           Description = Description.replace(/#n/g, "");
           Description = Description.replace(/n#/g, "");
-          // let Description = this.parseHTML(response.Combos.Description);
-          let FullDescription = this.parseHTML(response.FullDescription);
-           Description = this.parseHTML(Description);
-           this.ComboDayNum = response.Combos ? response.Combos.ComboDayNum : 1;
-           this.cin=new Date();
-           var rescin = this.cin.setTime(
-            this.cin.getTime() + (1 * 24 * 60 * 60 * 1000)
-          );
-          var date = new Date(rescin);
-          let arrDate=[];
-            arrDate.push(date);
-          this.cin = moment(date).format("DD-MM-YYYY");
-           this.cout=new Date();
-           var res = this.cout.setTime(
-            this.cout.getTime() + (this.ComboDayNum  * 24 * 60 * 60 * 1000)
-          );
-          var date = new Date(res);
-          this.cout = moment(date).format("DD-MM-YYYY");
-          arrDate.push(date);
-            this.setData({
-              response,
-              ricecombo,
-              timecover1,
-              timecover2,
-              timecover3,
-              timecover4,
-              timecoverto1,
-              timecoverto2,
-              timecoverto3,
-              timecoverto4,
-              ricefrom1,
-              ricefrom2,
-              ricefrom3,
-              ricefrom4,
-              loading: false,
-              el,
-              minPrice,
-              HotelFacilities,
-              Description,
-              FullDescription,
-              cin:this.cin,
-              arrDate,
-              HotelReviews,
-              apiKey: 'AIzaSyDY6f-OwKoI7g7VtWUcBhKKieXfyHKBHw8',
-                zoom: 10,
-                latitude: response.Latitude,
-                longitude: response.Longitude,
-                markers: [
-                  {
-                    latitude: response.Latitude,
-                    longitude: response.Longitude,
-                  }
-                ]
-        });
-       
-          
+          Description = this.parseHTML(Description);
           if (response.ComboPromtion && response.ComboPromtion.Id) {
             this.comboid = response.ComboPromtion.Id;
           }
@@ -191,6 +133,39 @@ Page({
             this.getDetailCombo(response.Combos.Id);
           }
 
+        }
+        this.setData({
+          response,
+          titlecombo,
+          combopriceontitle,
+          loading: false,
+          el,
+          HotelFacilities,
+          Description,
+          FullDescription,
+          cin:this.cin,
+          diffdate:this.diffdate,
+          arrDate,
+          HotelReviews,
+          notecombo,
+          apiKey: 'AIzaSyD0Pl1SXWaFk1eHRZBNuWZGN01Ugewsap8',
+            zoom: 10,
+            latitude: response.Latitude,
+            longitude: response.Longitude,
+            markers: [
+              {
+                latitude: response.Latitude,
+                longitude: response.Longitude,
+              }
+            ]
+          });
+          if (response.ComboPromtion && response.ComboPromtion.Id) {
+            this.comboid = response.ComboPromtion.Id;
+          }
+          if (response.Combos && response.Combos.ComboDetail) {
+            this.comboid = response.Combos.Id;
+            this.getDetailCombo(response.Combos.Id);
+          }
         } catch (error) {
           console.log(error)
         }
@@ -204,8 +179,7 @@ Page({
   },
   getDetailCombo(comboid){
     my.request({
-   
-      url: 'https://beta-olivia.ivivu.com/mobile/OliviaApis/ComboDetailList?comboId=' + (comboid ? comboid : this.comboid) + '&checkin=' + moment(this.cin).format('DD-MM-YYYY') + '&checkout=' + moment(this.cout).format('DD-MM-YYYY'),
+      url: C.urls.baseUrl.urlMobile +'/mobile/OliviaApis/ComboDetailList?comboId=' + (comboid ? comboid : this.comboid) + '&checkin=' + this.cin + '&checkout=' + this.cout,
       method: 'GET',
       headers: {
         apisecret: '2Vg_RTAccmT1mb1NaiirtyY2Y3OHaqUfQ6zU_8gD8SU',
@@ -214,6 +188,7 @@ Page({
       success: (response) => {
         try {
           var item=response.comboDetail;
+          topDealService.reponseComboDetail=response;
           if (item) {
             this.fc = (item.comboType == "1");
             this.fs = (item.comboType == "2");
@@ -240,9 +215,6 @@ Page({
                 this.allowbookcombofx = moment(this.cin).diff(moment(d),'days') > 1 ? false : true;
               }
             }
-            // if(this.fcbcar && this.comboDetail){
-            //   this.bookCombo.ComboRoomPrice = this.comboDetail.comboDetail.totalPriceSale;
-            // }
             var itemList = response.list;
             if (itemList) {
               let comboDetailList=[];
@@ -353,7 +325,13 @@ Page({
     }
   },
   bookCombo(){
-    my.navigateTo({ url: "pages/tabBar/combooverview/index"});
+
+
+    this.setData({
+      showInfoDep: true,
+      Departure: topDealService.reponseComboDetail.list
+    });
+    // my.navigateTo({ url: "pages/tabBar/combooverview/index"});
   },
 
   showDatePicker(format, ...options) {
@@ -379,12 +357,6 @@ Page({
   onShowDateTime() {
     this.showDatePicker('dd-MM-yyyy');
   },
-  // onArrayChange(e) {
-  //   console.log('array', e.detail.value);
-  //   this.setData({
-  //     arrayIndex: e.detail.value
-  //   });
-  // },
   onShowcalendar(){
     this.setData({
       showInfo: false,
@@ -638,11 +610,29 @@ Page({
           break;
       }
     }
-    
     return cinthu;
   },
   onReview(){
     my.navigateTo({ url: "pages/tabBar/reviewcus/index"});
+  },
+  onCloseDep(){
+    this.setData({
+      showInfoDep: false
+    });
+  },
+  requestCombo(e){
+    topDealService.checkin=this.cin;
+    topDealService.checkout=this.cout;
+    topDealService.adults=this.adults;
+    topDealService.child=this.child;
+    topDealService.dur=this.diffdate;
+    topDealService.roomnumber=this.room;
+    topDealService.arrchild=this.arrchild;
+    this.setData({
+      showInfoDep: false
+    });
+    topDealService.ComboDetail=e.currentTarget.dataset.id;
+    my.navigateTo({ url: "pages/tabBar/combooverview/index"});
   }
 });
 

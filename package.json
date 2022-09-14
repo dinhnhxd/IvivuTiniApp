@@ -6,12 +6,17 @@
     "buildNumber": 5
   },
   "dependencies": {
+    "@angular/http": "^7.2.16",
     "@tiki.vn/mini-html-parser2": "^0.0.4",
     "@tiki.vn/tini-types": "^0.3.0",
     "@tiki.vn/tini-ui": "^0.14.0",
     "@types/lodash-es": "^4.17.6",
     "lodash-es": "^4.17.21",
-    "moment": "^2.29.4"
+    "moment": "^2.29.4",
+    "node-angular-http-client": "^1.1.7",
+    "request": "^2.88.2",
+    "requestretry": "^7.1.0",
+    "util": "^0.12.4"
   },
   "devDependencies": {
     "prettier": "^2.5.1"
